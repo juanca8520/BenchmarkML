@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		840A1BFD240451A500880077 /* TestDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A1BFC240451A500880077 /* TestDetail.swift */; };
+		840A1BFF2404697000880077 /* TestGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A1BFE2404697000880077 /* TestGroup.swift */; };
+		840A1C0124055F8B00880077 /* TestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A1C0024055F8B00880077 /* TestType.swift */; };
+		840A1C0524057A1E00880077 /* models.json in Resources */ = {isa = PBXBuildFile; fileRef = 840A1C0424057A1E00880077 /* models.json */; };
+		840A1C0924057A5300880077 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A1C0824057A5300880077 /* Model.swift */; };
+		8421D1862403459300202F8E /* MyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421D1852403459300202F8E /* MyTests.swift */; };
+		8421D18924034D5700202F8E /* tests.json in Resources */ = {isa = PBXBuildFile; fileRef = 8421D18824034D5700202F8E /* tests.json */; };
+		8421D18D240358CD00202F8E /* CreateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421D18C240358CD00202F8E /* CreateTest.swift */; };
+		844916F524041BC3005E9908 /* ClasificadorDeImagenes 2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 844916F424041BC3005E9908 /* ClasificadorDeImagenes 2.mlmodel */; };
+		844916F8240423F9005E9908 /* CoreMLImageClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844916F7240423F9005E9908 /* CoreMLImageClassification.swift */; };
+		844916FA24042DF2005E9908 /* ConfigureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844916F924042DF2005E9908 /* ConfigureTest.swift */; };
 		845EC45624032B720044F08B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC45524032B720044F08B /* AppDelegate.swift */; };
 		845EC45824032B720044F08B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC45724032B720044F08B /* SceneDelegate.swift */; };
 		845EC45A24032B720044F08B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC45924032B720044F08B /* ContentView.swift */; };
@@ -15,6 +26,10 @@
 		845EC46224032B750044F08B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845EC46024032B750044F08B /* LaunchScreen.storyboard */; };
 		845EC46D24032B750044F08B /* BenchmarkMLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC46C24032B750044F08B /* BenchmarkMLTests.swift */; };
 		845EC47824032B750044F08B /* BenchmarkMLUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC47724032B750044F08B /* BenchmarkMLUITests.swift */; };
+		845EC48624032C2E0044F08B /* TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC48524032C2E0044F08B /* TestRun.swift */; };
+		845EC48824033C100044F08B /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC48724033C100044F08B /* Test.swift */; };
+		845EC49024033E4C0044F08B /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC48F24033E4C0044F08B /* Data.swift */; };
+		84D7FEB12406DC0B0069DA3B /* InputData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7FEB02406DC0B0069DA3B /* InputData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +50,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		840A1BFC240451A500880077 /* TestDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetail.swift; sourceTree = "<group>"; };
+		840A1BFE2404697000880077 /* TestGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGroup.swift; sourceTree = "<group>"; };
+		840A1C0024055F8B00880077 /* TestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestType.swift; sourceTree = "<group>"; };
+		840A1C0424057A1E00880077 /* models.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = models.json; path = ../../../../Paralelismo/models.json; sourceTree = "<group>"; };
+		840A1C0824057A5300880077 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		8421D1852403459300202F8E /* MyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTests.swift; sourceTree = "<group>"; };
+		8421D18824034D5700202F8E /* tests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = tests.json; path = ../../../../Paralelismo/tests.json; sourceTree = "<group>"; };
+		8421D18C240358CD00202F8E /* CreateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTest.swift; sourceTree = "<group>"; };
+		844916F424041BC3005E9908 /* ClasificadorDeImagenes 2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = "ClasificadorDeImagenes 2.mlmodel"; path = "../../Models/ClasificadorDeImagenes.mlproj/Models/ClasificadorDeImagenes 2.mlmodel"; sourceTree = "<group>"; };
+		844916F7240423F9005E9908 /* CoreMLImageClassification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLImageClassification.swift; sourceTree = "<group>"; };
+		844916F924042DF2005E9908 /* ConfigureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureTest.swift; sourceTree = "<group>"; };
 		845EC45224032B720044F08B /* BenchmarkML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BenchmarkML.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		845EC45524032B720044F08B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		845EC45724032B720044F08B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +75,10 @@
 		845EC47324032B750044F08B /* BenchmarkMLUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BenchmarkMLUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		845EC47724032B750044F08B /* BenchmarkMLUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenchmarkMLUITests.swift; sourceTree = "<group>"; };
 		845EC47924032B750044F08B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		845EC48524032C2E0044F08B /* TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRun.swift; sourceTree = "<group>"; };
+		845EC48724033C100044F08B /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		845EC48F24033E4C0044F08B /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		84D7FEB02406DC0B0069DA3B /* InputData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,9 +106,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		844916F6240423AE005E9908 /* Interface elements */ = {
+			isa = PBXGroup;
+			children = (
+				8421D1852403459300202F8E /* MyTests.swift */,
+				845EC48524032C2E0044F08B /* TestRun.swift */,
+				8421D18C240358CD00202F8E /* CreateTest.swift */,
+				844916F924042DF2005E9908 /* ConfigureTest.swift */,
+				840A1BFC240451A500880077 /* TestDetail.swift */,
+				840A1BFE2404697000880077 /* TestGroup.swift */,
+				840A1C0024055F8B00880077 /* TestType.swift */,
+				84D7FEB02406DC0B0069DA3B /* InputData.swift */,
+			);
+			path = "Interface elements";
+			sourceTree = "<group>";
+		};
 		845EC44924032B720044F08B = {
 			isa = PBXGroup;
 			children = (
+				844916F7240423F9005E9908 /* CoreMLImageClassification.swift */,
 				845EC45424032B720044F08B /* BenchmarkML */,
 				845EC46B24032B750044F08B /* BenchmarkMLTests */,
 				845EC47624032B750044F08B /* BenchmarkMLUITests */,
@@ -99,7 +145,12 @@
 		845EC45424032B720044F08B /* BenchmarkML */ = {
 			isa = PBXGroup;
 			children = (
+				840A1C0424057A1E00880077 /* models.json */,
+				844916F424041BC3005E9908 /* ClasificadorDeImagenes 2.mlmodel */,
+				8421D18824034D5700202F8E /* tests.json */,
+				845EC48924033C190044F08B /* Models */,
 				845EC45524032B720044F08B /* AppDelegate.swift */,
+				844916F6240423AE005E9908 /* Interface elements */,
 				845EC45724032B720044F08B /* SceneDelegate.swift */,
 				845EC45924032B720044F08B /* ContentView.swift */,
 				845EC45B24032B750044F08B /* Assets.xcassets */,
@@ -134,6 +185,16 @@
 				845EC47924032B750044F08B /* Info.plist */,
 			);
 			path = BenchmarkMLUITests;
+			sourceTree = "<group>";
+		};
+		845EC48924033C190044F08B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				845EC48724033C100044F08B /* Test.swift */,
+				845EC48F24033E4C0044F08B /* Data.swift */,
+				840A1C0824057A5300880077 /* Model.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,7 +302,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				845EC46224032B750044F08B /* LaunchScreen.storyboard in Resources */,
+				8421D18924034D5700202F8E /* tests.json in Resources */,
 				845EC45F24032B750044F08B /* Preview Assets.xcassets in Resources */,
+				840A1C0524057A1E00880077 /* models.json in Resources */,
 				845EC45C24032B750044F08B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,9 +330,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8421D1862403459300202F8E /* MyTests.swift in Sources */,
 				845EC45624032B720044F08B /* AppDelegate.swift in Sources */,
+				840A1BFD240451A500880077 /* TestDetail.swift in Sources */,
+				845EC49024033E4C0044F08B /* Data.swift in Sources */,
+				84D7FEB12406DC0B0069DA3B /* InputData.swift in Sources */,
+				844916F524041BC3005E9908 /* ClasificadorDeImagenes 2.mlmodel in Sources */,
+				840A1C0124055F8B00880077 /* TestType.swift in Sources */,
+				845EC48624032C2E0044F08B /* TestRun.swift in Sources */,
+				840A1C0924057A5300880077 /* Model.swift in Sources */,
+				844916F8240423F9005E9908 /* CoreMLImageClassification.swift in Sources */,
+				845EC48824033C100044F08B /* Test.swift in Sources */,
+				840A1BFF2404697000880077 /* TestGroup.swift in Sources */,
 				845EC45824032B720044F08B /* SceneDelegate.swift in Sources */,
 				845EC45A24032B720044F08B /* ContentView.swift in Sources */,
+				844916FA24042DF2005E9908 /* ConfigureTest.swift in Sources */,
+				8421D18D240358CD00202F8E /* CreateTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +511,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				COREML_CODEGEN_LANGUAGE = Swift;
 				DEVELOPMENT_ASSET_PATHS = "\"BenchmarkML/Preview Content\"";
 				DEVELOPMENT_TEAM = U947CD37RB;
 				ENABLE_PREVIEWS = YES;
@@ -455,6 +532,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				COREML_CODEGEN_LANGUAGE = Swift;
 				DEVELOPMENT_ASSET_PATHS = "\"BenchmarkML/Preview Content\"";
 				DEVELOPMENT_TEAM = U947CD37RB;
 				ENABLE_PREVIEWS = YES;
