@@ -23,7 +23,7 @@ struct CreateTest: View {
             ScrollView{
                 VStack(alignment: HorizontalAlignment.leading){
                     Text("Select a model")
-                        .font(.title)
+                        .font(.body)
                         .bold()
                         .padding(.horizontal)
                     ScrollView(.horizontal, showsIndicators: false){
@@ -43,6 +43,7 @@ struct CreateTest: View {
                                 }) {
                                     TestType(model: model)
                                         .frame(width: 300, height: 175)
+                                        .overlay(Rectangle().hidden())
                                 }
                                 .buttonStyle(PlainButtonStyle())
                             }
@@ -52,7 +53,7 @@ struct CreateTest: View {
                     
                     if selectedModel {
                         Text("Select a framework or library")
-                            .font(.title)
+                            .font(.body)
                             .bold()
                             .padding(.horizontal)
                         ScrollView(.horizontal, showsIndicators: false){

@@ -18,6 +18,7 @@
 		844916F524041BC3005E9908 /* ClasificadorDeImagenes 2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 844916F424041BC3005E9908 /* ClasificadorDeImagenes 2.mlmodel */; };
 		844916F8240423F9005E9908 /* CoreMLImageClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844916F7240423F9005E9908 /* CoreMLImageClassification.swift */; };
 		844916FA24042DF2005E9908 /* ConfigureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844916F924042DF2005E9908 /* ConfigureTest.swift */; };
+		844C6FFF2407233B00214D22 /* ClassificationResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C6FFE2407233B00214D22 /* ClassificationResults.swift */; };
 		845EC45624032B720044F08B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC45524032B720044F08B /* AppDelegate.swift */; };
 		845EC45824032B720044F08B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC45724032B720044F08B /* SceneDelegate.swift */; };
 		845EC45A24032B720044F08B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC45924032B720044F08B /* ContentView.swift */; };
@@ -61,6 +62,7 @@
 		844916F424041BC3005E9908 /* ClasificadorDeImagenes 2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = "ClasificadorDeImagenes 2.mlmodel"; path = "../../Models/ClasificadorDeImagenes.mlproj/Models/ClasificadorDeImagenes 2.mlmodel"; sourceTree = "<group>"; };
 		844916F7240423F9005E9908 /* CoreMLImageClassification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLImageClassification.swift; sourceTree = "<group>"; };
 		844916F924042DF2005E9908 /* ConfigureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureTest.swift; sourceTree = "<group>"; };
+		844C6FFE2407233B00214D22 /* ClassificationResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationResults.swift; sourceTree = "<group>"; };
 		845EC45224032B720044F08B /* BenchmarkML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BenchmarkML.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		845EC45524032B720044F08B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		845EC45724032B720044F08B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				840A1BFE2404697000880077 /* TestGroup.swift */,
 				840A1C0024055F8B00880077 /* TestType.swift */,
 				84D7FEB02406DC0B0069DA3B /* InputData.swift */,
+				844C6FFE2407233B00214D22 /* ClassificationResults.swift */,
 			);
 			path = "Interface elements";
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				845EC45824032B720044F08B /* SceneDelegate.swift in Sources */,
 				845EC45A24032B720044F08B /* ContentView.swift in Sources */,
 				844916FA24042DF2005E9908 /* ConfigureTest.swift in Sources */,
+				844C6FFF2407233B00214D22 /* ClassificationResults.swift in Sources */,
 				8421D18D240358CD00202F8E /* CreateTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

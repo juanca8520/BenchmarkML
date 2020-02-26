@@ -13,6 +13,7 @@ import CoreML
 class CoreMLImageClassification {
     
     static var results = "No results"
+    static var startTime = 0.0
     
     /// - Tag: MLModelSetup
     static var classificationRequest: VNCoreMLRequest = {
@@ -36,8 +37,8 @@ class CoreMLImageClassification {
                             return String(format: "  (%.2f) %@", classification.confidence, classification.identifier)
                         })
                         // Acá tengo que hacer cosas dependiendo de la interfaz que implemente
-                        print()
-                        CoreMLImageClassification.results = "Classification:\n" + descriptions.joined(separator: "\n")
+                        
+                        CoreMLImageClassification.results = "Classification:\n" + descriptions.joined(separator: "\n") + "\n\(String(format: "Time: %.2f", (CFAbsoluteTimeGetCurrent() - startTime))) seconds"
                     }
                 }
             })
@@ -50,8 +51,8 @@ class CoreMLImageClassification {
 
     /// - Tag: PerformRequests
     static func updateClassifications(for image: UIImage) {
+        CoreMLImageClassification.startTime = CFAbsoluteTimeGetCurrent()
         // Acá tengo que poner algo que me indique que se está clasificando la imagen que pasé al modelo
-        print("clasificando")
         
         let orientation = CGImagePropertyOrientation(rawValue: UInt32(image.imageOrientation.rawValue))!
         guard let ciImage = CIImage(image: image) else { fatalError("Unable to create \(CIImage.self) from \(image).") }
