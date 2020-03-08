@@ -28,7 +28,6 @@ struct MyTests: View {
                             }) {
                                 TestRun(test: Test(id: 0, name: "+", description: "Create test"))
                             }
-                            .buttonStyle(PlainButtonStyle())
                             .sheet(isPresented: self.$createTestModal){
                                 CreateTest(showingModal: self.$createTestModal)
                             }
