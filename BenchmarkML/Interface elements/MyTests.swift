@@ -26,7 +26,7 @@ struct MyTests: View {
                             Button(action: {
                                 self.createTestModal.toggle()
                             }) {
-                                TestRun(test: Test(id: 0, name: "+", description: "Create test"))
+                                TestRun(test: Test(id: 0, name: "+", description: "Create test", model: "x", trainingTime: "200", numberElements: "500", elementsPerLabel: "25", elementsForAccuracy: "40"))
                             }
                             .sheet(isPresented: self.$createTestModal){
                                 CreateTest(showingModal: self.$createTestModal)
@@ -35,7 +35,7 @@ struct MyTests: View {
                             Button(action: {
                                 self.createTestModal.toggle()
                             }) {
-                                TestRun(test: Test(id: 0, name: "+", description: "Create test"))
+                                TestRun(test: Test(id: 0, name: "+", description: "Create test", model: "x", trainingTime: "200", numberElements: "500", elementsPerLabel: "25", elementsForAccuracy: "40"))
                                 .hidden()
                             }.sheet(isPresented: self.$createTestModal){
                                 CreateTest(showingModal: self.$createTestModal)

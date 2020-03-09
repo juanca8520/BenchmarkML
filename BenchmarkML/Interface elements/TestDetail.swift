@@ -16,93 +16,97 @@ struct TestDetail: View {
     @State var showingSheet = false
     @State var image = UIImage()
     @State var results = ""
+    var model: Test?
     
     var body: some View {
-            ScrollView{
-                VStack(alignment: HorizontalAlignment.leading){
-                    Text("This is a model pre trained on Create ML to classify cars on two lables: Audi or Alfa Romeo.")
-                        .padding()
-                    
-                    HStack{
-                        Button(action: {
-                            self.showingSheet.toggle()
-                        }) {
-                            Text("Add image")
-                        }.actionSheet(isPresented: self.$showingSheet) {
-                            ActionSheet(title: Text("Select an option"), message: Text("Select how to add an image to classify"), buttons:
-                                [.default(Text("Select from gallery"), action: {
-                                    self.isShowingImagePicker.toggle()
-                                }),
-                                 .default(Text("Use camera"), action: {
-                                    
-                                 }),
-                                 .cancel()
-                                ]
-                            )
-                        }
-                        .sheet(isPresented: $isShowingImagePicker, content: {
-                            ImagePickerView(isPresented: self.$isShowingImagePicker, image: self.$image)
-                        }).padding()
-                        
-                        
-                        Spacer()
-                        
-                        Button(action: {
+        ScrollView{
+            VStack(alignment: HorizontalAlignment.leading){
+                Text(model!.description)
+                    .padding()
+                
+                HStack{
+                    Button(action: {
+                        self.showingSheet.toggle()
+                    }) {
+                        Text("Add image")
+                    }.actionSheet(isPresented: self.$showingSheet) {
+                        ActionSheet(title: Text("Select an option"), message: Text("Select how to add an image to classify"), buttons:
+                            [.default(Text("Select from gallery"), action: {
+                                self.isShowingImagePicker.toggle()
+                            }),
+                             .default(Text("Use camera"), action: {
+                                
+                             }),
+                             .cancel()
+                            ]
+                        )
+                    }
+                    .sheet(isPresented: $isShowingImagePicker, content: {
+                        ImagePickerView(isPresented: self.$isShowingImagePicker, image: self.$image)
+                    }).padding()
+                    Spacer()
+                    Button(action: {
+                        switch self.model!.model {
+                        case "CreateMLCarClassifier":
                             CoreMLImageClassification.updateClassifications(for: self.image)
                             self.results = CoreMLImageClassification.results
-                            
-                        }) {
-                            Text("Classify")
-                                .padding(.horizontal)
-                                .disabled(image == UIImage())
+                        case "CreateMLObjectClassifier":
+                            CoreMLObjectClassifier.updateClassifications(for: self.image)
+                            self.results = CoreMLImageClassification.results
+                        default:
+                            print("hola")
                         }
-                    }
-                    
-                    if image != UIImage() {
-                        HStack(alignment: .center){
-                            Spacer()
-                            Image(uiImage: image)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 350, height: 350)
-                                .overlay(
-                                    ClassificationResults(results: self.$results).frame(width: 200, height: 100)
-                                        .padding(.horizontal), alignment: .bottomLeading)
-                            Spacer()
-                        }
-                    }
-                    
-                    Text("Time to train model:")
-                        .font(.headline)
-                        .padding()
-                    
-                    VStack(alignment: .leading){
-                        Text("47 seconds:")
-                            .bold()
-                            .padding(.top)
+                    }) {
+                        Text("Classify")
                             .padding(.horizontal)
-                        
-                        Text("With 360 elements, 160 for each label and 40 left for accuracy training")
-                            .padding(.horizontal)
+                            .disabled(image == UIImage())
                     }
-                    .padding(.horizontal)
-                    
-                    Spacer()
                 }
-                .navigationBarTitle("Image classification")
-            
+                
+                if image != UIImage() {
+                    HStack(alignment: .center){
+                        Spacer()
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 350, height: 350)
+                            .overlay(
+                                ClassificationResults(results: self.$results).frame(width: 200, height: 200)
+                                    .padding(.horizontal), alignment: .bottomLeading)
+                        Spacer()
+                    }
+                }
+                
+                Text("Time to train model:")
+                    .font(.headline)
+                    .padding()
+                
+                VStack(alignment: .leading){
+                    Text("\(model!.trainingTime) seconds:")
+                        .bold()
+                        .padding(.top)
+                        .padding(.horizontal)
+                    
+                    Text("With \(model!.numberElements) elements, \(model!.elementsPerLabel) for each label and \(model!.elementsForAccuracy) left for accuracy training")
+                        .padding(.horizontal)
+                }
+                .padding(.horizontal)
+                
+                Spacer()
+            }
         }
+        .navigationBarTitle(model!.name)
     }
     
     func classify(completed: () -> ()) {
-        CoreMLImageClassification.updateClassifications(for: self.image)
-        completed()
+        //        CoreMLImageClassification.updateClassifications(for: self.image, with: )
+        //        completed()
     }
 }
 
 struct TestDetail_Previews: PreviewProvider {
     static var previews: some View {
-        TestDetail()
+        TestDetail(model: landmarkData[0])
     }
 }
 

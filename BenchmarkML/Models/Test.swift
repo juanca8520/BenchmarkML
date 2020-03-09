@@ -12,6 +12,11 @@ struct Test: Identifiable, Decodable, Hashable {
     var id: Int
     var name: String
     var description: String
+    var model: String
+    var trainingTime: String
+    var numberElements: String
+    var elementsPerLabel: String
+    var elementsForAccuracy: String
     
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)

@@ -15,18 +15,18 @@ struct TestGroup: View {
     var body: some View {
         HStack{
             if tests.count == 2 {
-                NavigationLink(destination: TestDetail()){
+                NavigationLink(destination: TestDetail(model: tests[0])){
                     TestRun(test: tests[0])
                 }
                 .buttonStyle(PlainButtonStyle())
                 
-                NavigationLink(destination: TestDetail()){
+                NavigationLink(destination: TestDetail(model: tests[1])){
                     TestRun(test: tests[1])
                 }
                 .buttonStyle(PlainButtonStyle())
                 
             } else {
-                NavigationLink(destination: TestDetail()){
+                NavigationLink(destination: TestDetail(model: tests[0])){
                     TestRun(test: tests[0])
                 }
                 .buttonStyle(PlainButtonStyle())
@@ -34,7 +34,7 @@ struct TestGroup: View {
                 Button(action: {
                     self.createTestModal.toggle()
                 }) {
-                    TestRun(test: Test(id: 0, name: "+", description: "Create test"))
+                    TestRun(test: Test(id: 0, name: "+", description: "Create test", model: "x", trainingTime: "200", numberElements: "500", elementsPerLabel: "25", elementsForAccuracy: "40"))
                 }
                 .sheet(isPresented: self.$createTestModal){
                     CreateTest(showingModal: self.$createTestModal)
