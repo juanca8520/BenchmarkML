@@ -9,8 +9,9 @@
 import SwiftUI
 
 struct MyTests: View {
-    let array = landmarkData.chunked(into: 2)
+    @State var array = [[Test]]()
     @State private var createTestModal = false
+    @State var models = [Model]()
     var body: some View {
         NavigationView{
             ScrollView{
@@ -29,16 +30,16 @@ struct MyTests: View {
                                 TestRun(test: Test(id: 0, name: "+", description: "Create test", model: "x", trainingTime: "200", numberElements: "500", elementsPerLabel: "25", elementsForAccuracy: "40"))
                             }
                             .sheet(isPresented: self.$createTestModal){
-                                CreateTest(showingModal: self.$createTestModal)
+                                CreateTest(models: self.$models, showingModal: self.$createTestModal)
                             }
                             
                             Button(action: {
                                 self.createTestModal.toggle()
                             }) {
                                 TestRun(test: Test(id: 0, name: "+", description: "Create test", model: "x", trainingTime: "200", numberElements: "500", elementsPerLabel: "25", elementsForAccuracy: "40"))
-                                .hidden()
+                                    .hidden()
                             }.sheet(isPresented: self.$createTestModal){
-                                CreateTest(showingModal: self.$createTestModal)
+                                CreateTest(models: self.$models, showingModal: self.$createTestModal)
                             }
                         }
                     }
@@ -46,7 +47,15 @@ struct MyTests: View {
                 }
             }
             .navigationBarTitle("My tests")
-        }
+        }.onAppear(perform: {
+            TestPersistence.getTests(completion: { (list, err) in
+                self.array = list.chunked(into: 2)
+            })
+            
+            ModelPersistence.getModels { (list, err) in
+                self.models = list
+            }
+        })
     }
 }
 

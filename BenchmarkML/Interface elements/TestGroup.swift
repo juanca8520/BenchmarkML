@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TestGroup: View {
     @State private var createTestModal = false
-    
+    @State var models = [Model]()
     var tests: [Test]
     var body: some View {
         HStack{
@@ -37,10 +37,14 @@ struct TestGroup: View {
                     TestRun(test: Test(id: 0, name: "+", description: "Create test", model: "x", trainingTime: "200", numberElements: "500", elementsPerLabel: "25", elementsForAccuracy: "40"))
                 }
                 .sheet(isPresented: self.$createTestModal){
-                    CreateTest(showingModal: self.$createTestModal)
+                    CreateTest(models: self.$models ,showingModal: self.$createTestModal)
                 }
             }
-        }
+        }.onAppear(perform: {
+            ModelPersistence.getModels { (list, err) in
+                self.models = list
+            }
+        })
     }
 }
 

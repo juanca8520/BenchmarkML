@@ -12,6 +12,7 @@ import Vision
 import ImageIO
 
 struct CreateTest: View {
+    @Binding var models: [Model] 
     @State var selectedModel = false
     @State var selectedFramework = false
     @State var selectedInputData = false
@@ -28,7 +29,7 @@ struct CreateTest: View {
                         .padding(.horizontal)
                     ScrollView(.horizontal, showsIndicators: false){
                         HStack{
-                            ForEach(modelData) { model in
+                            ForEach(models) { model in
                                 Button(action:{
                                     withAnimation(.easeInOut(duration: 0.2)){
                                         self.selectedModel.toggle()
@@ -50,7 +51,6 @@ struct CreateTest: View {
                         }
                         .padding(.horizontal)
                     }
-                    
                     if selectedModel {
                         Text("Select a framework or library")
                             .font(.body)
@@ -80,13 +80,12 @@ struct CreateTest: View {
                             .padding(.horizontal)
                         }
                     }
-                    
                     if selectedFramework {
                         ConfigureTest(selectedInputData: self.$selectedInputData)
                     }
                     Spacer()
                 }
-                .padding(.top)
+                    .padding(.top)
             }
             .navigationBarTitle("Create test")
             .navigationBarItems(leading:
@@ -98,14 +97,20 @@ struct CreateTest: View {
                     
                 }.disabled(!selectedInputData))
             
-        }
+        }.onAppear(perform: {
+            ModelPersistence.getModels { (list, err) in
+                self.models = list
+                print(self.models)
+                print("hola")
+            }
+        })
     }
 }
 
 
 struct CreateTest_Previews: PreviewProvider {
     static var previews: some View {
-        CreateTest(showingModal: .constant(true))
+        CreateTest(models: .constant(modelData) ,showingModal: .constant(true))
     }
 }
 
