@@ -9,10 +9,10 @@
 import SwiftUI
 
 struct MyTests: View {
+    
     @State var tests = [[Test]]()
     @State private var createTestModal = false
     @State var models = [Model]()
-    @State var frameworks = [Framework]()
     var body: some View {
         NavigationView{
             ScrollView{
@@ -57,8 +57,6 @@ struct MyTests: View {
             ModelPersistence.getModels { (list, err) in
                 self.models = list
             }
-            
-            print("hola")
         })
     }
 }
