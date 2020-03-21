@@ -15,7 +15,7 @@ struct ConfigureTest: View {
     var body: some View {
         VStack(alignment: HorizontalAlignment.leading){
             Text("Select the input data")
-                .font(.title)
+                .font(.body)
                 .bold()
                 .padding(.horizontal)
             ScrollView(.horizontal, showsIndicators: false){
@@ -24,7 +24,7 @@ struct ConfigureTest: View {
                         Button(action: {
                             self.didSelectInputData.toggle()
                         }){
-                            InputDataGroup(inputData: inputData).frame(width: 300, height: 175)
+                            InputDataGroup(inputData: inputData).frame(width: 275, height: 175)
                         }
                         .buttonStyle(PlainButtonStyle())
                     }

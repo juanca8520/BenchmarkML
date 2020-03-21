@@ -14,10 +14,10 @@ struct Test: Identifiable, Decodable, Hashable {
     var name: String
     var description: String
     var model: String
-    var trainingTime: String
-    var numberElements: String
-    var elementsPerLabel: String
-    var elementsForAccuracy: String
+    var trainingTime: Int
+    var numberElements: Int
+    var elementsPerLabel: Int
+    var elementsForAccuracy: Int
     
     init(snapshot: DataSnapshot) {
         let object = snapshot.value as? [String:AnyObject]
@@ -25,13 +25,13 @@ struct Test: Identifiable, Decodable, Hashable {
         name = object!["name"] as! String
         description = object!["description"] as! String
         model = object!["model"] as! String
-        trainingTime = object!["trainingTime"] as! String
-        numberElements = object!["numberElements"] as! String
-        elementsPerLabel = object!["elementsPerLabel"] as! String
-        elementsForAccuracy = object!["elementsForAccuracy"] as! String
+        trainingTime = object!["trainingTime"] as! Int
+        numberElements = object!["numberElements"] as! Int
+        elementsPerLabel = object!["elementsPerLabel"] as! Int
+        elementsForAccuracy = object!["elementsForAccuracy"] as! Int
     }
     
-    init(id: Int, name: String, description: String, model: String, trainingTime: String, numberElements: String, elementsPerLabel: String, elementsForAccuracy: String) {
+    init(id: Int, name: String, description: String, model: String, trainingTime: Int, numberElements: Int, elementsPerLabel: Int, elementsForAccuracy: Int) {
         self.id = id
         self.name = name
         self.description = description
@@ -40,6 +40,20 @@ struct Test: Identifiable, Decodable, Hashable {
         self.numberElements = numberElements
         self.elementsPerLabel = elementsPerLabel
         self.elementsForAccuracy = elementsForAccuracy
+    }
+    
+    func toAnyObject() -> [String:AnyObject]{
+        var dict: [String:AnyObject] = [:]
+        dict["id"] = id as AnyObject
+        dict["name"] = name as AnyObject
+        dict["description"] = description as AnyObject
+        dict["model"] = model as AnyObject
+        dict["trainingTime"] = trainingTime as AnyObject
+        dict["numberElements"] = numberElements as AnyObject
+        dict["elementsPerLabel"] = elementsPerLabel as AnyObject
+        dict["elementsForAccuracy"] = elementsForAccuracy as AnyObject
+        
+        return dict
     }
     
     var body: some View {

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct MyTests: View {
-    @State var array = [[Test]]()
+    @State var tests = [[Test]]()
     @State private var createTestModal = false
     @State var models = [Model]()
     @State var frameworks = [Framework]()
@@ -17,9 +17,9 @@ struct MyTests: View {
         NavigationView{
             ScrollView{
                 VStack{
-                    ForEach(0 ..< array.count, id: \.self) { row in
+                    ForEach(0 ..< tests.count, id: \.self) { row in
                         HStack{
-                            TestGroup(tests: self.array[row])
+                            TestGroup(bindTests: self.$tests, tests: self.tests[row])
                         }
                         .padding(.horizontal)
                     }
@@ -28,7 +28,7 @@ struct MyTests: View {
                             Button(action: {
                                 self.createTestModal.toggle()
                             }) {
-                                TestRun(test: Test(id: 0, name: "+", description: "Create test", model: "x", trainingTime: "200", numberElements: "500", elementsPerLabel: "25", elementsForAccuracy: "40"))
+                                TestRun(test: Test(id: 0, name: "+", description: "Create test", model: "x", trainingTime: 200, numberElements: 500, elementsPerLabel: 25, elementsForAccuracy: 40))
                             }
                             .sheet(isPresented: self.$createTestModal){
                                 CreateTest(models: self.$models, showingModal: self.$createTestModal)
@@ -37,7 +37,7 @@ struct MyTests: View {
                             Button(action: {
                                 self.createTestModal.toggle()
                             }) {
-                                TestRun(test: Test(id: 0, name: "+", description: "Create test", model: "x", trainingTime: "200", numberElements: "500", elementsPerLabel: "25", elementsForAccuracy: "40"))
+                                TestRun(test: Test(id: 0, name: "+", description: "Create test", model: "x", trainingTime: 200, numberElements: 500, elementsPerLabel: 25, elementsForAccuracy: 40))
                                     .hidden()
                             }.sheet(isPresented: self.$createTestModal){
                                 CreateTest(models: self.$models, showingModal: self.$createTestModal)
@@ -49,14 +49,16 @@ struct MyTests: View {
             }
             .navigationBarTitle("My tests")
         }.onAppear(perform: {
+            print(self.tests)
             TestPersistence.getTests(completion: { (list, err) in
-                self.array = list.chunked(into: 2)
+                self.tests = list.chunked(into: 2)
             })
             
             ModelPersistence.getModels { (list, err) in
                 self.models = list
-                print(list[0].frameworks)
             }
+            
+            print("hola")
         })
     }
 }

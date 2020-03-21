@@ -15,6 +15,11 @@ struct Model: Identifiable {
     var name: String
     var description: String
     var image: String
+    var timeTotrain: Int
+    var numberOfElements: Int
+    var numberOfLabels: Int
+    var numberOfElementsToTest: Int
+    var elementsPerLabel: Int
     var frameworks: [Framework]
     var inputData: [InputData]
     
@@ -24,6 +29,12 @@ struct Model: Identifiable {
         self.name = object["name"] as! String
         self.description = object["description"] as! String
         self.image = object["image"] as! String
+        self.timeTotrain = object["timeToTrain"] as! Int
+        self.numberOfElements = object["numberOfElements"] as! Int
+        self.numberOfLabels = object["numberOfLabels"] as! Int
+        self.elementsPerLabel = object["elementsPerLabel"] as! Int
+        self.numberOfElementsToTest = object["numberOfElementsToTest"] as! Int
+        
         let dict = object["frameworks"] as! [[String:AnyObject]]
         var frameworkArray = [Framework]()
         for framework in dict {
@@ -42,11 +53,16 @@ struct Model: Identifiable {
         self.inputData = inputArray
     }
     
-    init(id: Int, name: String, description: String, image: String, frameworks: [Framework], inputData: [InputData]) {
+    init(id: Int, name: String, description: String, image: String, timeTotrain: Int, numberOfElements: Int, numberOfLabels: Int, numberOfElementsToTest: Int, elementsPerLabel: Int, frameworks: [Framework], inputData: [InputData]) {
         self.id = id
         self.name = name
         self.description = description
         self.image = image
+        self.timeTotrain = timeTotrain
+        self.numberOfElements = numberOfElements
+        self.numberOfLabels = numberOfLabels
+        self.elementsPerLabel = elementsPerLabel
+        self.numberOfElementsToTest = numberOfElementsToTest
         self.frameworks = frameworks
         self.inputData = inputData
     }

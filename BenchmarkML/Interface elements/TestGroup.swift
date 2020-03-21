@@ -11,6 +11,7 @@ import SwiftUI
 struct TestGroup: View {
     @State private var createTestModal = false
     @State var models = [Model]()
+    @Binding var bindTests: [[Test]]
     var tests: [Test]
     var body: some View {
         HStack{
@@ -34,10 +35,10 @@ struct TestGroup: View {
                 Button(action: {
                     self.createTestModal.toggle()
                 }) {
-                    TestRun(test: Test(id: 0, name: "+", description: "Create test", model: "x", trainingTime: "200", numberElements: "500", elementsPerLabel: "25", elementsForAccuracy: "40"))
+                    TestRun(test: Test(id: 0, name: "+", description: "Create test", model: "x", trainingTime: 200, numberElements: 500, elementsPerLabel: 25, elementsForAccuracy: 40))
                 }
                 .sheet(isPresented: self.$createTestModal){
-                    CreateTest(models: self.$models ,showingModal: self.$createTestModal)
+                    CreateTest(models: self.$models, showingModal: self.$createTestModal)
                 }
             }
         }.onAppear(perform: {
@@ -50,6 +51,6 @@ struct TestGroup: View {
 
 struct TestGroup_Previews: PreviewProvider {
     static var previews: some View {
-        TestGroup(tests: [landmarkData[0], landmarkData[1]])
+        TestGroup(bindTests: .constant([[Test]]()), tests: [landmarkData[0], landmarkData[1]])
     }
 }

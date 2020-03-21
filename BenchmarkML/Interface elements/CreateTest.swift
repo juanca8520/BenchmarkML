@@ -99,14 +99,18 @@ struct CreateTest: View {
                 }.foregroundColor(Color.red),
                                 trailing:
                 Button("Done"){
-                    
+                    let test = Test(id: 0, name: self.selectedModel!.name, description: self.selectedModel!.description, model: self.selectedModel!.description, trainingTime: self.selectedModel!.timeTotrain, numberElements: self.selectedModel!.numberOfElements, elementsPerLabel: self.selectedModel!.elementsPerLabel, elementsForAccuracy: self.selectedModel!.numberOfElementsToTest)
+                    self.showingModal.toggle()
+                    TestPersistence.createTest(test: test) { (bool, err) in
+                        if !bool {
+                            fatalError("Algo ocurrió creando el test")
+                        }
+                    }
                 }.disabled(!didSelectInputData))
             
         }.onAppear(perform: {
             ModelPersistence.getModels { (list, err) in
                 self.models = list
-                print(self.models)
-                print("hola")
             }
         })
     }
@@ -115,7 +119,7 @@ struct CreateTest: View {
 
 struct CreateTest_Previews: PreviewProvider {
     static var previews: some View {
-        CreateTest(models: .constant([Model]()) ,showingModal: .constant(true))
+        CreateTest(models: .constant([Model]()), showingModal: .constant(true))
     }
 }
 

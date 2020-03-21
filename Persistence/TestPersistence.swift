@@ -25,4 +25,10 @@ class TestPersistence {
             completion(tests, nil)
         })
     }
+    
+    static func createTest(test: Test, completion: @escaping (Bool, Error?) -> Void){
+        let testRef = self.ref.childByAutoId()
+        testRef.setValue(test.toAnyObject())
+        completion(true, nil)
+    }
 }
