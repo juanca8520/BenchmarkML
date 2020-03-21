@@ -8,10 +8,11 @@
 
 import SwiftUI
 
-struct InputData: View {
+struct InputDataGroup: View {
+    var inputData: InputData
     var body: some View {
         ZStack(alignment:.bottomLeading){
-            Image("Audi")
+            Image(inputData.image)
                 .resizable()
                 .scaledToFit()
                 .clipShape(RoundedRectangle(cornerRadius: 30))
@@ -22,23 +23,17 @@ struct InputData: View {
             )
           
             VStack(alignment: .leading){
-                Text("Car classifier")
+                Text(inputData.name)
                 .font(.title)
                 .bold()
                 .foregroundColor(Color.white)
                     .padding(.horizontal)
                 
-                Text("A model trainer to classify cars into Audi or Alfa Romeo labels")
+                Text(inputData.description)
                     .font(.caption)
                     .foregroundColor(Color.white)
                     .padding()
             }
         }
-    }
-}
-
-struct InputData_Previews: PreviewProvider {
-    static var previews: some View {
-        InputData()
     }
 }

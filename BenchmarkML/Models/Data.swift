@@ -11,7 +11,7 @@ import SwiftUI
 import CoreLocation
 
 let landmarkData: [Test] = load("tests.json")
-let modelData: [Model] = load("models.json")
+//let modelData: [Model] = load("models.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data

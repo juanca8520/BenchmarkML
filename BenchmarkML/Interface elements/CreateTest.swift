@@ -12,10 +12,12 @@ import Vision
 import ImageIO
 
 struct CreateTest: View {
-    @Binding var models: [Model] 
-    @State var selectedModel = false
-    @State var selectedFramework = false
-    @State var selectedInputData = false
+    @Binding var models: [Model]
+    @State var didSelectModel = false
+    @State var selectedModel: Model?
+    @State var inputData: [InputData]?
+    @State var didSelectFramework = false
+    @State var didSelectInputData = false
     @State var selection = ["model":"", "framework":""]
     @Binding var showingModal: Bool
     
@@ -32,13 +34,14 @@ struct CreateTest: View {
                             ForEach(models) { model in
                                 Button(action:{
                                     withAnimation(.easeInOut(duration: 0.2)){
-                                        self.selectedModel.toggle()
+                                        self.didSelectModel.toggle()
                                         self.selection["model"] = model.name
-                                        if self.selectedFramework {
-                                            self.selectedFramework.toggle()
+                                        self.selectedModel = model
+                                        if self.didSelectFramework {
+                                            self.didSelectFramework.toggle()
                                         }
-                                        if self.selectedInputData {
-                                            self.selectedInputData.toggle()
+                                        if self.didSelectInputData {
+                                            self.didSelectInputData.toggle()
                                         }
                                     }
                                 }) {
@@ -51,27 +54,29 @@ struct CreateTest: View {
                         }
                         .padding(.horizontal)
                     }
-                    if selectedModel {
+                    if didSelectModel {
                         Text("Select a framework or library")
                             .font(.body)
                             .bold()
                             .padding(.horizontal)
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack{
-                                ForEach(modelData) { model in
+                                ForEach(selectedModel!.frameworks) { framework in
                                     Button(action: {
-                                        self.selection["model"] = model.name
+                                        self.selection["framework"] = framework.name
+                                        self.inputData = self.selectedModel!.inputData
                                         withAnimation(.easeInOut(duration: 0.2)){
-                                            self.selectedFramework.toggle()
+                                            self.didSelectFramework.toggle()
                                         }
                                         
-                                        if self.selectedInputData {
-                                            self.selectedInputData.toggle()
+                                        if self.didSelectInputData {
+                                            self.didSelectInputData.toggle()
+                                            self.inputData = self.selectedModel!.inputData
                                         }
                                         
                                         print(self.selection)
                                     }) {
-                                        TestType(model: model)
+                                        FrameworkType(framework: framework)
                                             .frame(width: 300, height: 175)
                                     }
                                     .buttonStyle(PlainButtonStyle())
@@ -80,8 +85,8 @@ struct CreateTest: View {
                             .padding(.horizontal)
                         }
                     }
-                    if selectedFramework {
-                        ConfigureTest(selectedInputData: self.$selectedInputData)
+                    if didSelectFramework {
+                        ConfigureTest(didSelectInputData: self.$didSelectInputData, selectedInputdata: self.$inputData)
                     }
                     Spacer()
                 }
@@ -95,7 +100,7 @@ struct CreateTest: View {
                                 trailing:
                 Button("Done"){
                     
-                }.disabled(!selectedInputData))
+                }.disabled(!didSelectInputData))
             
         }.onAppear(perform: {
             ModelPersistence.getModels { (list, err) in
@@ -110,7 +115,7 @@ struct CreateTest: View {
 
 struct CreateTest_Previews: PreviewProvider {
     static var previews: some View {
-        CreateTest(models: .constant(modelData) ,showingModal: .constant(true))
+        CreateTest(models: .constant([Model]()) ,showingModal: .constant(true))
     }
 }
 
