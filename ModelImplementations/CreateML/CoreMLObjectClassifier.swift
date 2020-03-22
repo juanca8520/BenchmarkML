@@ -39,7 +39,7 @@ class CoreMLObjectClassifier {
                         })
                         // Acá tengo que hacer cosas dependiendo de la interfaz que implemente
                         
-                        CoreMLImageClassification.results = "Classification:\n" + descriptions.joined(separator: "\n") + "\n\(String(format: "Time: %.2f", (CFAbsoluteTimeGetCurrent() - startTime))) seconds"
+                        CoreMLObjectClassifier.results = "Classification:\n" + descriptions.joined(separator: "\n") + "\n\(String(format: "Time: %.2f", (CFAbsoluteTimeGetCurrent() - startTime))) seconds"
                     }
                 }
             })

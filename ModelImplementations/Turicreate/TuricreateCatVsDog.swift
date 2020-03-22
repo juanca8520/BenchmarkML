@@ -38,7 +38,7 @@ class TuricreateCatVsDog {
                         })
                         // Acá tengo que hacer cosas dependiendo de la interfaz que implemente
                         
-                        CoreMLImageClassification.results = "Classification:\n" + descriptions.joined(separator: "\n") + "\n\(String(format: "Time: %.2f", (CFAbsoluteTimeGetCurrent() - startTime))) seconds"
+                        TuricreateCatVsDog.results = "Classification:\n" + descriptions.joined(separator: "\n") + "\n\(String(format: "Time: %.2f", (CFAbsoluteTimeGetCurrent() - startTime))) seconds"
                     }
                 }
             })
@@ -51,7 +51,7 @@ class TuricreateCatVsDog {
 
     /// - Tag: PerformRequests
     static func updateClassifications(for image: UIImage) {
-        CoreMLImageClassification.startTime = CFAbsoluteTimeGetCurrent()
+        self.startTime = CFAbsoluteTimeGetCurrent()
         // Acá tengo que poner algo que me indique que se está clasificando la imagen que pasé al modelo
         
         let orientation = CGImagePropertyOrientation(rawValue: UInt32(image.imageOrientation.rawValue))!

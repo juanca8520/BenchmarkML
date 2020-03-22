@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ClassificationResults: View {
     @Binding var results: String
-    
+
     var body: some View {
         ZStack{
             RoundedRectangle(cornerRadius: 15)
