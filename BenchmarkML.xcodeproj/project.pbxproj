@@ -23,6 +23,8 @@
 		842A4EA72426FCB100354BF7 /* turicreate_car_classifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EA62426FCB100354BF7 /* turicreate_car_classifier.mlmodel */; };
 		842A4EA924270DAF00354BF7 /* ClasificadorDeImagenes 4.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EA824270DAF00354BF7 /* ClasificadorDeImagenes 4.mlmodel */; };
 		842A4EAB2427325400354BF7 /* turicreate_cat_vs_dog.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EAA2427325400354BF7 /* turicreate_cat_vs_dog.mlmodel */; };
+		842A4EAF2427F26000354BF7 /* TuricreateCatVsDog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EAE2427F26000354BF7 /* TuricreateCatVsDog.swift */; };
+		842A4EB22427FAAA00354BF7 /* CoreMLCatVsDog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EB12427FAAA00354BF7 /* CoreMLCatVsDog.swift */; };
 		844916F8240423F9005E9908 /* CoreMLImageClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844916F7240423F9005E9908 /* CoreMLImageClassification.swift */; };
 		844916FA24042DF2005E9908 /* ConfigureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844916F924042DF2005E9908 /* ConfigureTest.swift */; };
 		844C6FFF2407233B00214D22 /* ClassificationResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C6FFE2407233B00214D22 /* ClassificationResults.swift */; };
@@ -86,6 +88,8 @@
 		842A4EA62426FCB100354BF7 /* turicreate_car_classifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = turicreate_car_classifier.mlmodel; sourceTree = "<group>"; };
 		842A4EA824270DAF00354BF7 /* ClasificadorDeImagenes 4.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "ClasificadorDeImagenes 4.mlmodel"; sourceTree = "<group>"; };
 		842A4EAA2427325400354BF7 /* turicreate_cat_vs_dog.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = turicreate_cat_vs_dog.mlmodel; sourceTree = "<group>"; };
+		842A4EAE2427F26000354BF7 /* TuricreateCatVsDog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuricreateCatVsDog.swift; sourceTree = "<group>"; };
+		842A4EB12427FAAA00354BF7 /* CoreMLCatVsDog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLCatVsDog.swift; sourceTree = "<group>"; };
 		844916F7240423F9005E9908 /* CoreMLImageClassification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLImageClassification.swift; sourceTree = "<group>"; };
 		844916F924042DF2005E9908 /* ConfigureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureTest.swift; sourceTree = "<group>"; };
 		844C6FFE2407233B00214D22 /* ClassificationResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationResults.swift; sourceTree = "<group>"; };
@@ -191,6 +195,32 @@
 				842A4EA22426F76700354BF7 /* TuriCreate.mlmodel */,
 			);
 			path = TuriCreate;
+			sourceTree = "<group>";
+		};
+		842A4EAC2427F23100354BF7 /* CreateML */ = {
+			isa = PBXGroup;
+			children = (
+				844916F7240423F9005E9908 /* CoreMLImageClassification.swift */,
+				84F91EFD2416905E00AD9420 /* CoreMLObjectClassifier.swift */,
+				842A4EB12427FAAA00354BF7 /* CoreMLCatVsDog.swift */,
+			);
+			path = CreateML;
+			sourceTree = "<group>";
+		};
+		842A4EAD2427F24000354BF7 /* TensorFlowLite */ = {
+			isa = PBXGroup;
+			children = (
+				842A4EA02426AD4D00354BF7 /* SwiftForTensorFlowImageClassifier.swift */,
+			);
+			path = TensorFlowLite;
+			sourceTree = "<group>";
+		};
+		842A4EB02427F26500354BF7 /* Turicreate */ = {
+			isa = PBXGroup;
+			children = (
+				842A4EAE2427F26000354BF7 /* TuricreateCatVsDog.swift */,
+			);
+			path = Turicreate;
 			sourceTree = "<group>";
 		};
 		844916F6240423AE005E9908 /* Interface elements */ = {
@@ -315,9 +345,9 @@
 		84F91EFC2416902C00AD9420 /* ModelImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				844916F7240423F9005E9908 /* CoreMLImageClassification.swift */,
-				84F91EFD2416905E00AD9420 /* CoreMLObjectClassifier.swift */,
-				842A4EA02426AD4D00354BF7 /* SwiftForTensorFlowImageClassifier.swift */,
+				842A4EAC2427F23100354BF7 /* CreateML */,
+				842A4EAD2427F24000354BF7 /* TensorFlowLite */,
+				842A4EB02427F26500354BF7 /* Turicreate */,
 			);
 			path = ModelImplementations;
 			sourceTree = "<group>";
@@ -528,6 +558,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842A4EAF2427F26000354BF7 /* TuricreateCatVsDog.swift in Sources */,
 				8421D1862403459300202F8E /* MyTests.swift in Sources */,
 				845EC45624032B720044F08B /* AppDelegate.swift in Sources */,
 				840A1BFD240451A500880077 /* TestDetail.swift in Sources */,
@@ -539,6 +570,7 @@
 				845EC48624032C2E0044F08B /* TestRun.swift in Sources */,
 				84BAB4AE24251FB600296858 /* ModelPersistence.swift in Sources */,
 				840A1C0924057A5300880077 /* Model.swift in Sources */,
+				842A4EB22427FAAA00354BF7 /* CoreMLCatVsDog.swift in Sources */,
 				84F91EF72415B4E000AD9420 /* MobileNet.mlmodel in Sources */,
 				844916F8240423F9005E9908 /* CoreMLImageClassification.swift in Sources */,
 				842A4EA32426F76700354BF7 /* TuriCreate.mlmodel in Sources */,

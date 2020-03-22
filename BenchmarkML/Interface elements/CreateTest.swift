@@ -100,7 +100,7 @@ struct CreateTest: View {
                 }.foregroundColor(Color.red),
                                 trailing:
                 Button("Done"){
-                    let test = Test(id: 0, name: self.selectedModel!.name, description: self.selectedModel!.description, model: self.selectedModel!.description, trainingTime: self.selectedInputData!.timeTotrain, numberElements: self.selectedInputData!.numberOfElements, elementsPerLabel: self.selectedInputData!.elementsPerLabel, elementsForAccuracy: self.selectedInputData!.numberOfElementsToTest)
+                    let test = Test(id: 0, name: self.selectedModel!.name, description: self.selectedModel!.description, model: self.selectedInputData!.modelName, trainingTime: self.selectedInputData!.timeTotrain, numberElements: self.selectedInputData!.numberOfElements, elementsPerLabel: self.selectedInputData!.elementsPerLabel, elementsForAccuracy: self.selectedInputData!.numberOfElementsToTest)
                     self.showingModal.toggle()
                     TestPersistence.createTest(test: test) { (bool, err) in
                         if !bool {
@@ -120,7 +120,7 @@ struct CreateTest: View {
 
 struct CreateTest_Previews: PreviewProvider {
     static var previews: some View {
-        CreateTest(models: .constant([Model]()), selectedInputData: .init(id: 0, name: "hola", description: "hola", image: "hola", timeTotrain: 1, numberOfElements: 1, numberOfLabels: 1, numberOfElementsToTest: 1, elementsPerLabel: 1), showingModal: .constant(true))
+        CreateTest(models: .constant([Model]()), selectedInputData: .init(id: 0, name: "hola", description: "hola", image: "hola", timeTotrain: 1, numberOfElements: 1, numberOfLabels: 1, numberOfElementsToTest: 1, elementsPerLabel: 1, modelName: ""), showingModal: .constant(true))
     }
 }
 

@@ -46,6 +46,7 @@ struct TestDetail: View {
                     }).padding()
                     Spacer()
                     Button(action: {
+                        print(self.model!.model)
                         switch self.model!.model {
                         case "CreateMLCarClassifier":
                             CoreMLImageClassification.updateClassifications(for: self.image)
@@ -53,6 +54,9 @@ struct TestDetail: View {
                         case "CreateMLObjectClassifier":
                             CoreMLObjectClassifier.updateClassifications(for: self.image)
                             self.results = CoreMLImageClassification.results
+                        case "TuricreateCatVsDog":
+                            TuricreateCatVsDog.updateClassifications(for: self.image)
+                            self.results = TuricreateCatVsDog.results
                         default:
                             print("hola")
                         }
