@@ -7,10 +7,11 @@
 //
 
 import SwiftUI
+import Combine
 
 struct MyTests: View {
     
-    @State var tests = [[Test]]()
+    @State var tests = TestPersistence.tests
     @State private var createTestModal = false
     @State var models = [Model]()
     var body: some View {
@@ -57,6 +58,8 @@ struct MyTests: View {
             ModelPersistence.getModels { (list, err) in
                 self.models = list
             }
+            
+            
         })
     }
 }

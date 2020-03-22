@@ -43,6 +43,6 @@ struct TestContainer: View {
 
 struct TestType_Previews: PreviewProvider {
     static var previews: some View {
-        TestType(model: Model(id: 1, name: "Core ML", description: "CreateML is a tool created by apple....", image: "coreML", timeTotrain: 1, numberOfElements: 1, numberOfLabels: 1, numberOfElementsToTest: 1, elementsPerLabel: 1, frameworks: [Framework](), inputData: [InputData]()))
+        TestType(model: Model(id: 1, name: "Core ML", description: "CreateML is a tool created by apple....", image: "coreML", frameworks: [Framework]()))
     }
 }

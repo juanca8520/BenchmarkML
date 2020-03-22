@@ -1,0 +1,6 @@
+module Pods_BenchmarkML_BenchmarkMLUITests {
+  umbrella header "Pods-BenchmarkML-BenchmarkMLUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

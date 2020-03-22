@@ -9,6 +9,8 @@ target 'BenchmarkML' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Database'
   pod 'Firebase/Core'
+  
+  pod 'TensorFlowLiteSwift'
 
   # Pods for BenchmarkML
 

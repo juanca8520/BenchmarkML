@@ -1,0 +1,6 @@
+module Pods_BenchmarkML {
+  umbrella header "Pods-BenchmarkML-umbrella.h"
+
+  export *
+  module * { export * }
+}

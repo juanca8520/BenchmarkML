@@ -34,6 +34,6 @@ struct FrameworkType: View {
 
 struct FrameworkType_Previews: PreviewProvider {
     static var previews: some View {
-        FrameworkType(framework: Framework(id: 1, name: "nombre", description: "descripción", image: "Audi", onDeviceTrain: true))
+        FrameworkType(framework: Framework(id: 1, name: "nombre", description: "descripción", image: "Audi", onDeviceTrain: true, inputData: [InputData]()))
     }
 }

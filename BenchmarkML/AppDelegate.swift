@@ -16,6 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        TestPersistence.getTests { (list, err) in
+            NotificationCenter.default.publisher(for: NSNotification.Name(rawValue: "reloadTests"), object: list as AnyObject)
+
+//            NotificationCenter.default.publisher(for: NSNotification.Name(rawValue: "reloadTests"))
+//                .sink(receiveValue: { _ in
+//                    print("init")
+//                })
+        }
         return true
     }
 

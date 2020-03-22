@@ -74,11 +74,15 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - PromisesObjC (1.2.8)
+  - TensorFlowLiteC (2.1.0)
+  - TensorFlowLiteSwift (2.1.0):
+    - TensorFlowLiteC (= 2.1.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Core
   - Firebase/Database
+  - TensorFlowLiteSwift
 
 SPEC REPOS:
   trunk:
@@ -97,6 +101,8 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - TensorFlowLiteC
+    - TensorFlowLiteSwift
 
 SPEC CHECKSUMS:
   Firebase: 0490eca762a72e4f1582319539153897f1508dee
@@ -114,7 +120,9 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
+  TensorFlowLiteC: 215603d4426d93810eace5947e317389554a4b66
+  TensorFlowLiteSwift: 9d8137f18d5ac30ca89bba4fbe118e0949ac5743
 
-PODFILE CHECKSUM: 9a0e4ee74db9ae3626fd39b79b5a6f6eac194e22
+PODFILE CHECKSUM: cf93c756cb7208e2dd6891075bf7a63a4617a304
 
 COCOAPODS: 1.9.0

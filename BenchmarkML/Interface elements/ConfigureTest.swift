@@ -10,7 +10,8 @@ import SwiftUI
 
 struct ConfigureTest: View {
     @Binding var didSelectInputData: Bool
-    @Binding var selectedInputdata: [InputData]?
+    @Binding var inputData: [InputData]?
+    @Binding var selectedInputData: InputData?
     
     var body: some View {
         VStack(alignment: HorizontalAlignment.leading){
@@ -20,9 +21,10 @@ struct ConfigureTest: View {
                 .padding(.horizontal)
             ScrollView(.horizontal, showsIndicators: false){
                 HStack{
-                    ForEach(selectedInputdata!) { inputData in
+                    ForEach(inputData!) { inputData in
                         Button(action: {
                             self.didSelectInputData.toggle()
+                            self.selectedInputData = inputData
                         }){
                             InputDataGroup(inputData: inputData).frame(width: 275, height: 175)
                         }
@@ -38,6 +40,6 @@ struct ConfigureTest: View {
 
 struct ConfigureTest_Previews: PreviewProvider {
     static var previews: some View {
-        ConfigureTest(didSelectInputData: .constant(true), selectedInputdata: .constant([InputData]()))
+        ConfigureTest(didSelectInputData: .constant(true), inputData: .constant([InputData]()), selectedInputData: .constant(InputData(id: 0, name: "hola", description: "hola", image: "hola", timeTotrain: 1, numberOfElements: 1, numberOfLabels: 1, numberOfElementsToTest: 1, elementsPerLabel: 1)))
     }
 }
