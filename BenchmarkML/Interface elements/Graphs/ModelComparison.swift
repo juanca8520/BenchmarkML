@@ -37,11 +37,11 @@ struct ModelComparison: View {
                                 HStack{
                                     BarChartView(data: ChartData(values: timeDict["Cats vs dogs"] ?? chartDataTimeClassification), title: "Time to classify an image", form: ChartForm.medium)
                                     BarChartView(data: ChartData(values: chartDataTimeClassification), title: "Time to classify an image", form: ChartForm.medium).hidden()
-                                }
+                                }.padding(.bottom)
                                 Divider()
                             }
                         }
-                    }
+                    }.padding()
                     
                     HStack{
                         VStack(alignment: .leading){

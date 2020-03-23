@@ -33,24 +33,22 @@ struct CreateTest: View {
                     ScrollView(.horizontal, showsIndicators: false){
                         HStack{
                             ForEach(models) { model in
-                                Button(action:{
-                                    withAnimation(.easeInOut(duration: 0.2)){
-                                        self.didSelectModel.toggle()
-                                        self.selection["model"] = model.name
-                                        self.selectedModel = model
-                                        if self.didSelectFramework {
-                                            self.didSelectFramework.toggle()
+                                TestType(model: model)
+                                    .frame(width: 300, height: 175)
+                                    .overlay(Rectangle().hidden())
+                                    .onTapGesture {
+                                        withAnimation(.easeInOut(duration: 0.2)){
+                                            self.didSelectModel.toggle()
+                                            self.selection["model"] = model.name
+                                            self.selectedModel = model
+                                            if self.didSelectFramework {
+                                                self.didSelectFramework.toggle()
+                                            }
+                                            if self.didSelectInputData {
+                                                self.didSelectInputData.toggle()
+                                            }
                                         }
-                                        if self.didSelectInputData {
-                                            self.didSelectInputData.toggle()
-                                        }
-                                    }
-                                }) {
-                                    TestType(model: model)
-                                        .frame(width: 300, height: 175)
-                                        .overlay(Rectangle().hidden())
                                 }
-                                .buttonStyle(PlainButtonStyle())
                             }
                         }
                         .padding(.horizontal)
@@ -63,24 +61,21 @@ struct CreateTest: View {
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack{
                                 ForEach(selectedModel!.frameworks) { framework in
-                                    Button(action: {
-                                        self.selection["framework"] = framework.name
-                                        self.inputData = framework.inputData
-                                        withAnimation(.easeInOut(duration: 0.2)){
-                                            self.didSelectFramework.toggle()
-                                        }
-                                        
-                                        if self.didSelectInputData {
-                                            self.didSelectInputData.toggle()
+                                    
+                                    FrameworkType(framework: framework)
+                                        .frame(width: 300, height: 175)
+                                        .onTapGesture {
+                                            self.selection["framework"] = framework.name
                                             self.inputData = framework.inputData
-                                        }
-                                        
-                                        print(self.selection)
-                                    }) {
-                                        FrameworkType(framework: framework)
-                                            .frame(width: 300, height: 175)
+                                            withAnimation(.easeInOut(duration: 0.2)){
+                                                self.didSelectFramework.toggle()
+                                            }
+                                            
+                                            if self.didSelectInputData {
+                                                self.didSelectInputData.toggle()
+                                                self.inputData = framework.inputData
+                                            }
                                     }
-                                    .buttonStyle(PlainButtonStyle())
                                 }
                             }
                             .padding(.horizontal)

@@ -22,13 +22,12 @@ struct ConfigureTest: View {
             ScrollView(.horizontal, showsIndicators: false){
                 HStack{
                     ForEach(inputData!) { inputData in
-                        Button(action: {
-                            self.didSelectInputData.toggle()
-                            self.selectedInputData = inputData
-                        }){
-                            InputDataGroup(inputData: inputData).frame(width: 275, height: 175)
+                        
+                        InputDataGroup(inputData: inputData).frame(width: 275, height: 175)
+                            .onTapGesture {
+                                self.didSelectInputData.toggle()
+                                self.selectedInputData = inputData
                         }
-                        .buttonStyle(PlainButtonStyle())
                     }
                 }
                 .padding(.horizontal)
