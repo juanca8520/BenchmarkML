@@ -35,7 +35,7 @@ struct Model: Identifiable {
             let inputDataDict = framework["inputData"] as! [[String:AnyObject]]
             var inputDataArray = [InputData]()
             for inputData in inputDataDict {
-                let inputDataElement = InputData(id: inputData["id"] as! Int, name: inputData["name"] as! String, description: inputData["description"] as! String, image: inputData["image"] as! String, timeTotrain: inputData["timeToTrain"] as! Int, numberOfElements: inputData["numberOfElements"] as! Int, numberOfLabels: inputData["numberOfLabels"] as! Int, numberOfElementsToTest: inputData["numberOfElementsToTest"] as! Int, elementsPerLabel: inputData["elementsPerLabel"] as! Int, modelName: inputData["modelName"] as! String)
+                let inputDataElement = InputData(id: inputData["id"] as! Int, name: inputData["name"] as! String, description: inputData["description"] as! String, image: inputData["image"] as! String, timeTotrain: inputData["timeToTrain"] as! Int, numberOfElements: inputData["numberOfElements"] as! Int, numberOfLabels: inputData["numberOfLabels"] as! Int, numberOfElementsToTest: inputData["numberOfElementsToTest"] as! Int, elementsPerLabel: inputData["elementsPerLabel"] as! Int, modelName: inputData["modelName"] as! String, accuracy: inputData["accuracy"] as! Double)
                 inputDataArray.append(inputDataElement)
             }
             

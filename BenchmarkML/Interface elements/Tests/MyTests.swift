@@ -31,7 +31,7 @@ struct MyTests: View {
                                 self.createTestModal.toggle()
 
                             }) {
-                                TestRun(test: Test(id: 0, name: "+", description: "Create test", model: "x", trainingTime: 200, numberElements: 500, elementsPerLabel: 25, elementsForAccuracy: 40))
+                                TestRun(test: Test(id: 0, name: "+", description: "Create test", model: "x", trainingTime: 200, numberElements: 500, elementsPerLabel: 25, elementsForAccuracy: 40, accuracy: 0.1, trainedModel: "test"))
                             }
                             .sheet(isPresented: self.$createTestModal){
                                 CreateTest(models: self.$models, showingModal: self.$createTestModal)
@@ -40,7 +40,7 @@ struct MyTests: View {
                             Button(action: {
                                 self.createTestModal.toggle()
                             }) {
-                                TestRun(test: Test(id: 0, name: "+", description: "Create test", model: "x", trainingTime: 200, numberElements: 500, elementsPerLabel: 25, elementsForAccuracy: 40))
+                                TestRun(test: Test(id: 0, name: "+", description: "Create test", model: "x", trainingTime: 200, numberElements: 500, elementsPerLabel: 25, elementsForAccuracy: 40, accuracy: 0.1, trainedModel: "test"))
                                     .hidden()
                             }.sheet(isPresented: self.$createTestModal){
                                 CreateTest(models: self.$models, showingModal: self.$createTestModal)
@@ -55,12 +55,8 @@ struct MyTests: View {
         .onAppear(perform: {
             TestPersistence.getTests { (list, err) in
                 //                self.tests = Array(Set(list).subtracting(self.tests))
-                print(self.tests.count)
-                print(list.count)
                 self.tests = list
                 self.chunckedTests = list.chunked(into: 2)
-                print(self.tests.count)
-                print(self.chunckedTests.count)
             }
             
             ModelPersistence.getModels { (list, err) in

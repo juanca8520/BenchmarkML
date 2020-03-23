@@ -13,7 +13,19 @@ struct ContentView: View {
     @EnvironmentObject var tests: Tests
     
     var body: some View {
-        MyTests()
+        TabView{
+            MyTests()
+                .tabItem{
+                    Image(systemName: "tray.2")
+                    Text("Tests")
+            }
+            
+            ModelComparison()
+                .tabItem{
+                    Image(systemName: "list.dash")
+                    Text("Comparison")
+            }
+        }
     }
 }
 

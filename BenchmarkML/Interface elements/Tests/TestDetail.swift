@@ -91,14 +91,21 @@ struct TestDetail: View {
                     .padding()
                 
                 VStack(alignment: .leading){
-                    Text("\(model!.trainingTime) seconds:")
-                        .bold()
-                        .padding(.top)
-                        .padding(.horizontal)
+                    if model!.trainingTime < 60{
+                        Text("\(model!.trainingTime) seconds:")
+                            .bold()
+                            .padding(.top)
+                            .padding(.horizontal)
+                        
+                    } else {
+                        Text("\(model!.trainingTime/60) minutes \(model!.trainingTime % 60) seconds:")
+                            .bold()
+                            .padding(.top)
+                            .padding(.horizontal)
+                    }
                     
                     Text("With \(model!.numberElements) elements, \(model!.elementsPerLabel) for each label and \(model!.elementsForAccuracy) left for accuracy training")
                         .padding(.horizontal)
-                    Text(self.obtainedResults.value).foregroundColor(Color.white)
 
                 }
                 .padding(.horizontal)

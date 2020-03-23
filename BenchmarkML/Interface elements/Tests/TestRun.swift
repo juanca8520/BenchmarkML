@@ -14,7 +14,8 @@ struct TestRun: View {
     var body: some View {
         ZStack(alignment: .topLeading){
             RoundedRectangle(cornerRadius: 15)
-                .foregroundColor(Color(UIColor.black.withAlphaComponent(0.2)))
+                .foregroundColor(Color.gray)
+//                .foregroundColor(Color(UIColor.black.withAlphaComponent(0.2)))
             VStack(alignment: .leading){
                 Text(test.name)
                     .font(.body)
