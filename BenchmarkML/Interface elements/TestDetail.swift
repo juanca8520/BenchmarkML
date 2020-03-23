@@ -14,7 +14,6 @@ import ImageIO
 struct TestDetail: View {
     @State var isShowingImagePicker = false
     @State var showingSheet = false
-    @State var image = UIImage()
     @State var results = ""
     
     @ObservedObject var obtainedResults: ObtainedResults = ObtainedResults()
@@ -53,16 +52,11 @@ struct TestDetail: View {
                         print(self.model!.model)
                         switch self.model!.model {
                         case "CreateMLCarClassifier":
-                            self.obtainedResults.objectWillChange.send()
                             CoreMLImageClassification(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
-                            self.obtainedResults.objectWillChange.send()
-                            print(self.obtainedResults.value)
                         case "CreateMLObjectClassifier":
-                            CoreMLObjectClassifier.updateClassifications(for: self.image)
-                            self.results = CoreMLObjectClassifier.results
+                            CoreMLObjectClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
                         case "TuricreateCatVsDog":
-                            TuricreateCatVsDog.updateClassifications(for: self.image)
-                            self.results = TuricreateCatVsDog.results
+                            TuricreateCatVsDog(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
                         default:
                             print("hola")
                         }

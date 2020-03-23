@@ -10,24 +10,26 @@ import SwiftUI
 import Combine
 
 struct MyTests: View {
-    
-    @State var tests = TestPersistence.tests
+        
+    @State var tests = [Test]()
+    @State var chunckedTests = [[Test]]()
     @State private var createTestModal = false
     @State var models = [Model]()
     var body: some View {
         NavigationView{
             ScrollView{
                 VStack{
-                    ForEach(0 ..< tests.count, id: \.self) { row in
+                    ForEach(0 ..< chunckedTests.count, id: \.self) { row in
                         HStack{
-                            TestGroup(bindTests: self.$tests, tests: self.tests[row])
+                            TestGroup(bindTests: self.$chunckedTests, tests: self.chunckedTests[row])
                         }
                         .padding(.horizontal)
                     }
                     HStack{
-                        if landmarkData.count % 2 == 0 {
+                        if tests.count % 2 == 0 {
                             Button(action: {
                                 self.createTestModal.toggle()
+
                             }) {
                                 TestRun(test: Test(id: 0, name: "+", description: "Create test", model: "x", trainingTime: 200, numberElements: 500, elementsPerLabel: 25, elementsForAccuracy: 40))
                             }
@@ -49,17 +51,21 @@ struct MyTests: View {
                 }
             }
             .navigationBarTitle("My tests")
-        }.onAppear(perform: {
-            print(self.tests)
-            TestPersistence.getTests(completion: { (list, err) in
-                self.tests = list.chunked(into: 2)
-            })
+        }
+        .onAppear(perform: {
+            TestPersistence.getTests { (list, err) in
+                //                self.tests = Array(Set(list).subtracting(self.tests))
+                print(self.tests.count)
+                print(list.count)
+                self.tests = list
+                self.chunckedTests = list.chunked(into: 2)
+                print(self.tests.count)
+                print(self.chunckedTests.count)
+            }
             
             ModelPersistence.getModels { (list, err) in
                 self.models = list
             }
-            
-            
         })
     }
 }

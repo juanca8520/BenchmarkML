@@ -13,7 +13,6 @@ import CoreML
 struct CoreMLImageClassification {
     
     @Binding var obtainedResults: String
-    var startTime = 0.0
     
     init(obtainedResults: Binding<String>) {
         self._obtainedResults = obtainedResults
@@ -54,43 +53,10 @@ struct CoreMLImageClassification {
             fatalError("Failed to load Vision ML model: \(error)")
         }
     }
-    
-//    var classificationRequest: VNCoreMLRequest = {
-//        do {
-//            let model = try VNCoreMLModel(for: ClasificadorDeImagenes_2().model)
-//
-//            let request = VNCoreMLRequest(model: model, completionHandler: { request, error in
-//                DispatchQueue.main.async {
-//                    guard let results = request.results else {
-//                        //Acá tengo que hacer cosas dependiendo de la interfaz que implemente
-//                        return
-//                    }
-//
-//                    let classifications = results as! [VNClassificationObservation]
-//
-//                    if classifications.isEmpty {
-//                        //Aca tengo que hacer cosas dependiendo de la interfaz que implemente
-//                    } else {
-//                        let topClassifications = classifications.prefix(2)
-//                        let descriptions = topClassifications.map({ classification in
-//                            return String(format: "  (%.2f) %@", classification.confidence, classification.identifier)
-//                        })
-//                        // Acá tengo que hacer cosas dependiendo de la interfaz que implemente
-//
-//                        obtainedResults = "Classification:\n" + descriptions.joined(separator: "\n") + "\n\(String(format: "Time: %.2f", (CFAbsoluteTimeGetCurrent() - startTime))) seconds"
-//                    }
-//                }
-//            })
-//            request.imageCropAndScaleOption = .centerCrop
-//            return request
-//        } catch {
-//            fatalError("Failed to load Vision ML model: \(error)")
-//        }
-//    }()
 
     /// - Tag: PerformRequests
     func updateClassifications(for image: UIImage) {
-        var startTime = CFAbsoluteTimeGetCurrent()
+        let startTime = CFAbsoluteTimeGetCurrent()
         // Acá tengo que poner algo que me indique que se está clasificando la imagen que pasé al modelo
         self.obtainedResults = "Wait a moment, processing image..."
         

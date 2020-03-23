@@ -12,10 +12,10 @@ import Firebase
 class TestPersistence {
     static var ref = Database.database().reference(withPath: "0/tests")
     
-    static var tests = [[Test]]()
+//    static var tests = [[Test]]()
     
     static func getTests(completion: @escaping ([Test], Error?) -> Void) {
-        var tests: [Test] = []
+        var tests = [Test]()
         ref.observe(.value, with: { snapshot in
             
             for child in snapshot.children {
@@ -24,8 +24,9 @@ class TestPersistence {
                     tests.append(test)
                 }
             }
-            self.tests = tests.chunked(into: 2)
+//            self.tests = tests.chunked(into: 2)
             completion(tests, nil)
+            tests = []
         })
     }
     

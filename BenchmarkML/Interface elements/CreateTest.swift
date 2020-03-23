@@ -101,10 +101,11 @@ struct CreateTest: View {
                                 trailing:
                 Button("Done"){
                     let test = Test(id: 0, name: self.selectedModel!.name, description: self.selectedModel!.description, model: self.selectedInputData!.modelName, trainingTime: self.selectedInputData!.timeTotrain, numberElements: self.selectedInputData!.numberOfElements, elementsPerLabel: self.selectedInputData!.elementsPerLabel, elementsForAccuracy: self.selectedInputData!.numberOfElementsToTest)
-                    self.showingModal.toggle()
                     TestPersistence.createTest(test: test) { (bool, err) in
                         if !bool {
                             fatalError("Algo ocurrió creando el test")
+                        } else {
+                            self.showingModal.toggle()
                         }
                     }
                 }.disabled(!didSelectInputData))
