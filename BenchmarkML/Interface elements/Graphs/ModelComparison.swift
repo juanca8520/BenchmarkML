@@ -62,7 +62,7 @@ struct ModelComparison: View {
                                         
                     HStack{
                         VStack(alignment: .leading){
-                            if trainingDict["Object classifier"] != nil {
+                            if trainingDict["Object classification"] != nil {
                                 Text("Object classifier").padding(.horizontal)
                                 HStack{
                                     BarChartView(data: ChartData(values: trainingDict["Object classifier"] ?? chartDataTimeToTrain), title: "Time to train in seconds", form: ChartForm.medium)
@@ -89,7 +89,7 @@ struct ModelComparison: View {
                         self.trainingDict[test.trainedModel] = (self.trainingDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.trainingTime)]
                         self.accuracyDict[test.trainedModel] = (self.accuracyDict[test.trainedModel] ?? self.chartDataAccuracy) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy * 100)]
                         self.timeDict[test.trainedModel] = (self.timeDict[test.trainedModel] ?? self.chartDataTimeClassification) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy)]
-                    case "Object classifier":
+                    case "Object classification":
                  
                         self.trainingDict[test.trainedModel] = (self.trainingDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.trainingTime)]
                         self.accuracyDict[test.trainedModel] = (self.accuracyDict[test.trainedModel] ?? self.chartDataAccuracy) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy * 100)]
@@ -99,7 +99,6 @@ struct ModelComparison: View {
                         self.trainingDict[test.trainedModel] = (self.trainingDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.trainingTime)]
                         self.accuracyDict[test.trainedModel] = (self.accuracyDict[test.trainedModel] ?? self.chartDataAccuracy) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy * 100)]
                         self.timeDict[test.trainedModel] = (self.timeDict[test.trainedModel] ?? self.chartDataTimeClassification) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy)]
-                        print(self.accuracyDict["Cats vs dogs"])
                     default:
                         print("hola")
                     }

@@ -15,13 +15,16 @@
 		840A1C0124055F8B00880077 /* TestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A1C0024055F8B00880077 /* TestType.swift */; };
 		840A1C0524057A1E00880077 /* models.json in Resources */ = {isa = PBXBuildFile; fileRef = 840A1C0424057A1E00880077 /* models.json */; };
 		840A1C0924057A5300880077 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A1C0824057A5300880077 /* Model.swift */; };
+		84121DE524329CB700D18486 /* CreateMLCarClassifierModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 84121DE424329CB700D18486 /* CreateMLCarClassifierModel.mlmodel */; };
+		84121DE724329CBE00D18486 /* CreateMLCatVsDogModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 84121DE624329CBE00D18486 /* CreateMLCatVsDogModel.mlmodel */; };
+		84121DE924329D1E00D18486 /* CreateMLCatVsDog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84121DE824329D1E00D18486 /* CreateMLCatVsDog.swift */; };
+		84121DEB24329F1300D18486 /* TuriCreateCarClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84121DEA24329F1300D18486 /* TuriCreateCarClassifier.swift */; };
 		8421D1862403459300202F8E /* MyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421D1852403459300202F8E /* MyTests.swift */; };
 		8421D18924034D5700202F8E /* tests.json in Resources */ = {isa = PBXBuildFile; fileRef = 8421D18824034D5700202F8E /* tests.json */; };
 		8421D18D240358CD00202F8E /* CreateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421D18C240358CD00202F8E /* CreateTest.swift */; };
 		842A4EA12426AD4D00354BF7 /* SwiftForTensorFlowImageClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EA02426AD4D00354BF7 /* SwiftForTensorFlowImageClassifier.swift */; };
 		842A4EA32426F76700354BF7 /* TuriCreate.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EA22426F76700354BF7 /* TuriCreate.mlmodel */; };
 		842A4EA72426FCB100354BF7 /* turicreate_car_classifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EA62426FCB100354BF7 /* turicreate_car_classifier.mlmodel */; };
-		842A4EA924270DAF00354BF7 /* ClasificadorDeImagenes 4.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EA824270DAF00354BF7 /* ClasificadorDeImagenes 4.mlmodel */; };
 		842A4EAB2427325400354BF7 /* turicreate_cat_vs_dog.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EAA2427325400354BF7 /* turicreate_cat_vs_dog.mlmodel */; };
 		842A4EAF2427F26000354BF7 /* TuricreateCatVsDog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EAE2427F26000354BF7 /* TuricreateCatVsDog.swift */; };
 		842A4EB42427FBF200354BF7 /* ObtainedResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EB32427FBF200354BF7 /* ObtainedResults.swift */; };
@@ -31,7 +34,7 @@
 		842A4EBD2428530C00354BF7 /* ModelComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EBC2428530C00354BF7 /* ModelComparison.swift */; };
 		842A4EC324290AD800354BF7 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 842A4EC224290AD800354BF7 /* SwiftUICharts */; };
 		842A4EC62429182D00354BF7 /* GraphGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EC52429182D00354BF7 /* GraphGroup.swift */; };
-		844916F8240423F9005E9908 /* CoreMLImageClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844916F7240423F9005E9908 /* CoreMLImageClassification.swift */; };
+		844916F8240423F9005E9908 /* CreateMLCarClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844916F7240423F9005E9908 /* CreateMLCarClassifier.swift */; };
 		844916FA24042DF2005E9908 /* ConfigureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844916F924042DF2005E9908 /* ConfigureTest.swift */; };
 		844C6FFF2407233B00214D22 /* ClassificationResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C6FFE2407233B00214D22 /* ClassificationResults.swift */; };
 		845EC45624032B720044F08B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC45524032B720044F08B /* AppDelegate.swift */; };
@@ -46,6 +49,7 @@
 		845EC48824033C100044F08B /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC48724033C100044F08B /* Test.swift */; };
 		845EC49024033E4C0044F08B /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC48F24033E4C0044F08B /* Data.swift */; };
 		84AF7B9B24242EBF00FE6ED7 /* TestPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF7B9A24242EBF00FE6ED7 /* TestPersistence.swift */; };
+		84BA9FE724328981009596E8 /* pokedex.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 84BA9FE624328981009596E8 /* pokedex.mlmodel */; };
 		84BAB4AC242433C400296858 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84BAB4AB242433C400296858 /* GoogleService-Info.plist */; };
 		84BAB4AE24251FB600296858 /* ModelPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BAB4AD24251FB600296858 /* ModelPersistence.swift */; };
 		84BAB4B0242535DF00296858 /* Framework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BAB4AF242535DF00296858 /* Framework.swift */; };
@@ -54,7 +58,6 @@
 		84BAB4B62425865E00296858 /* InputData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BAB4B52425865E00296858 /* InputData.swift */; };
 		84D7FEB12406DC0B0069DA3B /* InputDataGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7FEB02406DC0B0069DA3B /* InputDataGroup.swift */; };
 		84F91EF72415B4E000AD9420 /* MobileNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 84F91EF62415B4E000AD9420 /* MobileNet.mlmodel */; };
-		84F91EF92415B4EE00AD9420 /* ClasificadorDeImagenes 2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 84F91EF82415B4EE00AD9420 /* ClasificadorDeImagenes 2.mlmodel */; };
 		84F91EFE2416905E00AD9420 /* CoreMLObjectClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F91EFD2416905E00AD9420 /* CoreMLObjectClassifier.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,13 +89,16 @@
 		840A1C0024055F8B00880077 /* TestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestType.swift; sourceTree = "<group>"; };
 		840A1C0424057A1E00880077 /* models.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = models.json; path = ../../../../Paralelismo/models.json; sourceTree = "<group>"; };
 		840A1C0824057A5300880077 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		84121DE424329CB700D18486 /* CreateMLCarClassifierModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CreateMLCarClassifierModel.mlmodel; sourceTree = "<group>"; };
+		84121DE624329CBE00D18486 /* CreateMLCatVsDogModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CreateMLCatVsDogModel.mlmodel; sourceTree = "<group>"; };
+		84121DE824329D1E00D18486 /* CreateMLCatVsDog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMLCatVsDog.swift; sourceTree = "<group>"; };
+		84121DEA24329F1300D18486 /* TuriCreateCarClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuriCreateCarClassifier.swift; sourceTree = "<group>"; };
 		8421D1852403459300202F8E /* MyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTests.swift; sourceTree = "<group>"; };
 		8421D18824034D5700202F8E /* tests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = tests.json; path = ../../../../Paralelismo/tests.json; sourceTree = "<group>"; };
 		8421D18C240358CD00202F8E /* CreateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTest.swift; sourceTree = "<group>"; };
 		842A4EA02426AD4D00354BF7 /* SwiftForTensorFlowImageClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftForTensorFlowImageClassifier.swift; sourceTree = "<group>"; };
 		842A4EA22426F76700354BF7 /* TuriCreate.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = TuriCreate.mlmodel; sourceTree = "<group>"; };
 		842A4EA62426FCB100354BF7 /* turicreate_car_classifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = turicreate_car_classifier.mlmodel; sourceTree = "<group>"; };
-		842A4EA824270DAF00354BF7 /* ClasificadorDeImagenes 4.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "ClasificadorDeImagenes 4.mlmodel"; sourceTree = "<group>"; };
 		842A4EAA2427325400354BF7 /* turicreate_cat_vs_dog.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = turicreate_cat_vs_dog.mlmodel; sourceTree = "<group>"; };
 		842A4EAE2427F26000354BF7 /* TuricreateCatVsDog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuricreateCatVsDog.swift; sourceTree = "<group>"; };
 		842A4EB32427FBF200354BF7 /* ObtainedResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObtainedResults.swift; sourceTree = "<group>"; };
@@ -101,7 +107,7 @@
 		842A4EBA24281E1700354BF7 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		842A4EBC2428530C00354BF7 /* ModelComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelComparison.swift; sourceTree = "<group>"; };
 		842A4EC52429182D00354BF7 /* GraphGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphGroup.swift; sourceTree = "<group>"; };
-		844916F7240423F9005E9908 /* CoreMLImageClassification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLImageClassification.swift; sourceTree = "<group>"; };
+		844916F7240423F9005E9908 /* CreateMLCarClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMLCarClassifier.swift; sourceTree = "<group>"; };
 		844916F924042DF2005E9908 /* ConfigureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureTest.swift; sourceTree = "<group>"; };
 		844C6FFE2407233B00214D22 /* ClassificationResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationResults.swift; sourceTree = "<group>"; };
 		845EC45224032B720044F08B /* BenchmarkML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BenchmarkML.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +128,7 @@
 		845EC48724033C100044F08B /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		845EC48F24033E4C0044F08B /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		84AF7B9A24242EBF00FE6ED7 /* TestPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPersistence.swift; sourceTree = "<group>"; };
+		84BA9FE624328981009596E8 /* pokedex.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = pokedex.mlmodel; sourceTree = "<group>"; };
 		84BAB4AB242433C400296858 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84BAB4AD24251FB600296858 /* ModelPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPersistence.swift; sourceTree = "<group>"; };
 		84BAB4AF242535DF00296858 /* Framework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Framework.swift; sourceTree = "<group>"; };
@@ -130,7 +137,6 @@
 		84BAB4B52425865E00296858 /* InputData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputData.swift; sourceTree = "<group>"; };
 		84D7FEB02406DC0B0069DA3B /* InputDataGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDataGroup.swift; sourceTree = "<group>"; };
 		84F91EF62415B4E000AD9420 /* MobileNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNet.mlmodel; sourceTree = "<group>"; };
-		84F91EF82415B4EE00AD9420 /* ClasificadorDeImagenes 2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "ClasificadorDeImagenes 2.mlmodel"; sourceTree = "<group>"; };
 		84F91EFD2416905E00AD9420 /* CoreMLObjectClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLObjectClassifier.swift; sourceTree = "<group>"; };
 		B19D44C7D089445D1FE72F69 /* libPods-BenchmarkMLTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BenchmarkMLTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C432A5FDD75BCA3756431A00 /* Pods-BenchmarkML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BenchmarkML.debug.xcconfig"; path = "Target Support Files/Pods-BenchmarkML/Pods-BenchmarkML.debug.xcconfig"; sourceTree = "<group>"; };
@@ -193,8 +199,8 @@
 		842A4EA42426F77200354BF7 /* CreateML */ = {
 			isa = PBXGroup;
 			children = (
-				842A4EA824270DAF00354BF7 /* ClasificadorDeImagenes 4.mlmodel */,
-				84F91EF82415B4EE00AD9420 /* ClasificadorDeImagenes 2.mlmodel */,
+				84121DE624329CBE00D18486 /* CreateMLCatVsDogModel.mlmodel */,
+				84121DE424329CB700D18486 /* CreateMLCarClassifierModel.mlmodel */,
 			);
 			path = CreateML;
 			sourceTree = "<group>";
@@ -212,8 +218,9 @@
 		842A4EAC2427F23100354BF7 /* CreateML */ = {
 			isa = PBXGroup;
 			children = (
-				844916F7240423F9005E9908 /* CoreMLImageClassification.swift */,
+				844916F7240423F9005E9908 /* CreateMLCarClassifier.swift */,
 				84F91EFD2416905E00AD9420 /* CoreMLObjectClassifier.swift */,
+				84121DE824329D1E00D18486 /* CreateMLCatVsDog.swift */,
 			);
 			path = CreateML;
 			sourceTree = "<group>";
@@ -230,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				842A4EAE2427F26000354BF7 /* TuricreateCatVsDog.swift */,
+				84121DEA24329F1300D18486 /* TuriCreateCarClassifier.swift */,
 			);
 			path = Turicreate;
 			sourceTree = "<group>";
@@ -373,9 +381,18 @@
 			path = Persistence;
 			sourceTree = "<group>";
 		};
+		84BA9FE82432898A009596E8 /* Keras */ = {
+			isa = PBXGroup;
+			children = (
+				84BA9FE624328981009596E8 /* pokedex.mlmodel */,
+			);
+			path = Keras;
+			sourceTree = "<group>";
+		};
 		84F91EF32415B45E00AD9420 /* MLModels */ = {
 			isa = PBXGroup;
 			children = (
+				84BA9FE82432898A009596E8 /* Keras */,
 				842A4EA52426F77700354BF7 /* TuriCreate */,
 				842A4EA42426F77200354BF7 /* CreateML */,
 				84F91EF62415B4E000AD9420 /* MobileNet.mlmodel */,
@@ -616,17 +633,20 @@
 				842A4EA12426AD4D00354BF7 /* SwiftForTensorFlowImageClassifier.swift in Sources */,
 				842A4EB42427FBF200354BF7 /* ObtainedResults.swift in Sources */,
 				845EC48624032C2E0044F08B /* TestRun.swift in Sources */,
+				84121DEB24329F1300D18486 /* TuriCreateCarClassifier.swift in Sources */,
 				84BAB4AE24251FB600296858 /* ModelPersistence.swift in Sources */,
 				840A1C0924057A5300880077 /* Model.swift in Sources */,
 				84F91EF72415B4E000AD9420 /* MobileNet.mlmodel in Sources */,
-				844916F8240423F9005E9908 /* CoreMLImageClassification.swift in Sources */,
+				844916F8240423F9005E9908 /* CreateMLCarClassifier.swift in Sources */,
 				842A4EA32426F76700354BF7 /* TuriCreate.mlmodel in Sources */,
+				84121DE524329CB700D18486 /* CreateMLCarClassifierModel.mlmodel in Sources */,
 				842A4EBD2428530C00354BF7 /* ModelComparison.swift in Sources */,
+				84121DE724329CBE00D18486 /* CreateMLCatVsDogModel.mlmodel in Sources */,
 				842A4EA72426FCB100354BF7 /* turicreate_car_classifier.mlmodel in Sources */,
 				845EC48824033C100044F08B /* Test.swift in Sources */,
 				840A1BFF2404697000880077 /* TestGroup.swift in Sources */,
 				842A4EAB2427325400354BF7 /* turicreate_cat_vs_dog.mlmodel in Sources */,
-				84F91EF92415B4EE00AD9420 /* ClasificadorDeImagenes 2.mlmodel in Sources */,
+				84121DE924329D1E00D18486 /* CreateMLCatVsDog.swift in Sources */,
 				842A4EBB24281E1700354BF7 /* Tests.swift in Sources */,
 				842A4EB72427FE7000354BF7 /* SelectedImage.swift in Sources */,
 				84F91EFE2416905E00AD9420 /* CoreMLObjectClassifier.swift in Sources */,
@@ -636,10 +656,10 @@
 				84BAB4B22425379600296858 /* FrameworkPersistence.swift in Sources */,
 				844C6FFF2407233B00214D22 /* ClassificationResults.swift in Sources */,
 				84BAB4B0242535DF00296858 /* Framework.swift in Sources */,
-				842A4EA924270DAF00354BF7 /* ClasificadorDeImagenes 4.mlmodel in Sources */,
 				84BAB4B4242580FF00296858 /* FrameworkType.swift in Sources */,
 				842A4EB924281AF000354BF7 /* ObtainedTests.swift in Sources */,
 				8421D18D240358CD00202F8E /* CreateTest.swift in Sources */,
+				84BA9FE724328981009596E8 /* pokedex.mlmodel in Sources */,
 				842A4EC62429182D00354BF7 /* GraphGroup.swift in Sources */,
 				84BAB4B62425865E00296858 /* InputData.swift in Sources */,
 			);

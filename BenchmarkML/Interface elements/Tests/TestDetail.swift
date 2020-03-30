@@ -52,13 +52,17 @@ struct TestDetail: View {
                         print(self.model!.model)
                         switch self.model!.model {
                         case "CreateMLCarClassifier":
-                            CoreMLImageClassification(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                            CreateMLCarClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                        case "CreateMLCatVsDog":
+                            CreateMLCatVsDog(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
                         case "CreateMLObjectClassifier":
                             CoreMLObjectClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
                         case "TuricreateCatVsDog":
                             TuricreateCatVsDog(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                        case "TuricreateCarClassifier":
+                            TuriCreateCarClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
                         default:
-                            print("hola")
+                            print("holaaaa")
                         }
                     }) {
                         Text("Classify")
