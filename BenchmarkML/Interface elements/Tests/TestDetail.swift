@@ -61,6 +61,14 @@ struct TestDetail: View {
                             TuricreateCatVsDog(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
                         case "TuricreateCarClassifier":
                             TuriCreateCarClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                        case "KerasPokemonClassification":
+                            KerasPokemonClassification(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                        case "KerasCarClassifier":
+                            KerasCarClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                        case "CreateMLPokemonClassification":
+                            CreateMLPokedex(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                        case "TuricreatePokemonClassification":
+                            TuricreatePokemonClassification(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
                         default:
                             print("holaaaa")
                         }
