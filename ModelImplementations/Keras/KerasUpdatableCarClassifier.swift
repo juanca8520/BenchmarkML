@@ -12,42 +12,38 @@ import CoreML
 
 struct KerasUpdatableCarClassifier {
     @Binding var obtainedResults: String
-//    var imageLabelDictionary : [UIImage:String] = [:]
+    @Binding var trainSetCount: Int
     var imageConstraint: MLImageConstraint!
     @State var updatableModel : MLModel?
-
-      
-      init(obtainedResults: Binding<String>) {
-          self._obtainedResults = obtainedResults
+    
+    
+    init(obtainedResults: Binding<String>, trainSetCount: Binding<Int>) {
+        self._obtainedResults = obtainedResults
+        self._trainSetCount = trainSetCount
         
-            do{
-                let bundle = Bundle(for: car_classifier_updatable.self)
-                let updatableURL = bundle.url(forResource: "car_classifier_updatable", withExtension: "mlmodelc")!
-                let fileManager = FileManager.default
-                let documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:true)
-                let fileURL = documentDirectory.appendingPathComponent("car_classifier_updatable.mlmodelc")
-                if let model = loadModel(url: updatableURL){
-                    self.updatableModel = model
-                    imageConstraint = self.getImageConstraint(model: model)
-                }
-                else{
-                    if let modelURL = Bundle.main.url(forResource: "car_classifier_updatable", withExtension: "mlmodelc"){
-                        if let model = loadModel(url: modelURL){
-                            updatableModel = model
-                        }
-                    }
-                }
-
-                if let updatableModel = updatableModel{
-                    imageConstraint = self.getImageConstraint(model: updatableModel)
-                }
+        let bundle = Bundle(for: car_classifier_updatable.self)
+        let updatableURL = bundle.url(forResource: "car_classifier_updatable", withExtension: "mlmodelc")!
         
-            }catch(let error){
-                print("initial error is \(error.localizedDescription)")
+        if let model = loadModel(url: updatableURL){
+            self.updatableModel = model
+            imageConstraint = self.getImageConstraint(model: model)
+        }
+        else{
+            if let modelURL = Bundle.main.url(forResource: "car_classifier_updatable", withExtension: "mlmodelc"){
+                if let model = loadModel(url: modelURL){
+                    updatableModel = model
+                }
             }
+        }
         
-      }
-      
+        if let updatableModel = updatableModel{
+            imageConstraint = self.getImageConstraint(model: updatableModel)
+        }
+        
+        
+        
+    }
+    
       /// - Tag: MLModelSetup
       
       func classificationRequest(startTime: CFAbsoluteTime) -> VNCoreMLRequest {
@@ -162,7 +158,7 @@ struct KerasUpdatableCarClassifier {
     
     func startTraining(imageLabelDictionary: [UIImage : String]) {
         let startTime = CFAbsoluteTimeGetCurrent()
-        self.obtainedResults = "Training model..."
+        self.obtainedResults = "Training model with \(self.trainSetCount) images..."
         let modelConfig = MLModelConfiguration()
         modelConfig.computeUnits = .cpuAndGPU
         do {
@@ -194,8 +190,8 @@ struct KerasUpdatableCarClassifier {
                                         
                                         self.updatableModel = self.loadModel(url: fileURL)
                                         
-                                        self.obtainedResults = "Done \n Time taken traing model: \( Double(round(1000*(CFAbsoluteTimeGetCurrent() - startTime))/1000)) seconds"
-
+                                        self.obtainedResults = "Done \n Time taken traing model with \(self.trainSetCount) images: \( Double(round(1000*(CFAbsoluteTimeGetCurrent() - startTime))/1000)) seconds"
+                                        self.trainSetCount = 0
                                     } catch(let error) {
                                         print("error is \(error.localizedDescription)")
                                     }

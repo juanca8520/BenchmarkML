@@ -16,6 +16,7 @@ struct TestDetail: View {
     @State var showingSheet = false
     @State var results = ""
     @State var imageLabelDictionary =  [UIImage : String]()
+    @State var trainSetCount = 0
     
     @ObservedObject var obtainedResults: ObtainedResults = ObtainedResults()
     @ObservedObject var selectedImage: SelectedImage = SelectedImage()
@@ -30,38 +31,40 @@ struct TestDetail: View {
                     .padding()
                 
                 HStack{
-//                    if isUpdatable{
-//                        Button(action: {
-//                            print("add")
-//                        }) {
-//                            Text("Add images to train")
-//                        }
-//
-//                    }
-                    
-                    Button(action: {
-                        self.showingSheet.toggle()
-                    }) {
-                        if isUpdatable {
-                            Text("Add image to classify or to train")
-                        } else {
-                            Text("Add image")
+                    VStack {
+                        Button(action: {
+                            self.showingSheet.toggle()
+                        }) {
+                            if isUpdatable {
+                                Text("Add image to classify or to train")
+                            } else {
+                                Text("Add image")
+                            }
+                        }.actionSheet(isPresented: self.$showingSheet) {
+                            ActionSheet(title: Text("Select an option"), message: Text("Select how to add an image to classify"), buttons:
+                                [.default(Text("Select from gallery"), action: {
+                                    self.isShowingImagePicker.toggle()
+                                }),
+                                 .default(Text("Use camera"), action: {
+                                    print("no lo tengo aun")
+                                 }),
+                                 .cancel()
+                                ]
+                            )
                         }
-                    }.actionSheet(isPresented: self.$showingSheet) {
-                        ActionSheet(title: Text("Select an option"), message: Text("Select how to add an image to classify"), buttons:
-                            [.default(Text("Select from gallery"), action: {
-                                self.isShowingImagePicker.toggle()
-                            }),
-                             .default(Text("Use camera"), action: {
-                                print("no lo tengo aun")
-                             }),
-                             .cancel()
-                            ]
-                        )
+                        .sheet(isPresented: $isShowingImagePicker, content: {
+                            ImagePickerView(isPresented: self.$isShowingImagePicker, image: self.$selectedImage.value)
+                        }).padding(.horizontal)
+                        
+                        Button(action: {
+                            self.imageLabelDictionary[self.selectedImage.value] = "Audi"
+                            self.trainSetCount += 1
+                            print(self.imageLabelDictionary)
+                        }) {
+                            Text("Add image to train set")
+                                .disabled(selectedImage.value == UIImage())
+                        }
                     }
-                    .sheet(isPresented: $isShowingImagePicker, content: {
-                        ImagePickerView(isPresented: self.$isShowingImagePicker, image: self.$selectedImage.value)
-                    }).padding()
                     Spacer()
                     VStack {
                         Button(action: {
@@ -86,7 +89,7 @@ struct TestDetail: View {
                             case "TuricreatePokemonClassification":
                                 TuricreatePokemonClassification(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
                             case "UpdatableKerasCarClassifier":
-                                KerasUpdatableCarClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                                KerasUpdatableCarClassifier(obtainedResults: self.$results, trainSetCount: self.$trainSetCount).updateClassifications(for: self.selectedImage.value)
                             default:
                                 print("holaaaa")
                             }
@@ -97,22 +100,18 @@ struct TestDetail: View {
                         }
                         
                         Button(action: {
-                            self.imageLabelDictionary[self.selectedImage.value] = "Audi"
-                            print(self.imageLabelDictionary)
-                        }) {
-                           Text("Add image to train set")
-                            .disabled(selectedImage.value == UIImage())
-                        }
-                        
-                        Button(action: {
-                            KerasUpdatableCarClassifier(obtainedResults: self.$results).startTraining(imageLabelDictionary:  self.imageLabelDictionary)
+                            KerasUpdatableCarClassifier(obtainedResults: self.$results, trainSetCount: self.$trainSetCount).startTraining(imageLabelDictionary:  self.imageLabelDictionary)
+                            self.imageLabelDictionary = [UIImage:String]()
+                            self.selectedImage.value = UIImage()
                         }) {
                             Text("Train model")
-                            .disabled(imageLabelDictionary == [UIImage : String]())
+                                .disabled(imageLabelDictionary == [UIImage : String]())
                         }
                     }
                 }
                 
+                Text("Number of images to train the model: \(self.trainSetCount)")
+                    .padding()
                 
                 HStack(alignment: .center){
                     Spacer()
@@ -152,7 +151,7 @@ struct TestDetail: View {
                     
                     Text("With \(model!.numberElements) elements, \(model!.elementsPerLabel) for each label and \(model!.elementsForAccuracy) left for accuracy training")
                         .padding(.horizontal)
-
+                    
                 }
                 .padding(.horizontal)
                 
@@ -160,11 +159,6 @@ struct TestDetail: View {
             }
         }
         .navigationBarTitle(model!.name)
-    }
-    
-    func classify(completed: () -> ()) {
-        //        CoreMLImageClassification.updateClassifications(for: self.image, with: )
-        //        completed()
     }
 }
 
