@@ -15,11 +15,13 @@ struct TestDetail: View {
     @State var isShowingImagePicker = false
     @State var showingSheet = false
     @State var results = ""
+    @State var imageLabelDictionary =  [UIImage : String]()
     
     @ObservedObject var obtainedResults: ObtainedResults = ObtainedResults()
     @ObservedObject var selectedImage: SelectedImage = SelectedImage()
     
     var model: Test?
+    var isUpdatable: Bool
     
     var body: some View {
         ScrollView{
@@ -28,10 +30,23 @@ struct TestDetail: View {
                     .padding()
                 
                 HStack{
+//                    if isUpdatable{
+//                        Button(action: {
+//                            print("add")
+//                        }) {
+//                            Text("Add images to train")
+//                        }
+//
+//                    }
+                    
                     Button(action: {
                         self.showingSheet.toggle()
                     }) {
-                        Text("Add image")
+                        if isUpdatable {
+                            Text("Add image to classify or to train")
+                        } else {
+                            Text("Add image")
+                        }
                     }.actionSheet(isPresented: self.$showingSheet) {
                         ActionSheet(title: Text("Select an option"), message: Text("Select how to add an image to classify"), buttons:
                             [.default(Text("Select from gallery"), action: {
@@ -48,34 +63,53 @@ struct TestDetail: View {
                         ImagePickerView(isPresented: self.$isShowingImagePicker, image: self.$selectedImage.value)
                     }).padding()
                     Spacer()
-                    Button(action: {
-                        print(self.model!.model)
-                        switch self.model!.model {
-                        case "CreateMLCarClassifier":
-                            CreateMLCarClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
-                        case "CreateMLCatVsDog":
-                            CreateMLCatVsDog(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
-                        case "CreateMLObjectClassifier":
-                            CoreMLObjectClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
-                        case "TuricreateCatVsDog":
-                            TuricreateCatVsDog(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
-                        case "TuricreateCarClassifier":
-                            TuriCreateCarClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
-                        case "KerasPokemonClassification":
-                            KerasPokemonClassification(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
-                        case "KerasCarClassifier":
-                            KerasCarClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
-                        case "CreateMLPokemonClassification":
-                            CreateMLPokedex(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
-                        case "TuricreatePokemonClassification":
-                            TuricreatePokemonClassification(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
-                        default:
-                            print("holaaaa")
+                    VStack {
+                        Button(action: {
+                            print(self.model!.model)
+                            switch self.model!.model {
+                            case "CreateMLCarClassifier":
+                                CreateMLCarClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                            case "CreateMLCatVsDog":
+                                CreateMLCatVsDog(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                            case "CreateMLObjectClassifier":
+                                CoreMLObjectClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                            case "TuricreateCatVsDog":
+                                TuricreateCatVsDog(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                            case "TuricreateCarClassifier":
+                                TuriCreateCarClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                            case "KerasPokemonClassification":
+                                KerasPokemonClassification(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                            case "KerasCarClassifier":
+                                KerasCarClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                            case "CreateMLPokemonClassification":
+                                CreateMLPokedex(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                            case "TuricreatePokemonClassification":
+                                TuricreatePokemonClassification(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                            case "UpdatableKerasCarClassifier":
+                                KerasUpdatableCarClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                            default:
+                                print("holaaaa")
+                            }
+                        }) {
+                            Text("Classify")
+                                .padding(.horizontal)
+                                .disabled(selectedImage.value == UIImage())
                         }
-                    }) {
-                        Text("Classify")
-                            .padding(.horizontal)
+                        
+                        Button(action: {
+                            self.imageLabelDictionary[self.selectedImage.value] = "Audi"
+                            print(self.imageLabelDictionary)
+                        }) {
+                           Text("Add image to train set")
                             .disabled(selectedImage.value == UIImage())
+                        }
+                        
+                        Button(action: {
+                            KerasUpdatableCarClassifier(obtainedResults: self.$results).startTraining(imageLabelDictionary:  self.imageLabelDictionary)
+                        }) {
+                            Text("Train model")
+                            .disabled(imageLabelDictionary == [UIImage : String]())
+                        }
                     }
                 }
                 
@@ -136,7 +170,7 @@ struct TestDetail: View {
 
 struct TestDetail_Previews: PreviewProvider {
     static var previews: some View {
-        TestDetail(model: landmarkData[0])
+        TestDetail(model: landmarkData[0], isUpdatable: true)
     }
 }
 

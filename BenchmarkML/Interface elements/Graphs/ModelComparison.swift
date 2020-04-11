@@ -75,6 +75,22 @@ struct ModelComparison: View {
                             }
                         }
                     }.padding()
+                    
+                    HStack{
+                        VStack(alignment: .leading){
+                            if trainingDict["Pokedex"] != nil {
+                                Text("Pokedex").padding(.horizontal)
+                                HStack{
+                                    BarChartView(data: ChartData(values: trainingDict["Pokedex"] ?? chartDataTimeToTrain), title: "Time to train in seconds", form: ChartForm.medium)
+                                    BarChartView(data: ChartData(values: accuracyDict["Object classifier"] ?? chartDataAccuracy), title: "Accuracy per framework", form: ChartForm.medium)
+                                }
+                                HStack{
+                                    BarChartView(data: ChartData(values: timeDict["Pokedex"] ?? chartDataTimeClassification), title: "Time to classify an image", form: ChartForm.medium)
+                                    BarChartView(data: ChartData(values: chartDataTimeClassification), title: "Time to classify an image", form: ChartForm.medium).hidden()
+                                }
+                            }
+                        }
+                    }.padding()
                 }
             }.navigationBarTitle("Statistics")
         }.onAppear {
@@ -96,6 +112,11 @@ struct ModelComparison: View {
                         self.timeDict[test.trainedModel] = (self.timeDict[test.trainedModel] ?? self.chartDataTimeClassification) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy)]
                     case "Cats vs dogs":
                         
+                        self.trainingDict[test.trainedModel] = (self.trainingDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.trainingTime)]
+                        self.accuracyDict[test.trainedModel] = (self.accuracyDict[test.trainedModel] ?? self.chartDataAccuracy) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy * 100)]
+                        self.timeDict[test.trainedModel] = (self.timeDict[test.trainedModel] ?? self.chartDataTimeClassification) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy)]
+                    
+                    case "Pokedex":
                         self.trainingDict[test.trainedModel] = (self.trainingDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.trainingTime)]
                         self.accuracyDict[test.trainedModel] = (self.accuracyDict[test.trainedModel] ?? self.chartDataAccuracy) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy * 100)]
                         self.timeDict[test.trainedModel] = (self.timeDict[test.trainedModel] ?? self.chartDataTimeClassification) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy)]

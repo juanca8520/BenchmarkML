@@ -52,6 +52,8 @@
 		845EC48624032C2E0044F08B /* TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC48524032C2E0044F08B /* TestRun.swift */; };
 		845EC48824033C100044F08B /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC48724033C100044F08B /* Test.swift */; };
 		845EC49024033E4C0044F08B /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC48F24033E4C0044F08B /* Data.swift */; };
+		846C285A2440DF81007A5F34 /* car_classifier_updatable.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 846C28592440DF81007A5F34 /* car_classifier_updatable.mlmodel */; };
+		846C285C2440EC54007A5F34 /* KerasUpdatableCarClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C285B2440EC54007A5F34 /* KerasUpdatableCarClassifier.swift */; };
 		846E4C6F2432BAAD008FD462 /* CreateMLPokedexModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 846E4C6E2432BAAD008FD462 /* CreateMLPokedexModel.mlmodel */; };
 		846E4C712432BFAE008FD462 /* CreateMLPokedex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846E4C702432BFAE008FD462 /* CreateMLPokedex.swift */; };
 		84AF7B9B24242EBF00FE6ED7 /* TestPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF7B9A24242EBF00FE6ED7 /* TestPersistence.swift */; };
@@ -138,6 +140,8 @@
 		845EC48524032C2E0044F08B /* TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRun.swift; sourceTree = "<group>"; };
 		845EC48724033C100044F08B /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		845EC48F24033E4C0044F08B /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		846C28592440DF81007A5F34 /* car_classifier_updatable.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = car_classifier_updatable.mlmodel; sourceTree = "<group>"; };
+		846C285B2440EC54007A5F34 /* KerasUpdatableCarClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KerasUpdatableCarClassifier.swift; sourceTree = "<group>"; };
 		846E4C6E2432BAAD008FD462 /* CreateMLPokedexModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CreateMLPokedexModel.mlmodel; sourceTree = "<group>"; };
 		846E4C702432BFAE008FD462 /* CreateMLPokedex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMLPokedex.swift; sourceTree = "<group>"; };
 		84AF7B9A24242EBF00FE6ED7 /* TestPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPersistence.swift; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 			children = (
 				84121DEC2432AF4100D18486 /* KerasPokemonClassification.swift */,
 				84166B772433B7730022B6E4 /* KerasCarClassifier.swift */,
+				846C285B2440EC54007A5F34 /* KerasUpdatableCarClassifier.swift */,
 			);
 			path = Keras;
 			sourceTree = "<group>";
@@ -411,6 +416,7 @@
 		84BA9FE82432898A009596E8 /* Keras */ = {
 			isa = PBXGroup;
 			children = (
+				846C28592440DF81007A5F34 /* car_classifier_updatable.mlmodel */,
 				84166B752433B1190022B6E4 /* keras_car_classifier.mlmodel */,
 				84BA9FE624328981009596E8 /* KerasPokedex.mlmodel */,
 			);
@@ -673,6 +679,7 @@
 				84F91EF72415B4E000AD9420 /* MobileNet.mlmodel in Sources */,
 				844916F8240423F9005E9908 /* CreateMLCarClassifier.swift in Sources */,
 				842A4EA32426F76700354BF7 /* TuriCreate.mlmodel in Sources */,
+				846C285A2440DF81007A5F34 /* car_classifier_updatable.mlmodel in Sources */,
 				84121DE524329CB700D18486 /* CreateMLCarClassifierModel.mlmodel in Sources */,
 				842A4EBD2428530C00354BF7 /* ModelComparison.swift in Sources */,
 				84121DE724329CBE00D18486 /* CreateMLCatVsDogModel.mlmodel in Sources */,
@@ -688,6 +695,7 @@
 				845EC45824032B720044F08B /* SceneDelegate.swift in Sources */,
 				845EC45A24032B720044F08B /* ContentView.swift in Sources */,
 				844916FA24042DF2005E9908 /* ConfigureTest.swift in Sources */,
+				846C285C2440EC54007A5F34 /* KerasUpdatableCarClassifier.swift in Sources */,
 				84BAB4B22425379600296858 /* FrameworkPersistence.swift in Sources */,
 				844C6FFF2407233B00214D22 /* ClassificationResults.swift in Sources */,
 				84BAB4B0242535DF00296858 /* Framework.swift in Sources */,

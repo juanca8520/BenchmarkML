@@ -21,6 +21,7 @@ struct InputData: Decodable, Identifiable {
     var elementsPerLabel: Int
     var modelName: String
     var accuracy: Double
+    var isUpdatable: Bool
     
     
     init(snapshot: DataSnapshot) {
@@ -36,9 +37,10 @@ struct InputData: Decodable, Identifiable {
         self.numberOfElementsToTest = object["numberOfElementsToTest"] as! Int
         self.modelName = object["modelName"] as! String
         self.accuracy = object["accuracy"] as! Double
+        self.isUpdatable = object["isUpdatable"] as! Bool
     }
     
-    init(id: Int, name: String, description: String, image: String, timeTotrain: Int, numberOfElements: Int, numberOfLabels: Int, numberOfElementsToTest: Int, elementsPerLabel: Int, modelName: String, accuracy: Double) {
+    init(id: Int, name: String, description: String, image: String, timeTotrain: Int, numberOfElements: Int, numberOfLabels: Int, numberOfElementsToTest: Int, elementsPerLabel: Int, modelName: String, accuracy: Double, isUpdatable: Bool) {
         self.id = id
         self.name = name
         self.description = description
@@ -50,6 +52,7 @@ struct InputData: Decodable, Identifiable {
         self.numberOfElementsToTest = numberOfElementsToTest
         self.modelName = modelName
         self.accuracy = accuracy
+        self.isUpdatable = isUpdatable
     }
 }
 

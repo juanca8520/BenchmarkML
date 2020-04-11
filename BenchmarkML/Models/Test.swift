@@ -20,6 +20,7 @@ struct Test: Identifiable, Decodable, Hashable {
     var elementsForAccuracy: Int
     var accuracy: Double
     var trainedModel: String
+    var isUpdatable: Bool
     
     init(snapshot: DataSnapshot) {
         let object = snapshot.value as? [String:AnyObject]
@@ -33,9 +34,10 @@ struct Test: Identifiable, Decodable, Hashable {
         elementsForAccuracy = object!["elementsForAccuracy"] as! Int
         accuracy = object!["accuracy"] as! Double
         trainedModel = object!["trainedModel"] as! String
+        isUpdatable = object!["isUpdatable"] as! Bool
     }
     
-    init(id: Int, name: String, description: String, model: String, trainingTime: Int, numberElements: Int, elementsPerLabel: Int, elementsForAccuracy: Int, accuracy: Double, trainedModel: String) {
+    init(id: Int, name: String, description: String, model: String, trainingTime: Int, numberElements: Int, elementsPerLabel: Int, elementsForAccuracy: Int, accuracy: Double, trainedModel: String, isUpdatable: Bool) {
         self.id = id
         self.name = name
         self.description = description
@@ -46,6 +48,7 @@ struct Test: Identifiable, Decodable, Hashable {
         self.elementsForAccuracy = elementsForAccuracy
         self.accuracy = accuracy
         self.trainedModel = trainedModel
+        self.isUpdatable = isUpdatable
     }
     
     func toAnyObject() -> [String:AnyObject]{
@@ -60,6 +63,7 @@ struct Test: Identifiable, Decodable, Hashable {
         dict["elementsForAccuracy"] = elementsForAccuracy as AnyObject
         dict["accuracy"] = accuracy as AnyObject
         dict["trainedModel"] = trainedModel as AnyObject
+        dict["isUpdatable"] = isUpdatable as AnyObject
         
         return dict
     }
