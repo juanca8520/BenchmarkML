@@ -56,13 +56,16 @@ struct TestDetail: View {
                             ImagePickerView(isPresented: self.$isShowingImagePicker, image: self.$selectedImage.value)
                         }).padding(.horizontal)
                         
-                        Button(action: {
-                            self.imageLabelDictionary[self.selectedImage.value] = "Audi"
-                            self.trainSetCount += 1
-                            print(self.imageLabelDictionary)
-                        }) {
-                            Text("Add image to train set")
-                                .disabled(selectedImage.value == UIImage())
+                        if isUpdatable {
+                            Button(action: {
+                                self.imageLabelDictionary[self.selectedImage.value] = "Audi"
+                                self.trainSetCount += 1
+                                print(self.imageLabelDictionary)
+                            }) {
+                                Text("Add image to train set")
+                                    .disabled(selectedImage.value == UIImage())
+                            }
+                            
                         }
                     }
                     Spacer()
@@ -99,13 +102,16 @@ struct TestDetail: View {
                                 .disabled(selectedImage.value == UIImage())
                         }
                         
-                        Button(action: {
-                            KerasUpdatableCarClassifier(obtainedResults: self.$results, trainSetCount: self.$trainSetCount).startTraining(imageLabelDictionary:  self.imageLabelDictionary)
-                            self.imageLabelDictionary = [UIImage:String]()
-                            self.selectedImage.value = UIImage()
-                        }) {
-                            Text("Train model")
-                                .disabled(imageLabelDictionary == [UIImage : String]())
+                        if isUpdatable {
+                            Button(action: {
+                                KerasUpdatableCarClassifier(obtainedResults: self.$results, trainSetCount: self.$trainSetCount).startTraining(imageLabelDictionary:  self.imageLabelDictionary)
+                                self.imageLabelDictionary = [UIImage:String]()
+                                self.selectedImage.value = UIImage()
+                            }) {
+                                Text("Train model")
+                                    .disabled(imageLabelDictionary == [UIImage : String]())
+                            }
+                            
                         }
                     }
                 }

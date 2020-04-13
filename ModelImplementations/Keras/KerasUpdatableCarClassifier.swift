@@ -10,38 +10,43 @@ import SwiftUI
 import Vision
 import CoreML
 
-struct KerasUpdatableCarClassifier {
+class KerasUpdatableCarClassifier {
     @Binding var obtainedResults: String
     @Binding var trainSetCount: Int
     var imageConstraint: MLImageConstraint!
-    @State var updatableModel : MLModel?
+    var updatableModel : MLModel?
     
     
     init(obtainedResults: Binding<String>, trainSetCount: Binding<Int>) {
         self._obtainedResults = obtainedResults
         self._trainSetCount = trainSetCount
         
-        let bundle = Bundle(for: car_classifier_updatable.self)
-        let updatableURL = bundle.url(forResource: "car_classifier_updatable", withExtension: "mlmodelc")!
-        
-        if let model = loadModel(url: updatableURL){
-            self.updatableModel = model
-            imageConstraint = self.getImageConstraint(model: model)
-        }
-        else{
-            if let modelURL = Bundle.main.url(forResource: "car_classifier_updatable", withExtension: "mlmodelc"){
-                if let model = loadModel(url: modelURL){
-                    updatableModel = model
+        let fileManager = FileManager.default
+        do {
+            let documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:true)
+            let fileURL = documentDirectory.appendingPathComponent("car_classifier_updatable.mlmodelc")
+            
+            if let model = loadModel(url: fileURL){
+                print("hola ya entendiiiiii")
+                self.updatableModel = model
+                imageConstraint = self.getImageConstraint(model: updatableModel!)
+            }
+            else{
+                if let modelURL = Bundle.main.url(forResource: "car_classifier_updatable", withExtension: "mlmodelc"){
+
+                    if let model = loadModel(url: modelURL){
+                        self.updatableModel = model
+                        print("hola ya entendiiiiii2")
+                    }
                 }
             }
+            
+            if let updatableModel = updatableModel{
+                imageConstraint = self.getImageConstraint(model: updatableModel)
+            }
+        } catch(let error){
+            print("initial error is \(error.localizedDescription)")
         }
-        
-        if let updatableModel = updatableModel{
-            imageConstraint = self.getImageConstraint(model: updatableModel)
-        }
-        
-        
-        
     }
     
       /// - Tag: MLModelSetup
@@ -145,6 +150,7 @@ struct KerasUpdatableCarClassifier {
                 let featureValue = try MLFeatureValue(cgImage: cgi, constraint: imageConstraint, options: imageOptions)
               
                 if let pixelBuffer = featureValue.imageBufferValue{
+                    print("entre aca")
                     let x = car_classifier_updatableTrainingInput(image: pixelBuffer, classLabel: label)
                     batchInputs.append(x)
                 }
@@ -157,6 +163,10 @@ struct KerasUpdatableCarClassifier {
     }
     
     func startTraining(imageLabelDictionary: [UIImage : String]) {
+        
+        let bundle = Bundle(for: car_classifier_updatable.self)
+        let updatableURL = bundle.url(forResource: "car_classifier_updatable", withExtension: "mlmodelc")!
+        
         let startTime = CFAbsoluteTimeGetCurrent()
         self.obtainedResults = "Training model with \(self.trainSetCount) images..."
         let modelConfig = MLModelConfiguration()
@@ -177,16 +187,14 @@ struct KerasUpdatableCarClassifier {
                               progressHandler: { (contextProgress) in
                                 print(contextProgress.event)
                                 // you can check the progress here, after each epoch
-                                
                              }) { (finalContext) in
-                                
                                 if finalContext.task.error?.localizedDescription == nil{
                                     let fileManager = FileManager.default
                                     do {
-
                                         let documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:true)
                                         let fileURL = documentDirectory.appendingPathComponent("car_classifier_updatable.mlmodelc")
                                         try finalContext.model.write(to: fileURL)
+                                        
                                         
                                         self.updatableModel = self.loadModel(url: fileURL)
                                         
@@ -195,6 +203,8 @@ struct KerasUpdatableCarClassifier {
                                     } catch(let error) {
                                         print("error is \(error.localizedDescription)")
                                     }
+                                } else {
+                                    print(finalContext.task.error?.localizedDescription)
                                 }
                                 
                                 
