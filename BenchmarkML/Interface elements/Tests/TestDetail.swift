@@ -58,7 +58,7 @@ struct TestDetail: View {
                         
                         if isUpdatable {
                             Button(action: {
-                                self.imageLabelDictionary[self.selectedImage.value] = "Audi"
+                                self.imageLabelDictionary[self.selectedImage.value] = "Alfa-Romeo"
                                 self.trainSetCount += 1
                                 print(self.imageLabelDictionary)
                             }) {

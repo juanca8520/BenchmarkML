@@ -21,10 +21,17 @@ class KerasUpdatableCarClassifier {
         self._obtainedResults = obtainedResults
         self._trainSetCount = trainSetCount
         
+        
         let fileManager = FileManager.default
         do {
             let documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:true)
             let fileURL = documentDirectory.appendingPathComponent("car_classifier_updatable.mlmodelc")
+            
+//            do {
+//                try FileManager.default.removeItem(at: fileURL)
+//            } catch let error as NSError {
+//                print("Error: \(error.domain)")
+//            }
             
             if let model = loadModel(url: fileURL){
                 print("hola ya entendiiiiii")
@@ -53,7 +60,7 @@ class KerasUpdatableCarClassifier {
       
       func classificationRequest(startTime: CFAbsoluteTime) -> VNCoreMLRequest {
           do {
-              let model = try VNCoreMLModel(for: car_classifier_updatable().model)
+            let model = try VNCoreMLModel(for: self.updatableModel!)
               
               let request = VNCoreMLRequest(model: model, completionHandler: { request, error in
                   DispatchQueue.main.async {
@@ -68,6 +75,7 @@ class KerasUpdatableCarClassifier {
                           //Aca tengo que hacer cosas dependiendo de la interfaz que implemente
                       } else {
                           let topClassifications = classifications.prefix(2)
+                        
                           let descriptions = topClassifications.map({ classification in
                               return String(format: "  (%.2f) %@", classification.confidence, classification.identifier)
                           })
