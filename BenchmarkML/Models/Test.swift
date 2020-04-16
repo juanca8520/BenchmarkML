@@ -10,7 +10,7 @@ import SwiftUI
 import Firebase
 
 struct Test: Identifiable, Decodable, Hashable {
-    var id: Int
+    var id: String
     var name: String
     var description: String
     var model: String
@@ -21,10 +21,12 @@ struct Test: Identifiable, Decodable, Hashable {
     var accuracy: Double
     var trainedModel: String
     var isUpdatable: Bool
+    var modelSize: Int
+    var classifyTime: Double
     
     init(snapshot: DataSnapshot) {
         let object = snapshot.value as? [String:AnyObject]
-        id = object!["id"] as! Int
+        id = snapshot.key
         name = object!["name"] as! String
         description = object!["description"] as! String
         model = object!["model"] as! String
@@ -35,9 +37,12 @@ struct Test: Identifiable, Decodable, Hashable {
         accuracy = object!["accuracy"] as! Double
         trainedModel = object!["trainedModel"] as! String
         isUpdatable = object!["isUpdatable"] as! Bool
+        modelSize = object!["modelSize"] as! Int
+        classifyTime = object!["classifyTime"] as! Double
+        print(snapshot.key)
     }
     
-    init(id: Int, name: String, description: String, model: String, trainingTime: Int, numberElements: Int, elementsPerLabel: Int, elementsForAccuracy: Int, accuracy: Double, trainedModel: String, isUpdatable: Bool) {
+    init(id: String, name: String, description: String, model: String, trainingTime: Int, numberElements: Int, elementsPerLabel: Int, elementsForAccuracy: Int, accuracy: Double, trainedModel: String, isUpdatable: Bool, modelSize: Int, classifyTime: Double) {
         self.id = id
         self.name = name
         self.description = description
@@ -49,6 +54,8 @@ struct Test: Identifiable, Decodable, Hashable {
         self.accuracy = accuracy
         self.trainedModel = trainedModel
         self.isUpdatable = isUpdatable
+        self.modelSize = modelSize
+        self.classifyTime = classifyTime
     }
     
     func toAnyObject() -> [String:AnyObject]{
@@ -64,12 +71,10 @@ struct Test: Identifiable, Decodable, Hashable {
         dict["accuracy"] = accuracy as AnyObject
         dict["trainedModel"] = trainedModel as AnyObject
         dict["isUpdatable"] = isUpdatable as AnyObject
+        dict["modelSize"] = modelSize as AnyObject
+        dict["classifyTime"] = classifyTime as AnyObject
         
         return dict
-    }
-    
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 

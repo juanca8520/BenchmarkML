@@ -13,14 +13,15 @@ import CoreML
 class KerasUpdatableCarClassifier {
     @Binding var obtainedResults: String
     @Binding var trainSetCount: Int
+    @Binding var test: Test
     var imageConstraint: MLImageConstraint!
     var updatableModel : MLModel?
     
     
-    init(obtainedResults: Binding<String>, trainSetCount: Binding<Int>) {
+    init(obtainedResults: Binding<String>, trainSetCount: Binding<Int>, test: Binding<Test>) {
         self._obtainedResults = obtainedResults
         self._trainSetCount = trainSetCount
-        
+        self._test = test
         
         let fileManager = FileManager.default
         do {
@@ -80,7 +81,11 @@ class KerasUpdatableCarClassifier {
                               return String(format: "  (%.2f) %@", classification.confidence, classification.identifier)
                           })
                           // Acá tengo que hacer cosas dependiendo de la interfaz que implemente
-                          
+                        if self.test.classifyTime == 0 {
+                            self.test.classifyTime = CFAbsoluteTimeGetCurrent() - startTime
+                        } else {
+                            self.test.classifyTime = (self.test.classifyTime + (CFAbsoluteTimeGetCurrent() - startTime))/2
+                        }
                           self.obtainedResults = "Classification:\n" + descriptions.joined(separator: "\n") + "\n\(String(format: "Time: %.2f", (CFAbsoluteTimeGetCurrent() - startTime))) seconds"
                           //                        print(self.obtainedResults)
                       }

@@ -11,10 +11,13 @@ import Vision
 import CoreML
 
 struct TuricreatePokemonClassification {
+
     @Binding var obtainedResults: String
+    @Binding var test: Test
     
-    init(obtainedResults: Binding<String>) {
+    init(obtainedResults: Binding<String>, test: Binding<Test>) {
         self._obtainedResults = obtainedResults
+        self._test = test
     }
     
     /// - Tag: MLModelSetup
@@ -40,7 +43,11 @@ struct TuricreatePokemonClassification {
                             return String(format: "  (%.2f) %@", classification.confidence, classification.identifier)
                         })
                         // Acá tengo que hacer cosas dependiendo de la interfaz que implemente
-                        
+                        if self.test.classifyTime == 0 {
+                            self.test.classifyTime = CFAbsoluteTimeGetCurrent() - startTime
+                        } else {
+                            self.test.classifyTime = (self.test.classifyTime + (CFAbsoluteTimeGetCurrent() - startTime))/2
+                        }
                         self.obtainedResults = "Classification:\n" + descriptions.joined(separator: "\n") + "\n\(String(format: "Time: %.2f", (CFAbsoluteTimeGetCurrent() - startTime))) seconds"
                         //                        print(self.obtainedResults)
                     }

@@ -37,7 +37,6 @@
 		842A4EBB24281E1700354BF7 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EBA24281E1700354BF7 /* Tests.swift */; };
 		842A4EBD2428530C00354BF7 /* ModelComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EBC2428530C00354BF7 /* ModelComparison.swift */; };
 		842A4EC324290AD800354BF7 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 842A4EC224290AD800354BF7 /* SwiftUICharts */; };
-		842A4EC62429182D00354BF7 /* GraphGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EC52429182D00354BF7 /* GraphGroup.swift */; };
 		844916F8240423F9005E9908 /* CreateMLCarClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844916F7240423F9005E9908 /* CreateMLCarClassifier.swift */; };
 		844916FA24042DF2005E9908 /* ConfigureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844916F924042DF2005E9908 /* ConfigureTest.swift */; };
 		844C6FFF2407233B00214D22 /* ClassificationResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C6FFE2407233B00214D22 /* ClassificationResults.swift */; };
@@ -120,7 +119,6 @@
 		842A4EB824281AF000354BF7 /* ObtainedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObtainedTests.swift; sourceTree = "<group>"; };
 		842A4EBA24281E1700354BF7 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		842A4EBC2428530C00354BF7 /* ModelComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelComparison.swift; sourceTree = "<group>"; };
-		842A4EC52429182D00354BF7 /* GraphGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphGroup.swift; sourceTree = "<group>"; };
 		844916F7240423F9005E9908 /* CreateMLCarClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMLCarClassifier.swift; sourceTree = "<group>"; };
 		844916F924042DF2005E9908 /* ConfigureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureTest.swift; sourceTree = "<group>"; };
 		844C6FFE2407233B00214D22 /* ClassificationResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationResults.swift; sourceTree = "<group>"; };
@@ -291,7 +289,6 @@
 			isa = PBXGroup;
 			children = (
 				842A4EBC2428530C00354BF7 /* ModelComparison.swift */,
-				842A4EC52429182D00354BF7 /* GraphGroup.swift */,
 			);
 			path = Graphs;
 			sourceTree = "<group>";
@@ -708,7 +705,6 @@
 				842A4EB924281AF000354BF7 /* ObtainedTests.swift in Sources */,
 				8421D18D240358CD00202F8E /* CreateTest.swift in Sources */,
 				84BA9FE724328981009596E8 /* KerasPokedex.mlmodel in Sources */,
-				842A4EC62429182D00354BF7 /* GraphGroup.swift in Sources */,
 				84BAB4B62425865E00296858 /* InputData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

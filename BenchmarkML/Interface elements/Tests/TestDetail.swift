@@ -17,17 +17,19 @@ struct TestDetail: View {
     @State var results = ""
     @State var imageLabelDictionary =  [UIImage : String]()
     @State var trainSetCount = 0
+    @State var modelFileSize: Int?
+    @State var time = 0.0
     
     @ObservedObject var obtainedResults: ObtainedResults = ObtainedResults()
     @ObservedObject var selectedImage: SelectedImage = SelectedImage()
     
-    var model: Test?
+    @State var model: Test
     var isUpdatable: Bool
     
     var body: some View {
         ScrollView{
             VStack(alignment: HorizontalAlignment.leading){
-                Text(model!.description)
+                Text(model.description)
                     .padding()
                 
                 HStack{
@@ -63,54 +65,52 @@ struct TestDetail: View {
                                 print(self.imageLabelDictionary)
                             }) {
                                 Text("Add image to train set")
-                                    .disabled(selectedImage.value == UIImage())
-                            }
+                            }.disabled(selectedImage.value == UIImage())
                             
                         }
                     }
                     Spacer()
                     VStack {
                         Button(action: {
-                            print(self.model!.model)
-                            switch self.model!.model {
+                            print(self.model.model)
+                            switch self.model.model {
                             case "CreateMLCarClassifier":
-                                CreateMLCarClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                                CreateMLCarClassifier(obtainedResults: self.$results, test: self.$model).updateClassifications(for: self.selectedImage.value)
                             case "CreateMLCatVsDog":
-                                CreateMLCatVsDog(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                                CreateMLCatVsDog(obtainedResults: self.$results, test: self.$model).updateClassifications(for: self.selectedImage.value)
                             case "CreateMLObjectClassifier":
-                                CoreMLObjectClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                                CoreMLObjectClassifier(obtainedResults: self.$results, test: self.$model).updateClassifications(for: self.selectedImage.value)
                             case "TuricreateCatVsDog":
-                                TuricreateCatVsDog(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                                TuricreateCatVsDog(obtainedResults: self.$results, test: self.$model).updateClassifications(for: self.selectedImage.value)
                             case "TuricreateCarClassifier":
-                                TuriCreateCarClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                                TuriCreateCarClassifier(obtainedResults: self.$results, test: self.$model).updateClassifications(for: self.selectedImage.value)
                             case "KerasPokemonClassification":
-                                KerasPokemonClassification(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                                KerasPokemonClassification(obtainedResults: self.$results, test: self.$model).updateClassifications(for: self.selectedImage.value)
                             case "KerasCarClassifier":
-                                KerasCarClassifier(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                                KerasCarClassifier(obtainedResults: self.$results, test: self.$model).updateClassifications(for: self.selectedImage.value)
                             case "CreateMLPokemonClassification":
-                                CreateMLPokedex(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                                CreateMLPokedex(obtainedResults: self.$results, test: self.$model).updateClassifications(for: self.selectedImage.value)
                             case "TuricreatePokemonClassification":
-                                TuricreatePokemonClassification(obtainedResults: self.$results).updateClassifications(for: self.selectedImage.value)
+                                TuricreatePokemonClassification(obtainedResults: self.$results, test: self.$model).updateClassifications(for: self.selectedImage.value)
                             case "UpdatableKerasCarClassifier":
-                                KerasUpdatableCarClassifier(obtainedResults: self.$results, trainSetCount: self.$trainSetCount).updateClassifications(for: self.selectedImage.value)
+                                KerasUpdatableCarClassifier(obtainedResults: self.$results, trainSetCount: self.$trainSetCount, test: self.$model).updateClassifications(for: self.selectedImage.value)
                             default:
                                 print("holaaaa")
                             }
                         }) {
                             Text("Classify")
                                 .padding(.horizontal)
-                                .disabled(selectedImage.value == UIImage())
-                        }
+                        }.disabled(selectedImage.value == UIImage())
                         
                         if isUpdatable {
                             Button(action: {
-                                KerasUpdatableCarClassifier(obtainedResults: self.$results, trainSetCount: self.$trainSetCount).startTraining(imageLabelDictionary:  self.imageLabelDictionary)
+                                KerasUpdatableCarClassifier(obtainedResults: self.$results, trainSetCount: self.$trainSetCount, test: self.$model).startTraining(imageLabelDictionary:  self.imageLabelDictionary)
                                 self.imageLabelDictionary = [UIImage:String]()
                                 self.selectedImage.value = UIImage()
                             }) {
                                 Text("Train model")
-                                    .disabled(imageLabelDictionary == [UIImage : String]())
                             }
+                             .disabled(imageLabelDictionary == [UIImage : String]())
                             
                         }
                     }
@@ -142,29 +142,33 @@ struct TestDetail: View {
                     .padding()
                 
                 VStack(alignment: .leading){
-                    if model!.trainingTime < 60{
-                        Text("\(model!.trainingTime) seconds:")
+                    if model.trainingTime < 60{
+                        Text("\(model.trainingTime) seconds:")
                             .bold()
                             .padding(.top)
                             .padding(.horizontal)
                         
                     } else {
-                        Text("\(model!.trainingTime/60) minutes \(model!.trainingTime % 60) seconds:")
+                        Text("\(model.trainingTime/60) minutes \(model.trainingTime % 60) seconds:")
                             .bold()
                             .padding(.top)
                             .padding(.horizontal)
                     }
                     
-                    Text("With \(model!.numberElements) elements, \(model!.elementsPerLabel) for each label and \(model!.elementsForAccuracy) left for accuracy training")
+                    Text("With \(model.numberElements) elements, \(model.elementsPerLabel) for each label and \(model.elementsForAccuracy) left for accuracy training")
                         .padding(.horizontal)
+                    
+                    Text("The model size on device is \(model.modelSize) bytes")
+                    .padding()
+                    
+                    Text("The average classifying time is: \(self.model.classifyTime)")
                     
                 }
                 .padding(.horizontal)
-                
                 Spacer()
             }
         }
-        .navigationBarTitle(model!.name)
+        .navigationBarTitle(model.name)
     }
 }
 

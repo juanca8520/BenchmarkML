@@ -35,7 +35,7 @@ struct TestGroup: View {
                 Button(action: {
                     self.createTestModal.toggle()
                 }) {
-                    TestRun(test: Test(id: 0, name: "+", description: "Create test", model: "x", trainingTime: 200, numberElements: 500, elementsPerLabel: 25, elementsForAccuracy: 40, accuracy: 0.1, trainedModel: "test", isUpdatable: false))
+                    TestRun(test: Test(id: "0", name: "+", description: "Create test", model: "x", trainingTime: 200, numberElements: 500, elementsPerLabel: 25, elementsForAccuracy: 40, accuracy: 0.1, trainedModel: "test", isUpdatable: false, modelSize: 0, classifyTime: 0))
                 }
                 .sheet(isPresented: self.$createTestModal){
                     CreateTest(models: self.$models, showingModal: self.$createTestModal)
