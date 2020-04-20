@@ -62,10 +62,10 @@ struct TestDetail: View {
                             }).padding(.horizontal)
                         } else {
                             Button(action: {
-                                CreateMLAudioClassifier().startAudioEngine()
+                                CreateMLAudioClassifier(results: self.$results).startAudioEngine()
                             }) {
                                 Text("Start recording")
-                            }
+                            }.padding(.horizontal)
                         }
                         
                         if isUpdatable {

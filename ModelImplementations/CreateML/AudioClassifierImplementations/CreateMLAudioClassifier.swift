@@ -15,20 +15,23 @@ class CreateMLAudioClassifier {
     private var soundClassifier = SoundClassifier()
     var inputFormat: AVAudioFormat!
     var analyzer: SNAudioStreamAnalyzer!
-    var resultsObserver = ResultsObserver()
+    var resultsObserver: ResultsObserver?
     let analysisQueue = DispatchQueue(label: "com.apple.AnalysisQueue")
+    @Binding var results: String
     
     static var startTime = 0.0
     
-    init() {
+    init(results: Binding<String>) {
         inputFormat = audioEngine.inputNode.inputFormat(forBus: 0)
         analyzer = SNAudioStreamAnalyzer(format: inputFormat)
+        self._results = results
+        resultsObserver = ResultsObserver(results: $results)
     }
     
     func startAudioEngine() {
         do{
             let request = try SNClassifySoundRequest(mlModel: soundClassifier.model)
-            try analyzer.add(request, withObserver: resultsObserver)
+            try analyzer.add(request, withObserver: resultsObserver!)
         }
         catch {
             print("Unable to prepare request: \(error.localizedDescription)")
@@ -53,6 +56,11 @@ class CreateMLAudioClassifier {
 }
 
 class ResultsObserver: NSObject, SNResultsObserving {
+    @Binding var results: String
+    init(results: Binding<String>) {
+        self._results = results
+    }
+    
     func request(_ request: SNRequest, didProduce result: SNResult) {
         guard let result = result as? SNClassificationResult,
             let classification = result.classifications.first else { return }
@@ -61,7 +69,7 @@ class ResultsObserver: NSObject, SNResultsObserving {
         
         if confidence > 60 {
 //            delegate?.displayPredictionResult(identifier: classification.identifier, confidence: confidence)
-            print("\(classification.identifier) -> \(confidence) time: \(CFAbsoluteTimeGetCurrent() - CreateMLAudioClassifier.startTime)")
+            self.results = "\(classification.identifier) -> \(String(format: "Confidence: %.2f",confidence))% time: \(String(format: "Time: %.2f", (CFAbsoluteTimeGetCurrent() - CreateMLAudioClassifier.startTime))) seconds"
         }
     }
 }
