@@ -25,6 +25,7 @@ struct TestDetail: View {
     
     @State var model: Test
     var isUpdatable: Bool
+    var isAudio: Bool
     
     var body: some View {
         ScrollView{
@@ -34,35 +35,43 @@ struct TestDetail: View {
                 
                 HStack{
                     VStack {
-                        Button(action: {
-                            self.showingSheet.toggle()
-                        }) {
-                            if isUpdatable {
-                                Text("Add image to classify or to train")
-                            } else {
-                                Text("Add image")
+                        if !isAudio{
+                            Button(action: {
+                                self.showingSheet.toggle()
+                            }) {
+                                if isUpdatable {
+                                    Text("Add image to classify or to train")
+                                }
+                                else {
+                                    Text("Add image")
+                                }
+                            }.actionSheet(isPresented: self.$showingSheet) {
+                                ActionSheet(title: Text("Select an option"), message: Text("Select how to add an image to classify"), buttons:
+                                    [.default(Text("Select from gallery"), action: {
+                                        self.isShowingImagePicker.toggle()
+                                    }),
+                                     .default(Text("Use camera"), action: {
+                                        print("no lo tengo aun")
+                                     }),
+                                     .cancel()
+                                    ]
+                                )
                             }
-                        }.actionSheet(isPresented: self.$showingSheet) {
-                            ActionSheet(title: Text("Select an option"), message: Text("Select how to add an image to classify"), buttons:
-                                [.default(Text("Select from gallery"), action: {
-                                    self.isShowingImagePicker.toggle()
-                                }),
-                                 .default(Text("Use camera"), action: {
-                                    print("no lo tengo aun")
-                                 }),
-                                 .cancel()
-                                ]
-                            )
+                            .sheet(isPresented: $isShowingImagePicker, content: {
+                                ImagePickerView(isPresented: self.$isShowingImagePicker, image: self.$selectedImage.value)
+                            }).padding(.horizontal)
+                        } else {
+                            Button(action: {
+                                CreateMLAudioClassifier().startAudioEngine()
+                            }) {
+                                Text("Start recording")
+                            }
                         }
-                        .sheet(isPresented: $isShowingImagePicker, content: {
-                            ImagePickerView(isPresented: self.$isShowingImagePicker, image: self.$selectedImage.value)
-                        }).padding(.horizontal)
                         
                         if isUpdatable {
                             Button(action: {
                                 self.imageLabelDictionary[self.selectedImage.value] = "Alfa-Romeo"
                                 self.trainSetCount += 1
-                                print(self.imageLabelDictionary)
                             }) {
                                 Text("Add image to train set")
                             }.disabled(selectedImage.value == UIImage())
@@ -174,7 +183,7 @@ struct TestDetail: View {
 
 struct TestDetail_Previews: PreviewProvider {
     static var previews: some View {
-        TestDetail(model: landmarkData[0], isUpdatable: true)
+        TestDetail(model: landmarkData[0], isUpdatable: true, isAudio: false)
     }
 }
 
@@ -205,7 +214,6 @@ struct ImagePickerView: UIViewControllerRepresentable {
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let selectedImage = info[.originalImage] as? UIImage {
-                print(selectedImage)
                 self.image = selectedImage
             }
             self.parent.isPresented = false

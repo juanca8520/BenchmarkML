@@ -40,6 +40,7 @@
 		844916F8240423F9005E9908 /* CreateMLCarClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844916F7240423F9005E9908 /* CreateMLCarClassifier.swift */; };
 		844916FA24042DF2005E9908 /* ConfigureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844916F924042DF2005E9908 /* ConfigureTest.swift */; };
 		844C6FFF2407233B00214D22 /* ClassificationResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C6FFE2407233B00214D22 /* ClassificationResults.swift */; };
+		8457AF4A244DEB81005C89C1 /* SoundClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8457AF49244DEB81005C89C1 /* SoundClassifier.mlmodel */; };
 		845EC45624032B720044F08B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC45524032B720044F08B /* AppDelegate.swift */; };
 		845EC45824032B720044F08B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC45724032B720044F08B /* SceneDelegate.swift */; };
 		845EC45A24032B720044F08B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EC45924032B720044F08B /* ContentView.swift */; };
@@ -64,6 +65,7 @@
 		84BAB4B62425865E00296858 /* InputData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BAB4B52425865E00296858 /* InputData.swift */; };
 		84BBDA17243392E100C83DBA /* turicreate_pokedex.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 84BBDA16243392E100C83DBA /* turicreate_pokedex.mlmodel */; };
 		84D7FEB12406DC0B0069DA3B /* InputDataGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7FEB02406DC0B0069DA3B /* InputDataGroup.swift */; };
+		84D8D6A9244DF5CA00A7A0AD /* CreateMLAudioClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D8D6A8244DF5CA00A7A0AD /* CreateMLAudioClassifier.swift */; };
 		84F91EF72415B4E000AD9420 /* MobileNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 84F91EF62415B4E000AD9420 /* MobileNet.mlmodel */; };
 		84F91EFE2416905E00AD9420 /* CoreMLObjectClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F91EFD2416905E00AD9420 /* CoreMLObjectClassifier.swift */; };
 		84FB8F6C2443944600A741C3 /* pokedex_updatable.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 84FB8F6B2443944600A741C3 /* pokedex_updatable.mlmodel */; };
@@ -122,6 +124,7 @@
 		844916F7240423F9005E9908 /* CreateMLCarClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMLCarClassifier.swift; sourceTree = "<group>"; };
 		844916F924042DF2005E9908 /* ConfigureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureTest.swift; sourceTree = "<group>"; };
 		844C6FFE2407233B00214D22 /* ClassificationResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationResults.swift; sourceTree = "<group>"; };
+		8457AF49244DEB81005C89C1 /* SoundClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SoundClassifier.mlmodel; sourceTree = "<group>"; };
 		845EC45224032B720044F08B /* BenchmarkML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BenchmarkML.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		845EC45524032B720044F08B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		845EC45724032B720044F08B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +155,7 @@
 		84BAB4B52425865E00296858 /* InputData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputData.swift; sourceTree = "<group>"; };
 		84BBDA16243392E100C83DBA /* turicreate_pokedex.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = turicreate_pokedex.mlmodel; sourceTree = "<group>"; };
 		84D7FEB02406DC0B0069DA3B /* InputDataGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDataGroup.swift; sourceTree = "<group>"; };
+		84D8D6A8244DF5CA00A7A0AD /* CreateMLAudioClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMLAudioClassifier.swift; sourceTree = "<group>"; };
 		84F91EF62415B4E000AD9420 /* MobileNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNet.mlmodel; sourceTree = "<group>"; };
 		84F91EFD2416905E00AD9420 /* CoreMLObjectClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLObjectClassifier.swift; sourceTree = "<group>"; };
 		84FB8F6B2443944600A741C3 /* pokedex_updatable.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = pokedex_updatable.mlmodel; sourceTree = "<group>"; };
@@ -227,9 +231,8 @@
 		842A4EA42426F77200354BF7 /* CreateML */ = {
 			isa = PBXGroup;
 			children = (
-				846E4C6E2432BAAD008FD462 /* CreateMLPokedexModel.mlmodel */,
-				84121DE624329CBE00D18486 /* CreateMLCatVsDogModel.mlmodel */,
-				84121DE424329CB700D18486 /* CreateMLCarClassifierModel.mlmodel */,
+				8457AF48244DEB73005C89C1 /* AudioClassification */,
+				8457AF47244DEB67005C89C1 /* ImageClassification */,
 			);
 			path = CreateML;
 			sourceTree = "<group>";
@@ -237,10 +240,8 @@
 		842A4EA52426F77700354BF7 /* TuriCreate */ = {
 			isa = PBXGroup;
 			children = (
-				84BBDA16243392E100C83DBA /* turicreate_pokedex.mlmodel */,
-				842A4EAA2427325400354BF7 /* turicreate_cat_vs_dog.mlmodel */,
-				842A4EA62426FCB100354BF7 /* turicreate_car_classifier.mlmodel */,
-				842A4EA22426F76700354BF7 /* TuriCreate.mlmodel */,
+				8457AF4C244DEBF0005C89C1 /* AudioClassification */,
+				8457AF4B244DEB9E005C89C1 /* ImageClassification */,
 			);
 			path = TuriCreate;
 			sourceTree = "<group>";
@@ -248,10 +249,8 @@
 		842A4EAC2427F23100354BF7 /* CreateML */ = {
 			isa = PBXGroup;
 			children = (
-				844916F7240423F9005E9908 /* CreateMLCarClassifier.swift */,
-				84F91EFD2416905E00AD9420 /* CoreMLObjectClassifier.swift */,
-				84121DE824329D1E00D18486 /* CreateMLCatVsDog.swift */,
-				846E4C702432BFAE008FD462 /* CreateMLPokedex.swift */,
+				84D8D6A7244DF59F00A7A0AD /* AudioClassifierImplementations */,
+				84D8D6A6244DF59100A7A0AD /* ImageclassifierImplementations */,
 			);
 			path = CreateML;
 			sourceTree = "<group>";
@@ -317,6 +316,43 @@
 				842A4EBE2428533100354BF7 /* Graphs */,
 			);
 			path = "Interface elements";
+			sourceTree = "<group>";
+		};
+		8457AF47244DEB67005C89C1 /* ImageClassification */ = {
+			isa = PBXGroup;
+			children = (
+				846E4C6E2432BAAD008FD462 /* CreateMLPokedexModel.mlmodel */,
+				84121DE624329CBE00D18486 /* CreateMLCatVsDogModel.mlmodel */,
+				84121DE424329CB700D18486 /* CreateMLCarClassifierModel.mlmodel */,
+			);
+			path = ImageClassification;
+			sourceTree = "<group>";
+		};
+		8457AF48244DEB73005C89C1 /* AudioClassification */ = {
+			isa = PBXGroup;
+			children = (
+				8457AF49244DEB81005C89C1 /* SoundClassifier.mlmodel */,
+			);
+			path = AudioClassification;
+			sourceTree = "<group>";
+		};
+		8457AF4B244DEB9E005C89C1 /* ImageClassification */ = {
+			isa = PBXGroup;
+			children = (
+				84BBDA16243392E100C83DBA /* turicreate_pokedex.mlmodel */,
+				842A4EAA2427325400354BF7 /* turicreate_cat_vs_dog.mlmodel */,
+				842A4EA62426FCB100354BF7 /* turicreate_car_classifier.mlmodel */,
+				842A4EA22426F76700354BF7 /* TuriCreate.mlmodel */,
+			);
+			path = ImageClassification;
+			sourceTree = "<group>";
+		};
+		8457AF4C244DEBF0005C89C1 /* AudioClassification */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = AudioClassification;
+			path = "New Group1";
 			sourceTree = "<group>";
 		};
 		845EC44924032B720044F08B = {
@@ -421,6 +457,25 @@
 				84BA9FE624328981009596E8 /* KerasPokedex.mlmodel */,
 			);
 			path = Keras;
+			sourceTree = "<group>";
+		};
+		84D8D6A6244DF59100A7A0AD /* ImageclassifierImplementations */ = {
+			isa = PBXGroup;
+			children = (
+				844916F7240423F9005E9908 /* CreateMLCarClassifier.swift */,
+				84F91EFD2416905E00AD9420 /* CoreMLObjectClassifier.swift */,
+				84121DE824329D1E00D18486 /* CreateMLCatVsDog.swift */,
+				846E4C702432BFAE008FD462 /* CreateMLPokedex.swift */,
+			);
+			path = ImageclassifierImplementations;
+			sourceTree = "<group>";
+		};
+		84D8D6A7244DF59F00A7A0AD /* AudioClassifierImplementations */ = {
+			isa = PBXGroup;
+			children = (
+				84D8D6A8244DF5CA00A7A0AD /* CreateMLAudioClassifier.swift */,
+			);
+			path = AudioClassifierImplementations;
 			sourceTree = "<group>";
 		};
 		84F91EF32415B45E00AD9420 /* MLModels */ = {
@@ -658,6 +713,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				842A4EAF2427F26000354BF7 /* TuricreateCatVsDog.swift in Sources */,
+				8457AF4A244DEB81005C89C1 /* SoundClassifier.mlmodel in Sources */,
 				8421D1862403459300202F8E /* MyTests.swift in Sources */,
 				84166B7A2433B9850022B6E4 /* TuricreatePokemonClassification.swift in Sources */,
 				845EC45624032B720044F08B /* AppDelegate.swift in Sources */,
@@ -693,6 +749,7 @@
 				842A4EBB24281E1700354BF7 /* Tests.swift in Sources */,
 				842A4EB72427FE7000354BF7 /* SelectedImage.swift in Sources */,
 				84F91EFE2416905E00AD9420 /* CoreMLObjectClassifier.swift in Sources */,
+				84D8D6A9244DF5CA00A7A0AD /* CreateMLAudioClassifier.swift in Sources */,
 				845EC45824032B720044F08B /* SceneDelegate.swift in Sources */,
 				845EC45A24032B720044F08B /* ContentView.swift in Sources */,
 				844916FA24042DF2005E9908 /* ConfigureTest.swift in Sources */,

@@ -16,18 +16,18 @@ struct TestGroup: View {
     var body: some View {
         HStack{
             if tests.count == 2 {
-                NavigationLink(destination: TestDetail(model: tests[0], isUpdatable: tests[0].isUpdatable)){
+                NavigationLink(destination: TestDetail(model: tests[0], isUpdatable: tests[0].isUpdatable, isAudio: tests[0].isAudio)){
                     TestRun(test: tests[0])
                 }
                 .buttonStyle(PlainButtonStyle())
                 
-                NavigationLink(destination: TestDetail(model: tests[1], isUpdatable: tests[1].isUpdatable)){
+                NavigationLink(destination: TestDetail(model: tests[1], isUpdatable: tests[1].isUpdatable, isAudio: tests[1].isAudio)){
                     TestRun(test: tests[1])
                 }
                 .buttonStyle(PlainButtonStyle())
                 
             } else {
-                NavigationLink(destination: TestDetail(model: tests[0], isUpdatable: tests[0].isUpdatable)){
+                NavigationLink(destination: TestDetail(model: tests[0], isUpdatable: tests[0].isUpdatable, isAudio: tests[0].isAudio)){
                     TestRun(test: tests[0])
                 }
                 .buttonStyle(PlainButtonStyle())
@@ -35,7 +35,7 @@ struct TestGroup: View {
                 Button(action: {
                     self.createTestModal.toggle()
                 }) {
-                    TestRun(test: Test(id: "0", name: "+", description: "Create test", model: "x", trainingTime: 200, numberElements: 500, elementsPerLabel: 25, elementsForAccuracy: 40, accuracy: 0.1, trainedModel: "test", isUpdatable: false, modelSize: 0, classifyTime: 0))
+                    TestRun(test: Test(id: "0", name: "+", description: "Create test", model: "x", trainingTime: 200, numberElements: 500, elementsPerLabel: 25, elementsForAccuracy: 40, accuracy: 0.1, trainedModel: "test", isUpdatable: false, modelSize: 0, classifyTime: 0, isAudio: false))
                 }
                 .sheet(isPresented: self.$createTestModal){
                     CreateTest(models: self.$models, showingModal: self.$createTestModal)

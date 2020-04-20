@@ -11,9 +11,7 @@ import Firebase
 
 class TestPersistence {
     static var ref = Database.database().reference(withPath: "0/tests")
-    
-//    static var tests = [[Test]]()
-    
+        
     static func getTests(completion: @escaping ([Test], Error?) -> Void) {
         var tests = [Test]()
         ref.observe(.value, with: { snapshot in
@@ -24,7 +22,6 @@ class TestPersistence {
                     tests.append(test)
                 }
             }
-//            self.tests = tests.chunked(into: 2)
             completion(tests, nil)
             tests = []
         })

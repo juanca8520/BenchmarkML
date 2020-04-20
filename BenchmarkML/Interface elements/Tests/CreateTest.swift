@@ -102,57 +102,48 @@ struct CreateTest: View {
                     case "CreateMLCarClassifier":
                         let aStrUrl = Bundle.main.url(forResource: "CreateMLCarClassifierModel", withExtension: "mlmodelc")
                         size = Int(aStrUrl!.fileSize)
-                        print("file size = \(aStrUrl!.fileSize), \(aStrUrl!.fileSizeString)")
                         
                     case "CreateMLCatVsDog":
                         let aStrUrl = Bundle.main.url(forResource: "CreateMLCatVsDogModel", withExtension: "mlmodelc")
                         size = Int(aStrUrl!.fileSize)
-                        print("file size = \(aStrUrl!.fileSize), \(aStrUrl!.fileSizeString)")
                         
                     case "CreateMLObjectClassifier":
                         let aStrUrl = Bundle.main.url(forResource: "MobileNet", withExtension: "mlmodelc")
                         size = Int(aStrUrl!.fileSize)
-                        print("file size = \(aStrUrl!.fileSize), \(aStrUrl!.fileSizeString)")
                         
                     case "TuricreateCatVsDog":
                         let aStrUrl = Bundle.main.url(forResource: "turicreate_cat_vs_dog", withExtension: "mlmodelc")
                         size = Int(aStrUrl!.fileSize)
-                        print("file size = \(aStrUrl!.fileSize), \(aStrUrl!.fileSizeString)")
                         
                     case "TuricreateCarClassifier":
                         let aStrUrl = Bundle.main.url(forResource: "turicreate_car_classifier", withExtension: "mlmodelc")
                         size = Int(aStrUrl!.fileSize)
-                        print("file size = \(aStrUrl!.fileSize), \(aStrUrl!.fileSizeString)")
                         
                     case "KerasPokemonClassification":
                         let aStrUrl = Bundle.main.url(forResource: "KerasPokedex", withExtension: "mlmodelc")
                         size = Int(aStrUrl!.fileSize)
-                        print("file size = \(aStrUrl!.fileSize), \(aStrUrl!.fileSizeString)")
                         
                     case "KerasCarClassifier":
                         let aStrUrl = Bundle.main.url(forResource: "keras_car_classifier", withExtension: "mlmodelc")
                         size = Int(aStrUrl!.fileSize)
-                        print("file size = \(aStrUrl!.fileSize), \(aStrUrl!.fileSizeString)")
                         
                     case "CreateMLPokemonClassification":
                         let aStrUrl = Bundle.main.url(forResource: "CreateMLPokedexModel", withExtension: "mlmodelc")
                         size = Int(aStrUrl!.fileSize)
-                        print("file size = \(aStrUrl!.fileSize), \(aStrUrl!.fileSizeString)")
                         
                     case "TuricreatePokemonClassification":
                         let aStrUrl = Bundle.main.url(forResource: "turicreate_pokedex", withExtension: "mlmodelc")
                         size = Int(aStrUrl!.fileSize)
-                        print("file size = \(aStrUrl!.fileSize), \(aStrUrl!.fileSizeString)")
                         
                     case "UpdatableKerasCarClassifier":
                         let aStrUrl = Bundle.main.url(forResource: "car_classifier_updatable", withExtension: "mlmodelc")
                         size = Int(aStrUrl!.fileSize)
-                        print("file size = \(aStrUrl!.fileSize), \(aStrUrl!.fileSizeString)")
                     default:
                         print("holaaaa")
                     }
-                    
-                    let test = Test(id: "0", name: "\(self.selection["framework"]!) - \(self.selectedInputData!.name)", description: self.selectedInputData!.description, model: self.selectedInputData!.modelName, trainingTime: self.selectedInputData!.timeTotrain, numberElements: self.selectedInputData!.numberOfElements, elementsPerLabel: self.selectedInputData!.elementsPerLabel, elementsForAccuracy: self.selectedInputData!.numberOfElementsToTest, accuracy: self.selectedInputData!.accuracy, trainedModel: self.selectedInputData!.name, isUpdatable: self.selectedInputData!.isUpdatable, modelSize: size, classifyTime: 0.0)
+                                        
+                    let test = Test(id: "0", name: "\(self.selection["framework"]!) - \(self.selectedInputData!.name)", description: self.selectedInputData!.description, model: self.selectedInputData!.modelName, trainingTime: self.selectedInputData!.timeTotrain, numberElements: self.selectedInputData!.numberOfElements, elementsPerLabel: self.selectedInputData!.elementsPerLabel, elementsForAccuracy: self.selectedInputData!.numberOfElementsToTest, accuracy: self.selectedInputData!.accuracy, trainedModel: self.selectedInputData!.name, isUpdatable: self.selectedInputData!.isUpdatable, modelSize: size, classifyTime: 0.0, isAudio: self.selectedModel!.name.split(separator: " ")[0] == "Audio")
+                    print(test.isAudio)
                     TestPersistence.createTest(test: test) { (bool, err) in
                         if !bool {
                             fatalError("Algo ocurrió creando el test")
