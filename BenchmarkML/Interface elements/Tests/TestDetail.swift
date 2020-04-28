@@ -20,6 +20,9 @@ struct TestDetail: View {
     @State var modelFileSize: Int?
     @State var time = 0.0
     
+    @State var isRecording = false
+    @State var audioClassifier: ModelProtocol?
+    
     @ObservedObject var obtainedResults: ObtainedResults = ObtainedResults()
     @ObservedObject var selectedImage: SelectedImage = SelectedImage()
     
@@ -61,16 +64,42 @@ struct TestDetail: View {
                                 ImagePickerView(isPresented: self.$isShowingImagePicker, image: self.$selectedImage.value)
                             }).padding(.horizontal)
                         } else {
+                            
+                            //Classify audio button
+                            
                             Button(action: {
-                                CreateMLAudioClassifier(results: self.$results).startAudioEngine()
+                                if !self.isRecording {
+                                    switch self.model.model {
+                                    case "CreateMLAudioClassifier":
+                                        self.audioClassifier = CreateMLAudioClassifier(results: self.$results, test: self.$model)
+                                        self.audioClassifier!.startAudioEngine()
+                                        
+                                    case "TuriCreateAudioClassifier":
+                                        self.audioClassifier = TuriCreateGeneralAudioClassifier(results: self.$results, test: self.$model)
+                                        self.audioClassifier!.startAudioEngine()
+                                        
+                                    default:
+                                        print(self.model.model)
+                                    }
+                                    
+                                    self.isRecording = true
+                                } else {
+                                    self.audioClassifier!.stopAudioEngine()
+                                    self.isRecording = false
+                                }
+                                
                             }) {
-                                Text("Start recording")
+                                if isRecording {
+                                    Text("Stop recording")
+                                } else {
+                                    Text("Start recording")
+                                }
                             }.padding(.horizontal)
                         }
                         
                         if isUpdatable {
                             Button(action: {
-                                self.imageLabelDictionary[self.selectedImage.value] = "Alfa-Romeo"
+                                self.imageLabelDictionary[self.selectedImage.value] = "BMW"
                                 self.trainSetCount += 1
                             }) {
                                 Text("Add image to train set")
@@ -81,7 +110,6 @@ struct TestDetail: View {
                     Spacer()
                     VStack {
                         Button(action: {
-                            print(self.model.model)
                             switch self.model.model {
                             case "CreateMLCarClassifier":
                                 CreateMLCarClassifier(obtainedResults: self.$results, test: self.$model).updateClassifications(for: self.selectedImage.value)
@@ -104,7 +132,7 @@ struct TestDetail: View {
                             case "UpdatableKerasCarClassifier":
                                 KerasUpdatableCarClassifier(obtainedResults: self.$results, trainSetCount: self.$trainSetCount, test: self.$model).updateClassifications(for: self.selectedImage.value)
                             default:
-                                print("holaaaa")
+                                print(self.model.model)
                             }
                         }) {
                             Text("Classify")
@@ -119,14 +147,17 @@ struct TestDetail: View {
                             }) {
                                 Text("Train model")
                             }
-                             .disabled(imageLabelDictionary == [UIImage : String]())
+                            .disabled(imageLabelDictionary == [UIImage : String]())
                             
                         }
                     }
                 }
                 
-                Text("Number of images to train the model: \(self.trainSetCount)")
-                    .padding()
+                if isUpdatable {
+                    Text("Number of images to train the model: \(self.trainSetCount)")
+                        .padding()
+                    
+                }
                 
                 HStack(alignment: .center){
                     Spacer()
@@ -168,7 +199,7 @@ struct TestDetail: View {
                         .padding(.horizontal)
                     
                     Text("The model size on device is \(model.modelSize) bytes")
-                    .padding()
+                        .padding()
                     
                     Text("The average classifying time is: \(self.model.classifyTime)")
                     

@@ -138,10 +138,19 @@ struct CreateTest: View {
                     case "UpdatableKerasCarClassifier":
                         let aStrUrl = Bundle.main.url(forResource: "car_classifier_updatable", withExtension: "mlmodelc")
                         size = Int(aStrUrl!.fileSize)
+                        
+                    case "CreateMLAudioClassifier":
+                        let aStrUrl = Bundle.main.url(forResource: "SoundClassifier", withExtension: "mlmodelc")
+                        size = Int(aStrUrl!.fileSize)
+                    
+                    case "TuriCreateAudioClassifier":
+                    let aStrUrl = Bundle.main.url(forResource: "MyCustomSoundClassifier", withExtension: "mlmodelc")
+                    size = Int(aStrUrl!.fileSize)
+                        
                     default:
-                        print("holaaaa")
+                        print(self.selectedInputData!.modelName)
                     }
-                                        
+                    
                     let test = Test(id: "0", name: "\(self.selection["framework"]!) - \(self.selectedInputData!.name)", description: self.selectedInputData!.description, model: self.selectedInputData!.modelName, trainingTime: self.selectedInputData!.timeTotrain, numberElements: self.selectedInputData!.numberOfElements, elementsPerLabel: self.selectedInputData!.elementsPerLabel, elementsForAccuracy: self.selectedInputData!.numberOfElementsToTest, accuracy: self.selectedInputData!.accuracy, trainedModel: self.selectedInputData!.name, isUpdatable: self.selectedInputData!.isUpdatable, modelSize: size, classifyTime: 0.0, isAudio: self.selectedModel!.name.split(separator: " ")[0] == "Audio")
                     print(test.isAudio)
                     TestPersistence.createTest(test: test) { (bool, err) in

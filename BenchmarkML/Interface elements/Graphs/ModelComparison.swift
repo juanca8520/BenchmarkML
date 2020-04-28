@@ -25,7 +25,7 @@ struct ModelComparison: View {
     
     var body: some View {
         NavigationView{
-            ScrollView(.vertical, showsIndicators: false){
+            ScrollView(.vertical){
                 VStack{
                     HStack{
                         VStack(alignment: .leading){
@@ -42,12 +42,11 @@ struct ModelComparison: View {
                                     BarChartView(data: ChartData(values: fileSizeDict["Cats vs dogs"] ?? chartFileSizeData), title: "Model size in bytes", form: ChartForm.medium)
                                     
                                 }.padding(.bottom)
+                                Divider()
                             }
                         }
                     }.padding()
-                    
-                    Divider()
-                    
+                   
                     HStack{
                         VStack(alignment: .leading){
                             if trainingDict["Car classifier"] != nil {
@@ -61,12 +60,11 @@ struct ModelComparison: View {
                                     
                                     BarChartView(data: ChartData(values: fileSizeDict["Car classifier"] ?? chartFileSizeData), title: "Model size in bytes", form: ChartForm.medium)
                                 }
+                                Divider()
                             }
                         }
                     }.padding()
-                    
-                    Divider()
-                    
+                                        
                     HStack{
                         VStack(alignment: .leading){
                             if trainingDict["Object classification"] != nil {
@@ -80,6 +78,7 @@ struct ModelComparison: View {
                                     
                                     BarChartView(data: ChartData(values: fileSizeDict["Object classifier"] ?? chartFileSizeData), title: "Model size in bytes", form: ChartForm.medium)
                                 }
+                                Divider()
                             }
                         }
                     }.padding()
@@ -97,9 +96,30 @@ struct ModelComparison: View {
                                     
                                     BarChartView(data: ChartData(values: fileSizeDict["Pokedex"] ?? chartFileSizeData), title: "Model size in bytes", form: ChartForm.medium)
                                 }
+                                Divider()
+                            }
+                        }
+                        Divider()
+                    }.padding()
+                                        
+                    HStack{
+                        VStack(alignment: .leading){
+                            if trainingDict["General audio classifier"] != nil {
+                                Text("General audio classifier").padding(.horizontal)
+                                HStack{
+                                    BarChartView(data: ChartData(values: trainingDict["General audio classifier"] ?? chartDataTimeToTrain), title: "Time to train in seconds", form: ChartForm.medium)
+                                    BarChartView(data: ChartData(values: accuracyDict["General audio classifier"] ?? chartDataAccuracy), title: "Accuracy per framework", form: ChartForm.medium)
+                                }
+                                HStack{
+                                    BarChartView(data: ChartData(values: timeDict["General audio classifier"] ?? chartDataTimeClassification), title: "Time to classify an image", form: ChartForm.medium)
+                                    
+                                    BarChartView(data: ChartData(values: fileSizeDict["General audio classifier"] ?? chartFileSizeData), title: "Model size in bytes", form: ChartForm.medium)
+                                }
+                                Divider()
                             }
                         }
                     }.padding()
+
                 }
             }.navigationBarTitle("Statistics")
         }.onAppear {
@@ -134,9 +154,17 @@ struct ModelComparison: View {
                         self.accuracyDict[test.trainedModel] = (self.accuracyDict[test.trainedModel] ?? self.chartDataAccuracy) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy * 100)]
                         self.timeDict[test.trainedModel] = (self.timeDict[test.trainedModel] ?? self.chartDataTimeClassification) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy)]
                         self.fileSizeDict[test.trainedModel] = (self.fileSizeDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.modelSize)]
+                        
+                    case "General audio classifier":
+                        self.trainingDict[test.trainedModel] = (self.trainingDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.trainingTime)]
+                        self.accuracyDict[test.trainedModel] = (self.accuracyDict[test.trainedModel] ?? self.chartDataAccuracy) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy * 100)]
+                        self.timeDict[test.trainedModel] = (self.timeDict[test.trainedModel] ?? self.chartDataTimeClassification) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy)]
+                        self.fileSizeDict[test.trainedModel] = (self.fileSizeDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.modelSize)]
                     default:
-                        print("hola")
+                        print(test.trainedModel)
                     }
+                    print(self.trainingDict)
+                    print(self.chartDataAccuracy)
                     
                 }
                 self.tests = list

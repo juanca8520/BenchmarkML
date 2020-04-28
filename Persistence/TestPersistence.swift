@@ -40,6 +40,6 @@ class TestPersistence {
                                           "isUpdatable": test.isUpdatable, "model": test.model,
                                           "modelSize":test.modelSize, "name": test.name,
                                           "numberElements": test.numberElements, "trainedModel":test.trainedModel,
-                                          "trainingTime": test.trainingTime])
+                                          "trainingTime": test.trainingTime, "isAudio": test.isAudio])
     }
 }

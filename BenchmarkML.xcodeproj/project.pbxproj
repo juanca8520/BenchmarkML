@@ -26,6 +26,9 @@
 		8421D1862403459300202F8E /* MyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421D1852403459300202F8E /* MyTests.swift */; };
 		8421D18924034D5700202F8E /* tests.json in Resources */ = {isa = PBXBuildFile; fileRef = 8421D18824034D5700202F8E /* tests.json */; };
 		8421D18D240358CD00202F8E /* CreateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421D18C240358CD00202F8E /* CreateTest.swift */; };
+		8429C2E024586AE6009A03AF /* ModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8429C2DF24586AE6009A03AF /* ModelProtocol.swift */; };
+		8429C2E2245883AE009A03AF /* SoundClassifier2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8429C2E1245883AE009A03AF /* SoundClassifier2.mlmodel */; };
+		8429C2E4245888C3009A03AF /* CreateMLAudioClassifier2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8429C2E3245888C3009A03AF /* CreateMLAudioClassifier2.swift */; };
 		842A4EA12426AD4D00354BF7 /* SwiftForTensorFlowImageClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EA02426AD4D00354BF7 /* SwiftForTensorFlowImageClassifier.swift */; };
 		842A4EA32426F76700354BF7 /* TuriCreate.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EA22426F76700354BF7 /* TuriCreate.mlmodel */; };
 		842A4EA72426FCB100354BF7 /* turicreate_car_classifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 842A4EA62426FCB100354BF7 /* turicreate_car_classifier.mlmodel */; };
@@ -55,6 +58,7 @@
 		846C285C2440EC54007A5F34 /* KerasUpdatableCarClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C285B2440EC54007A5F34 /* KerasUpdatableCarClassifier.swift */; };
 		846E4C6F2432BAAD008FD462 /* CreateMLPokedexModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 846E4C6E2432BAAD008FD462 /* CreateMLPokedexModel.mlmodel */; };
 		846E4C712432BFAE008FD462 /* CreateMLPokedex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846E4C702432BFAE008FD462 /* CreateMLPokedex.swift */; };
+		84A4EC002454BF4500328D42 /* TuriCreateGeneralAudioClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A4EBFF2454BF4500328D42 /* TuriCreateGeneralAudioClassifier.swift */; };
 		84AF7B9B24242EBF00FE6ED7 /* TestPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF7B9A24242EBF00FE6ED7 /* TestPersistence.swift */; };
 		84BA9FE724328981009596E8 /* KerasPokedex.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 84BA9FE624328981009596E8 /* KerasPokedex.mlmodel */; };
 		84BAB4AC242433C400296858 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84BAB4AB242433C400296858 /* GoogleService-Info.plist */; };
@@ -66,6 +70,7 @@
 		84BBDA17243392E100C83DBA /* turicreate_pokedex.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 84BBDA16243392E100C83DBA /* turicreate_pokedex.mlmodel */; };
 		84D7FEB12406DC0B0069DA3B /* InputDataGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7FEB02406DC0B0069DA3B /* InputDataGroup.swift */; };
 		84D8D6A9244DF5CA00A7A0AD /* CreateMLAudioClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D8D6A8244DF5CA00A7A0AD /* CreateMLAudioClassifier.swift */; };
+		84D8D6AB244E1E6600A7A0AD /* MyCustomSoundClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 84D8D6AA244E1E6600A7A0AD /* MyCustomSoundClassifier.mlmodel */; };
 		84F91EF72415B4E000AD9420 /* MobileNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 84F91EF62415B4E000AD9420 /* MobileNet.mlmodel */; };
 		84F91EFE2416905E00AD9420 /* CoreMLObjectClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F91EFD2416905E00AD9420 /* CoreMLObjectClassifier.swift */; };
 		84FB8F6C2443944600A741C3 /* pokedex_updatable.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 84FB8F6B2443944600A741C3 /* pokedex_updatable.mlmodel */; };
@@ -111,6 +116,9 @@
 		8421D1852403459300202F8E /* MyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTests.swift; sourceTree = "<group>"; };
 		8421D18824034D5700202F8E /* tests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = tests.json; path = ../../../../Paralelismo/tests.json; sourceTree = "<group>"; };
 		8421D18C240358CD00202F8E /* CreateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTest.swift; sourceTree = "<group>"; };
+		8429C2DF24586AE6009A03AF /* ModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelProtocol.swift; sourceTree = "<group>"; };
+		8429C2E1245883AE009A03AF /* SoundClassifier2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SoundClassifier2.mlmodel; sourceTree = "<group>"; };
+		8429C2E3245888C3009A03AF /* CreateMLAudioClassifier2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMLAudioClassifier2.swift; sourceTree = "<group>"; };
 		842A4EA02426AD4D00354BF7 /* SwiftForTensorFlowImageClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftForTensorFlowImageClassifier.swift; sourceTree = "<group>"; };
 		842A4EA22426F76700354BF7 /* TuriCreate.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = TuriCreate.mlmodel; sourceTree = "<group>"; };
 		842A4EA62426FCB100354BF7 /* turicreate_car_classifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = turicreate_car_classifier.mlmodel; sourceTree = "<group>"; };
@@ -145,6 +153,7 @@
 		846C285B2440EC54007A5F34 /* KerasUpdatableCarClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KerasUpdatableCarClassifier.swift; sourceTree = "<group>"; };
 		846E4C6E2432BAAD008FD462 /* CreateMLPokedexModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CreateMLPokedexModel.mlmodel; sourceTree = "<group>"; };
 		846E4C702432BFAE008FD462 /* CreateMLPokedex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMLPokedex.swift; sourceTree = "<group>"; };
+		84A4EBFF2454BF4500328D42 /* TuriCreateGeneralAudioClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuriCreateGeneralAudioClassifier.swift; sourceTree = "<group>"; };
 		84AF7B9A24242EBF00FE6ED7 /* TestPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPersistence.swift; sourceTree = "<group>"; };
 		84BA9FE624328981009596E8 /* KerasPokedex.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = KerasPokedex.mlmodel; sourceTree = "<group>"; };
 		84BAB4AB242433C400296858 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -156,6 +165,7 @@
 		84BBDA16243392E100C83DBA /* turicreate_pokedex.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = turicreate_pokedex.mlmodel; sourceTree = "<group>"; };
 		84D7FEB02406DC0B0069DA3B /* InputDataGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDataGroup.swift; sourceTree = "<group>"; };
 		84D8D6A8244DF5CA00A7A0AD /* CreateMLAudioClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMLAudioClassifier.swift; sourceTree = "<group>"; };
+		84D8D6AA244E1E6600A7A0AD /* MyCustomSoundClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MyCustomSoundClassifier.mlmodel; sourceTree = "<group>"; };
 		84F91EF62415B4E000AD9420 /* MobileNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNet.mlmodel; sourceTree = "<group>"; };
 		84F91EFD2416905E00AD9420 /* CoreMLObjectClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLObjectClassifier.swift; sourceTree = "<group>"; };
 		84FB8F6B2443944600A741C3 /* pokedex_updatable.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = pokedex_updatable.mlmodel; sourceTree = "<group>"; };
@@ -266,9 +276,8 @@
 		842A4EB02427F26500354BF7 /* Turicreate */ = {
 			isa = PBXGroup;
 			children = (
-				842A4EAE2427F26000354BF7 /* TuricreateCatVsDog.swift */,
-				84121DEA24329F1300D18486 /* TuriCreateCarClassifier.swift */,
-				84166B792433B9850022B6E4 /* TuricreatePokemonClassification.swift */,
+				84A4EBFE2454BF2100328D42 /* ImageClassifierImplementations */,
+				84A4EBFF2454BF4500328D42 /* TuriCreateGeneralAudioClassifier.swift */,
 			);
 			path = Turicreate;
 			sourceTree = "<group>";
@@ -331,6 +340,7 @@
 		8457AF48244DEB73005C89C1 /* AudioClassification */ = {
 			isa = PBXGroup;
 			children = (
+				8429C2E1245883AE009A03AF /* SoundClassifier2.mlmodel */,
 				8457AF49244DEB81005C89C1 /* SoundClassifier.mlmodel */,
 			);
 			path = AudioClassification;
@@ -350,6 +360,7 @@
 		8457AF4C244DEBF0005C89C1 /* AudioClassification */ = {
 			isa = PBXGroup;
 			children = (
+				84D8D6AA244E1E6600A7A0AD /* MyCustomSoundClassifier.mlmodel */,
 			);
 			name = AudioClassification;
 			path = "New Group1";
@@ -358,6 +369,7 @@
 		845EC44924032B720044F08B = {
 			isa = PBXGroup;
 			children = (
+				8429C2DF24586AE6009A03AF /* ModelProtocol.swift */,
 				84BAB4AB242433C400296858 /* GoogleService-Info.plist */,
 				84AF7B9C24242EC700FE6ED7 /* Persistence */,
 				84F91EF32415B45E00AD9420 /* MLModels */,
@@ -438,6 +450,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		84A4EBFE2454BF2100328D42 /* ImageClassifierImplementations */ = {
+			isa = PBXGroup;
+			children = (
+				842A4EAE2427F26000354BF7 /* TuricreateCatVsDog.swift */,
+				84121DEA24329F1300D18486 /* TuriCreateCarClassifier.swift */,
+				84166B792433B9850022B6E4 /* TuricreatePokemonClassification.swift */,
+			);
+			path = ImageClassifierImplementations;
+			sourceTree = "<group>";
+		};
 		84AF7B9C24242EC700FE6ED7 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,6 +496,7 @@
 			isa = PBXGroup;
 			children = (
 				84D8D6A8244DF5CA00A7A0AD /* CreateMLAudioClassifier.swift */,
+				8429C2E3245888C3009A03AF /* CreateMLAudioClassifier2.swift */,
 			);
 			path = AudioClassifierImplementations;
 			sourceTree = "<group>";
@@ -729,6 +752,7 @@
 				84BAB4AE24251FB600296858 /* ModelPersistence.swift in Sources */,
 				84FB8F6C2443944600A741C3 /* pokedex_updatable.mlmodel in Sources */,
 				84BBDA17243392E100C83DBA /* turicreate_pokedex.mlmodel in Sources */,
+				8429C2E2245883AE009A03AF /* SoundClassifier2.mlmodel in Sources */,
 				840A1C0924057A5300880077 /* Model.swift in Sources */,
 				84121DED2432AF4100D18486 /* KerasPokemonClassification.swift in Sources */,
 				84166B782433B7730022B6E4 /* KerasCarClassifier.swift in Sources */,
@@ -736,24 +760,28 @@
 				84F91EF72415B4E000AD9420 /* MobileNet.mlmodel in Sources */,
 				844916F8240423F9005E9908 /* CreateMLCarClassifier.swift in Sources */,
 				842A4EA32426F76700354BF7 /* TuriCreate.mlmodel in Sources */,
+				84A4EC002454BF4500328D42 /* TuriCreateGeneralAudioClassifier.swift in Sources */,
 				84121DE524329CB700D18486 /* CreateMLCarClassifierModel.mlmodel in Sources */,
 				842A4EBD2428530C00354BF7 /* ModelComparison.swift in Sources */,
 				84121DE724329CBE00D18486 /* CreateMLCatVsDogModel.mlmodel in Sources */,
 				842A4EA72426FCB100354BF7 /* turicreate_car_classifier.mlmodel in Sources */,
 				84166B762433B1190022B6E4 /* keras_car_classifier.mlmodel in Sources */,
 				845EC48824033C100044F08B /* Test.swift in Sources */,
+				8429C2E024586AE6009A03AF /* ModelProtocol.swift in Sources */,
 				840A1BFF2404697000880077 /* TestGroup.swift in Sources */,
 				842A4EAB2427325400354BF7 /* turicreate_cat_vs_dog.mlmodel in Sources */,
 				84121DE924329D1E00D18486 /* CreateMLCatVsDog.swift in Sources */,
 				84FB8F782443F83D00A741C3 /* car_classifier_updatable.mlmodel in Sources */,
 				842A4EBB24281E1700354BF7 /* Tests.swift in Sources */,
 				842A4EB72427FE7000354BF7 /* SelectedImage.swift in Sources */,
+				8429C2E4245888C3009A03AF /* CreateMLAudioClassifier2.swift in Sources */,
 				84F91EFE2416905E00AD9420 /* CoreMLObjectClassifier.swift in Sources */,
 				84D8D6A9244DF5CA00A7A0AD /* CreateMLAudioClassifier.swift in Sources */,
 				845EC45824032B720044F08B /* SceneDelegate.swift in Sources */,
 				845EC45A24032B720044F08B /* ContentView.swift in Sources */,
 				844916FA24042DF2005E9908 /* ConfigureTest.swift in Sources */,
 				846C285C2440EC54007A5F34 /* KerasUpdatableCarClassifier.swift in Sources */,
+				84D8D6AB244E1E6600A7A0AD /* MyCustomSoundClassifier.mlmodel in Sources */,
 				84BAB4B22425379600296858 /* FrameworkPersistence.swift in Sources */,
 				844C6FFF2407233B00214D22 /* ClassificationResults.swift in Sources */,
 				84BAB4B0242535DF00296858 /* Framework.swift in Sources */,
