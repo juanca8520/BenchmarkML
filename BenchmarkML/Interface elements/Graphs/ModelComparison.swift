@@ -31,22 +31,22 @@ struct ModelComparison: View {
                         VStack(alignment: .leading){
                             if trainingDict["Cats vs dogs"] != nil {
                                 Text("Cat vs dog classification").padding(.horizontal)
-                                
+
                                 HStack{
                                     BarChartView(data: ChartData(values: trainingDict["Cats vs dogs"] ?? chartDataTimeToTrain), title: "Training time", legend: "Time in seconds taken to train the model ", form: ChartForm.medium)
                                     BarChartView(data: ChartData(values: accuracyDict["Cats vs dogs"] ?? chartDataAccuracy), title: "Model's accuracy", legend: "Accuracy obtained after training the model", form: ChartForm.medium, valueSpecifier: "%.2f")
                                 }
                                 HStack{
                                     BarChartView(data: ChartData(values: timeDict["Cats vs dogs"] ?? chartDataTimeClassification), title: "Time to classify an image", form: ChartForm.medium)
-                                    
+
                                     BarChartView(data: ChartData(values: fileSizeDict["Cats vs dogs"] ?? chartFileSizeData), title: "Model size in bytes", form: ChartForm.medium)
-                                    
+
                                 }.padding(.bottom)
                                 Divider()
                             }
                         }
                     }.padding()
-                   
+
                     HStack{
                         VStack(alignment: .leading){
                             if trainingDict["Car classifier"] != nil {
@@ -57,14 +57,14 @@ struct ModelComparison: View {
                                 }
                                 HStack{
                                     BarChartView(data: ChartData(values: timeDict["Car classifier"] ?? chartDataTimeClassification), title: "Time to classify an image", form: ChartForm.medium)
-                                    
+
                                     BarChartView(data: ChartData(values: fileSizeDict["Car classifier"] ?? chartFileSizeData), title: "Model size in bytes", form: ChartForm.medium)
                                 }
                                 Divider()
                             }
                         }
                     }.padding()
-                                        
+
                     HStack{
                         VStack(alignment: .leading){
                             if trainingDict["Object classification"] != nil {
@@ -75,14 +75,14 @@ struct ModelComparison: View {
                                 }
                                 HStack{
                                     BarChartView(data: ChartData(values: timeDict["Object classifier"] ?? chartDataTimeClassification), title: "Time to classify an image", form: ChartForm.medium)
-                                    
+
                                     BarChartView(data: ChartData(values: fileSizeDict["Object classifier"] ?? chartFileSizeData), title: "Model size in bytes", form: ChartForm.medium)
                                 }
                                 Divider()
                             }
                         }
                     }.padding()
-                    
+
                     HStack{
                         VStack(alignment: .leading){
                             if trainingDict["Pokedex"] != nil {
@@ -93,7 +93,7 @@ struct ModelComparison: View {
                                 }
                                 HStack{
                                     BarChartView(data: ChartData(values: timeDict["Pokedex"] ?? chartDataTimeClassification), title: "Time to classify an image", form: ChartForm.medium)
-                                    
+
                                     BarChartView(data: ChartData(values: fileSizeDict["Pokedex"] ?? chartFileSizeData), title: "Model size in bytes", form: ChartForm.medium)
                                 }
                                 Divider()
@@ -101,7 +101,7 @@ struct ModelComparison: View {
                         }
                         Divider()
                     }.padding()
-                                        
+
                     HStack{
                         VStack(alignment: .leading){
                             if trainingDict["General audio classifier"] != nil {
@@ -111,9 +111,27 @@ struct ModelComparison: View {
                                     BarChartView(data: ChartData(values: accuracyDict["General audio classifier"] ?? chartDataAccuracy), title: "Accuracy per framework", form: ChartForm.medium)
                                 }
                                 HStack{
-                                    BarChartView(data: ChartData(values: timeDict["General audio classifier"] ?? chartDataTimeClassification), title: "Time to classify an image", form: ChartForm.medium)
-                                    
+                                    BarChartView(data: ChartData(values: timeDict["General audio classifier"]!), title: "Time to classify an image", form: ChartForm.medium, valueSpecifier: "%.4f")
+
                                     BarChartView(data: ChartData(values: fileSizeDict["General audio classifier"] ?? chartFileSizeData), title: "Model size in bytes", form: ChartForm.medium)
+                                }
+                                Divider()
+                            }
+                        }
+                    }.padding()
+
+                    HStack{
+                        VStack(alignment: .leading){
+                            if trainingDict["General audio classifier 2"] != nil {
+                                Text("General audio classifier 2").padding(.horizontal)
+                                HStack{
+                                    BarChartView(data: ChartData(values: trainingDict["General audio classifier 2"] ?? chartDataTimeToTrain), title: "Time to train in seconds", form: ChartForm.medium)
+                                    BarChartView(data: ChartData(values: accuracyDict["General audio classifier 2"] ?? chartDataAccuracy), title: "Accuracy per framework", form: ChartForm.medium)
+                                }
+                                HStack{
+                                    BarChartView(data: ChartData(values: timeDict["General audio classifier 2"] ?? chartDataTimeClassification), title: "Time to classify an image", form: ChartForm.medium, valueSpecifier: "%.4f")
+
+                                    BarChartView(data: ChartData(values: fileSizeDict["General audio classifier 2"] ?? chartFileSizeData), title: "Model size in bytes", form: ChartForm.medium)
                                 }
                                 Divider()
                             }
@@ -134,38 +152,43 @@ struct ModelComparison: View {
                     case "Car classifier":
                         self.trainingDict[test.trainedModel] = (self.trainingDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.trainingTime)]
                         self.accuracyDict[test.trainedModel] = (self.accuracyDict[test.trainedModel] ?? self.chartDataAccuracy) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy * 100)]
-                        self.timeDict[test.trainedModel] = (self.timeDict[test.trainedModel] ?? self.chartDataTimeClassification) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy)]
+                        self.timeDict[test.trainedModel] = (self.timeDict[test.trainedModel] ?? self.chartDataTimeClassification) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.classifyTime)]
                         self.fileSizeDict[test.trainedModel] = (self.fileSizeDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.modelSize)]
                     case "Object classification":
                         
                         self.trainingDict[test.trainedModel] = (self.trainingDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.trainingTime)]
                         self.accuracyDict[test.trainedModel] = (self.accuracyDict[test.trainedModel] ?? self.chartDataAccuracy) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy * 100)]
-                        self.timeDict[test.trainedModel] = (self.timeDict[test.trainedModel] ?? self.chartDataTimeClassification) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy)]
+                        self.timeDict[test.trainedModel] = (self.timeDict[test.trainedModel] ?? self.chartDataTimeClassification) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.classifyTime)]
                         self.fileSizeDict[test.trainedModel] = (self.fileSizeDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.modelSize)]
                     case "Cats vs dogs":
                         
                         self.trainingDict[test.trainedModel] = (self.trainingDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.trainingTime)]
                         self.accuracyDict[test.trainedModel] = (self.accuracyDict[test.trainedModel] ?? self.chartDataAccuracy) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy * 100)]
-                        self.timeDict[test.trainedModel] = (self.timeDict[test.trainedModel] ?? self.chartDataTimeClassification) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy)]
+                        self.timeDict[test.trainedModel] = (self.timeDict[test.trainedModel] ?? self.chartDataTimeClassification) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.classifyTime)]
                         self.fileSizeDict[test.trainedModel] = (self.fileSizeDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.modelSize)]
                         
                     case "Pokedex":
                         self.trainingDict[test.trainedModel] = (self.trainingDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.trainingTime)]
                         self.accuracyDict[test.trainedModel] = (self.accuracyDict[test.trainedModel] ?? self.chartDataAccuracy) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy * 100)]
-                        self.timeDict[test.trainedModel] = (self.timeDict[test.trainedModel] ?? self.chartDataTimeClassification) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy)]
+                        self.timeDict[test.trainedModel] = (self.timeDict[test.trainedModel] ?? self.chartDataTimeClassification) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.classifyTime)]
                         self.fileSizeDict[test.trainedModel] = (self.fileSizeDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.modelSize)]
                         
                     case "General audio classifier":
                         self.trainingDict[test.trainedModel] = (self.trainingDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.trainingTime)]
                         self.accuracyDict[test.trainedModel] = (self.accuracyDict[test.trainedModel] ?? self.chartDataAccuracy) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy * 100)]
-                        self.timeDict[test.trainedModel] = (self.timeDict[test.trainedModel] ?? self.chartDataTimeClassification) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy)]
+                        self.timeDict[test.trainedModel] = (self.timeDict[test.trainedModel] ?? self.chartDataTimeClassification) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.classifyTime)]
                         self.fileSizeDict[test.trainedModel] = (self.fileSizeDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.modelSize)]
+                        print(self.timeDict[test.trainedModel])
+                        
+                    case "General audio classifier 2":
+                        self.trainingDict[test.trainedModel] = (self.trainingDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.trainingTime)]
+                        self.accuracyDict[test.trainedModel] = (self.accuracyDict[test.trainedModel] ?? self.chartDataAccuracy) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.accuracy * 100)]
+                        self.timeDict[test.trainedModel] = (self.timeDict[test.trainedModel] ?? self.chartDataTimeClassification) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.classifyTime)]
+                        self.fileSizeDict[test.trainedModel] = (self.fileSizeDict[test.trainedModel] ?? self.chartDataTimeToTrain) + [("\(test.name.split(separator: " ")[0]) \(test.name.split(separator: " ")[1])", test.modelSize)]
+                        
                     default:
                         print(test.trainedModel)
                     }
-                    print(self.trainingDict)
-                    print(self.chartDataAccuracy)
-                    
                 }
                 self.tests = list
             }
