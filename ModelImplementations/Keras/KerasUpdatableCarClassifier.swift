@@ -81,11 +81,18 @@ class KerasUpdatableCarClassifier {
                               return String(format: "  (%.2f) %@", classification.confidence, classification.identifier)
                           })
                           // Acá tengo que hacer cosas dependiendo de la interfaz que implemente
-                        if self.test.classifyTime == 0 {
+                        if self.test.classifyTime == 100 {
                             self.test.classifyTime = CFAbsoluteTimeGetCurrent() - startTime
                         } else {
                             self.test.classifyTime = (self.test.classifyTime + (CFAbsoluteTimeGetCurrent() - startTime))/2
                         }
+                        print("\(self.test.classifyTime) Mirar aca -----------------------------------")
+                        TestPersistence.setTest(test: self.test) { (worked, err) in
+                            if !worked {
+                                print(err?.localizedDescription)
+                            }
+                        }
+                        
                           self.obtainedResults = "Classification:\n" + descriptions.joined(separator: "\n") + "\n\(String(format: "Time: %.2f", (CFAbsoluteTimeGetCurrent() - startTime))) seconds"
                           //                        print(self.obtainedResults)
                       }
@@ -177,8 +184,8 @@ class KerasUpdatableCarClassifier {
     
     func startTraining(imageLabelDictionary: [UIImage : String]) {
         
-        let bundle = Bundle(for: car_classifier_updatable.self)
-        let updatableURL = bundle.url(forResource: "car_classifier_updatable", withExtension: "mlmodelc")!
+//        let bundle = Bundle(for: car_classifier_updatable.self)
+//        let updatableURL = bundle.url(forResource: "car_classifier_updatable", withExtension: "mlmodelc")!
         
         let startTime = CFAbsoluteTimeGetCurrent()
         self.obtainedResults = "Training model with \(self.trainSetCount) images..."

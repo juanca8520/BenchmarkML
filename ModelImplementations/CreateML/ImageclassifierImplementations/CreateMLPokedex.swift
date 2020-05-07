@@ -42,10 +42,16 @@ struct CreateMLPokedex {
                             return String(format: "  (%.2f) %@", classification.confidence, classification.identifier)
                         })
                         // Acá tengo que hacer cosas dependiendo de la interfaz que implemente
-                        if self.test.classifyTime == 0 {
+                        if self.test.classifyTime == 100 {
                             self.test.classifyTime = CFAbsoluteTimeGetCurrent() - startTime
                         } else {
                             self.test.classifyTime = (self.test.classifyTime + (CFAbsoluteTimeGetCurrent() - startTime))/2
+                        }
+                        
+                        TestPersistence.setTest(test: self.test) { (worked, err) in
+                            if !worked {
+                                print(err?.localizedDescription)
+                            }
                         }
 
                         self.obtainedResults = "Classification:\n" + descriptions.joined(separator: "\n") + "\n\(String(format: "Time: %.2f", (CFAbsoluteTimeGetCurrent() - startTime))) seconds"

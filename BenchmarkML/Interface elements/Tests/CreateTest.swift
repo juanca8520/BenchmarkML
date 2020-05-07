@@ -151,7 +151,7 @@ struct CreateTest: View {
                         print(self.selectedInputData!.modelName)
                     }
                     
-                    let test = Test(id: "0", name: "\(self.selection["framework"]!) - \(self.selectedInputData!.name)", description: self.selectedInputData!.description, model: self.selectedInputData!.modelName, trainingTime: self.selectedInputData!.timeTotrain, numberElements: self.selectedInputData!.numberOfElements, elementsPerLabel: self.selectedInputData!.elementsPerLabel, elementsForAccuracy: self.selectedInputData!.numberOfElementsToTest, accuracy: self.selectedInputData!.accuracy, trainedModel: self.selectedInputData!.name, isUpdatable: self.selectedInputData!.isUpdatable, modelSize: size, classifyTime: 0.0, isAudio: self.selectedModel!.name.split(separator: " ")[0] == "Audio")
+                    let test = Test(id: "0", name: "\(self.selection["framework"]!) - \(self.selectedInputData!.name)", description: self.selectedInputData!.description, model: self.selectedInputData!.modelName, trainingTime: self.selectedInputData!.timeTotrain, numberElements: self.selectedInputData!.numberOfElements, elementsPerLabel: self.selectedInputData!.elementsPerLabel, elementsForAccuracy: self.selectedInputData!.numberOfElementsToTest, accuracy: self.selectedInputData!.accuracy, trainedModel: self.selectedInputData!.name, isUpdatable: self.selectedInputData!.isUpdatable, modelSize: size, classifyTime: 100, isAudio: self.selectedModel!.name.split(separator: " ")[0] == "Audio")
                     print(test.isAudio)
                     TestPersistence.createTest(test: test) { (bool, err) in
                         if !bool {

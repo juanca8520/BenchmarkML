@@ -43,7 +43,7 @@ struct CreateMLCarClassifier {
                             return String(format: "  (%.2f) %@", classification.confidence, classification.identifier)
                         })
                         // Acá tengo que hacer cosas dependiendo de la interfaz que implemente
-                        if self.test.classifyTime == 0 {
+                        if self.test.classifyTime == 100 {
                             self.test.classifyTime = CFAbsoluteTimeGetCurrent() - startTime
                         } else {
                             self.test.classifyTime = (self.test.classifyTime + (CFAbsoluteTimeGetCurrent() - startTime))/2
