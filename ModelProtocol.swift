@@ -9,6 +9,7 @@
 import SwiftUI
 
 protocol ModelProtocol {
+    
     func startAudioEngine()
     func stopAudioEngine()
 }

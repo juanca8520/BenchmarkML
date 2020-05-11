@@ -20,6 +20,8 @@ struct TestDetail: View {
     @State var modelFileSize: Int?
     @State var time = 0.0
     
+    @State var modelLabel = "Select a label"
+    
     @State var isRecording = false
     @State var audioClassifier: ModelProtocol?
     
@@ -99,7 +101,7 @@ struct TestDetail: View {
                         
                         if isUpdatable {
                             Button(action: {
-                                self.imageLabelDictionary[self.selectedImage.value] = "BMW"
+                                self.imageLabelDictionary[self.selectedImage.value] = "charmander"
                                 self.trainSetCount += 1
                             }) {
                                 Text("Add image to train set")
@@ -131,6 +133,9 @@ struct TestDetail: View {
                                 TuricreatePokemonClassification(obtainedResults: self.$results, test: self.$model).updateClassifications(for: self.selectedImage.value)
                             case "UpdatableKerasCarClassifier":
                                 KerasUpdatableCarClassifier(obtainedResults: self.$results, trainSetCount: self.$trainSetCount, test: self.$model).updateClassifications(for: self.selectedImage.value)
+                            case "UpdatableKerasPokedexClassifier":
+                                KerasUpdatablePokedex(obtainedResults: self.$results, trainSetCount: self.$trainSetCount, test: self.$model).updateClassifications(for: self.selectedImage.value)
+                                
                             default:
                                 print(self.model.model)
                             }
@@ -141,9 +146,22 @@ struct TestDetail: View {
                         
                         if isUpdatable {
                             Button(action: {
-                                KerasUpdatableCarClassifier(obtainedResults: self.$results, trainSetCount: self.$trainSetCount, test: self.$model).startTraining(imageLabelDictionary:  self.imageLabelDictionary)
+                                
+                                switch self.model.model {
+                                    
+                                case "UpdatableKerasCarClassifier":
+                                    KerasUpdatableCarClassifier(obtainedResults: self.$results, trainSetCount: self.$trainSetCount, test: self.$model).startTraining(imageLabelDictionary:  self.imageLabelDictionary)
+                                    
+                                case "UpdatableKerasPokedexClassifier":
+                                    KerasUpdatablePokedex(obtainedResults: self.$results, trainSetCount: self.$trainSetCount, test: self.$model).startTraining(imageLabelDictionary: self.imageLabelDictionary)
+                                    
+                                default:
+                                    print(self.model.model)
+                                }
+                                
                                 self.imageLabelDictionary = [UIImage:String]()
                                 self.selectedImage.value = UIImage()
+                                
                             }) {
                                 Text("Train model")
                             }
@@ -157,6 +175,20 @@ struct TestDetail: View {
                     Text("Number of images to train the model: \(self.trainSetCount)")
                         .padding()
                     
+                    Text("Select the label of the image to use for training")
+                    .bold()
+                    .padding()
+                    
+                    Text("Selected label: \(self.modelLabel)")
+                        .padding()
+                    
+                    ForEach(0 ..< model.labels.count, id: \.self) { label in
+                        Button(action: {
+                            self.modelLabel = self.model.labels[label].name
+                        }) {
+                            Text("\(self.model.labels[label].name)")
+                        }
+                    }
                 }
                 
                 HStack(alignment: .center){
@@ -202,6 +234,20 @@ struct TestDetail: View {
                         .padding()
                     
                     Text("The average classifying time is: \(self.model.classifyTime)")
+                    
+                    Text("Classification classes for this model:")
+                        .font(.title)
+                        .bold()
+                        .padding(.top)
+                        
+                    
+                    ForEach(0 ..< model.labels.count, id: \.self) { label in
+                        HStack{
+                            Text(self.model.labels[label].name)
+                            Spacer()
+                            Text("\(self.model.labels[label].numberOfElements) training elements")
+                        }.padding(.top)
+                    }
                     
                 }
                 .padding(.horizontal)

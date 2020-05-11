@@ -39,6 +39,6 @@ struct ConfigureTest: View {
 
 struct ConfigureTest_Previews: PreviewProvider {
     static var previews: some View {
-        ConfigureTest(didSelectInputData: .constant(true), inputData: .constant([InputData]()), selectedInputData: .constant(InputData(id: 0, name: "hola", description: "hola", image: "hola", timeTotrain: 1, numberOfElements: 1, numberOfLabels: 1, numberOfElementsToTest: 1, elementsPerLabel: 1, modelName: "", accuracy: 0.1, isUpdatable: true)))
+        ConfigureTest(didSelectInputData: .constant(true), inputData: .constant([InputData]()), selectedInputData: .constant(InputData(id: 0, name: "hola", description: "hola", image: "hola", timeTotrain: 1, numberOfElements: 1, numberOfLabels: 1, numberOfElementsToTest: 1, elementsPerLabel: 1, modelName: "", accuracy: 0.1, isUpdatable: true, labels: [ModelLabel]())))
     }
 }

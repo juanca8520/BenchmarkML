@@ -9,7 +9,7 @@
 import SwiftUI
 import Firebase
 
-struct Test: Identifiable, Decodable, Hashable {
+struct Test: Identifiable, Decodable {
     var id: String
     var name: String
     var description: String
@@ -24,6 +24,7 @@ struct Test: Identifiable, Decodable, Hashable {
     var modelSize: Int
     var classifyTime: Double
     var isAudio: Bool
+    var labels = [ModelLabel]()
     
     init(snapshot: DataSnapshot) {
         let object = snapshot.value as? [String:AnyObject]
@@ -41,9 +42,14 @@ struct Test: Identifiable, Decodable, Hashable {
         modelSize = object!["modelSize"] as! Int
         classifyTime = object!["classifyTime"] as! Double
         isAudio = object!["isAudio"] as! Bool
+        let labelsTemp = object!["labels"] as! [[String:AnyObject]]
+        
+        for label in labelsTemp {
+            labels.append(ModelLabel(id: label["id"] as! Int, name: label["name"] as! String, numberOfElements: label["numberOfElements"] as! Int))
+        }
     }
     
-    init(id: String, name: String, description: String, model: String, trainingTime: Int, numberElements: Int, elementsPerLabel: Int, elementsForAccuracy: Int, accuracy: Double, trainedModel: String, isUpdatable: Bool, modelSize: Int, classifyTime: Double, isAudio: Bool) {
+    init(id: String, name: String, description: String, model: String, trainingTime: Int, numberElements: Int, elementsPerLabel: Int, elementsForAccuracy: Int, accuracy: Double, trainedModel: String, isUpdatable: Bool, modelSize: Int, classifyTime: Double, isAudio: Bool, labels: [ModelLabel]) {
         self.id = id
         self.name = name
         self.description = description
@@ -58,6 +64,7 @@ struct Test: Identifiable, Decodable, Hashable {
         self.modelSize = modelSize
         self.classifyTime = classifyTime
         self.isAudio = isAudio
+        self.labels = labels
     }
     
     func toAnyObject() -> [String:AnyObject]{
@@ -76,6 +83,12 @@ struct Test: Identifiable, Decodable, Hashable {
         dict["modelSize"] = modelSize as AnyObject
         dict["classifyTime"] = classifyTime as AnyObject
         dict["isAudio"] = isAudio as AnyObject
+        var saveArray = [[String:AnyObject]]()
+        for label in labels{
+            saveArray.append(label.toAnyObject())
+        }
+        
+        dict["labels"] = saveArray as AnyObject
         
         return dict
     }

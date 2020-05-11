@@ -35,7 +35,13 @@ struct Model: Identifiable {
             let inputDataDict = framework["inputData"] as! [[String:AnyObject]]
             var inputDataArray = [InputData]()
             for inputData in inputDataDict {
-                let inputDataElement = InputData(id: Int(inputData["id"] as! Int64), name: inputData["name"] as! String, description: inputData["description"] as! String, image: inputData["image"] as! String, timeTotrain: Int(inputData["timeToTrain"] as! Int64), numberOfElements: inputData["numberOfElements"] as! Int, numberOfLabels: inputData["numberOfLabels"] as! Int, numberOfElementsToTest: inputData["numberOfElementsToTest"] as! Int, elementsPerLabel: inputData["elementsPerLabel"] as! Int, modelName: inputData["modelName"] as! String, accuracy: inputData["accuracy"] as! Double, isUpdatable: inputData["isUpdatable"] as! Bool)
+                let labelDictArray = inputData["labels"] as! [[String:AnyObject]]
+                var labels = [ModelLabel]()
+                for labelDict in labelDictArray{
+                    let label_add = ModelLabel(id: labelDict["id"] as! Int, name: labelDict["name"] as! String, numberOfElements: labelDict["numberOfElements"] as! Int)
+                    labels.append(label_add)
+                }
+                let inputDataElement = InputData(id: Int(inputData["id"] as! Int64), name: inputData["name"] as! String, description: inputData["description"] as! String, image: inputData["image"] as! String, timeTotrain: Int(inputData["timeToTrain"] as! Int64), numberOfElements: inputData["numberOfElements"] as! Int, numberOfLabels: inputData["numberOfLabels"] as! Int, numberOfElementsToTest: inputData["numberOfElementsToTest"] as! Int, elementsPerLabel: inputData["elementsPerLabel"] as! Int, modelName: inputData["modelName"] as! String, accuracy: inputData["accuracy"] as! Double, isUpdatable: inputData["isUpdatable"] as! Bool, labels: labels)
                 inputDataArray.append(inputDataElement)
             }
             

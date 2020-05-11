@@ -29,7 +29,15 @@ struct Framework: Decodable, Identifiable {
         
         var inputArray = [InputData]()
         for input in inputDict {
-            let element = InputData(id: input["id"] as! Int, name: input["name"] as! String, description: input["description"] as! String, image: input["image"] as! String, timeTotrain: input["timeToTrain"] as! Int, numberOfElements: input["numberOfElements"] as! Int, numberOfLabels: input["numberOfLabels"] as! Int, numberOfElementsToTest: input["numberOfElementsToTest"] as! Int, elementsPerLabel: input["elementsPerLabel"] as! Int, modelName: input["modelName"] as! String, accuracy: input["accuracy"] as! Double, isUpdatable: input["isUpdatable"] as! Bool)
+            
+            let labelDictArray = input["labels"] as! [[String:AnyObject]]
+            var labels = [ModelLabel]()
+            for labelDict in labelDictArray{
+                let label_add = ModelLabel(id: labelDict["id"] as! Int, name: labelDict["name"] as! String, numberOfElements: labelDict["numberOfElements"] as! Int)
+                labels.append(label_add)
+            }
+            
+            let element = InputData(id: input["id"] as! Int, name: input["name"] as! String, description: input["description"] as! String, image: input["image"] as! String, timeTotrain: input["timeToTrain"] as! Int, numberOfElements: input["numberOfElements"] as! Int, numberOfLabels: input["numberOfLabels"] as! Int, numberOfElementsToTest: input["numberOfElementsToTest"] as! Int, elementsPerLabel: input["elementsPerLabel"] as! Int, modelName: input["modelName"] as! String, accuracy: input["accuracy"] as! Double, isUpdatable: input["isUpdatable"] as! Bool, labels: labels)
             inputArray.append(element)
         }
         self.inputData = inputArray
