@@ -101,7 +101,7 @@ struct TestDetail: View {
                         
                         if isUpdatable {
                             Button(action: {
-                                self.imageLabelDictionary[self.selectedImage.value] = "charmander"
+                                self.imageLabelDictionary[self.selectedImage.value] = self.modelLabel
                                 self.trainSetCount += 1
                             }) {
                                 Text("Add image to train set")
