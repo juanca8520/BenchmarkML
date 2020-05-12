@@ -48,7 +48,7 @@ struct CreateMLCarClassifier {
                         } else {
                             self.test.classifyTime = (self.test.classifyTime + (CFAbsoluteTimeGetCurrent() - startTime))/2
                         }
-                        
+                        print(self.test.labels)
                         TestPersistence.setTest(test: self.test) { (worked, err) in
                             if !worked {
                                 print(err?.localizedDescription)

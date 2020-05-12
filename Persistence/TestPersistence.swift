@@ -34,12 +34,18 @@ class TestPersistence {
     }
     
     static func setTest(test: Test, completion: @escaping (Bool, Error?) -> Void) {
+        
+        var labels = [[String:AnyObject]]()
+        for label in test.labels {
+            labels.append(label.toAnyObject())
+        }
+        
         self.ref.child(test.id).setValue(["accuracy": test.accuracy, "classifyTime": test.classifyTime,
                                           "description": test.description, "elementsForAccuracy": test.elementsForAccuracy,
                                           "elementsPerLabel":test.elementsPerLabel, "id": test.id,
                                           "isUpdatable": test.isUpdatable, "model": test.model,
                                           "modelSize":test.modelSize, "name": test.name,
                                           "numberElements": test.numberElements, "trainedModel":test.trainedModel,
-                                          "trainingTime": test.trainingTime, "isAudio": test.isAudio])
+                                          "trainingTime": test.trainingTime, "isAudio": test.isAudio, "labels": labels])
     }
 }

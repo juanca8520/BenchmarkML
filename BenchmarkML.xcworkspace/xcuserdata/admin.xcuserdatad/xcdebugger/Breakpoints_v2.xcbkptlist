@@ -3,4 +3,54 @@
    uuid = "3D2F02AF-EF80-4768-8998-F20EA02BBAA1"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AB216370-D9AA-4277-B27A-7B12F401D0C9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ModelImplementations/CreateML/ImageclassifierImplementations/CreateMLCarClassifier.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "classificationRequest(startTime:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AB216370-D9AA-4277-B27A-7B12F401D0C9 - cdecc52f42520ea6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (__C.VNRequest, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BenchmarkML.CreateMLCarClassifier.classificationRequest(startTime: Swift.Double) -&gt; __C.VNCoreMLRequest"
+                  moduleName = "BenchmarkML"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Downloads/XCODE/ML/BenchmarkML/ModelImplementations/CreateML/ImageclassifierImplementations/CreateMLCarClassifier.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "1256">
+               </Location>
+               <Location
+                  uuid = "AB216370-D9AA-4277-B27A-7B12F401D0C9 - c3308444795b6538"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 () -&gt; () in closure #1 (__C.VNRequest, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BenchmarkML.CreateMLCarClassifier.classificationRequest(startTime: Swift.Double) -&gt; __C.VNCoreMLRequest"
+                  moduleName = "BenchmarkML"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Downloads/XCODE/ML/BenchmarkML/ModelImplementations/CreateML/ImageclassifierImplementations/CreateMLCarClassifier.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "100">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

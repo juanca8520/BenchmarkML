@@ -175,6 +175,14 @@ struct TestDetail: View {
                     Text("Number of images to train the model: \(self.trainSetCount)")
                         .padding()
                     
+                    Button(action: {
+                        print("Reset model")
+                    }) {
+                        Text("Reset model")
+                            .frame(alignment: .center)
+                    }.padding()
+                        
+                    
                     Text("Select the label of the image to use for training")
                     .bold()
                     .padding()
@@ -187,7 +195,9 @@ struct TestDetail: View {
                             self.modelLabel = self.model.labels[label].name
                         }) {
                             Text("\(self.model.labels[label].name)")
+                            .frame(alignment: .center)
                         }
+                        .padding()
                     }
                 }
                 

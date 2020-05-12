@@ -28,11 +28,6 @@ class KerasUpdatableCarClassifier {
             let documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:true)
             let fileURL = documentDirectory.appendingPathComponent("car_classifier_updatable.mlmodelc")
             
-//            do {
-//                try FileManager.default.removeItem(at: fileURL)
-//            } catch let error as NSError {
-//                print("Error: \(error.domain)")
-//            }
             
             if let model = loadModel(url: fileURL){
                 print("hola ya entendiiiiii")
@@ -54,6 +49,19 @@ class KerasUpdatableCarClassifier {
             }
         } catch(let error){
             print("initial error is \(error.localizedDescription)")
+        }
+    }
+    
+    func resetModel() {
+        let fileManager = FileManager.default
+        
+        do {
+            let documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:true)
+            let fileURL = documentDirectory.appendingPathComponent("car_classifier_updatable.mlmodelc")
+
+            try FileManager.default.removeItem(at: fileURL)
+        } catch let error as NSError {
+            print("Error: \(error.domain)")
         }
     }
     
