@@ -24,6 +24,8 @@ class KerasUpdatablePokedex {
         self._trainSetCount = trainSetCount
         self._test = test
         
+        resetModel()
+        
         let fileManager = FileManager.default
         do {
             let documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:true)
@@ -61,6 +63,7 @@ class KerasUpdatablePokedex {
             let fileURL = documentDirectory.appendingPathComponent("pokedex_updatable.mlmodelc")
             
             try FileManager.default.removeItem(at: fileURL)
+            print("Pokedex updatable model resetted")
         } catch let error as NSError {
             print("Error: \(error.domain)")
         }

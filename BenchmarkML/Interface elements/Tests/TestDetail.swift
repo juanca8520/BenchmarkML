@@ -165,7 +165,7 @@ struct TestDetail: View {
                             }) {
                                 Text("Train model")
                             }
-                            .disabled(imageLabelDictionary == [UIImage : String]())
+                            .disabled(imageLabelDictionary == [UIImage : String]() || modelLabel == "Select a label")
                             
                         }
                     }

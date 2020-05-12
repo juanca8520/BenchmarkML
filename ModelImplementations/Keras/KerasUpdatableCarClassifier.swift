@@ -23,6 +23,8 @@ class KerasUpdatableCarClassifier {
         self._trainSetCount = trainSetCount
         self._test = test
         
+        resetModel()
+        
         let fileManager = FileManager.default
         do {
             let documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:true)
@@ -60,6 +62,7 @@ class KerasUpdatableCarClassifier {
             let fileURL = documentDirectory.appendingPathComponent("car_classifier_updatable.mlmodelc")
 
             try FileManager.default.removeItem(at: fileURL)
+            print("Car updatable classifier resetted")
         } catch let error as NSError {
             print("Error: \(error.domain)")
         }

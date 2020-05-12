@@ -25,12 +25,36 @@ struct TestGroup: View {
                     TestRun(test: tests[1])
                 }
                 .buttonStyle(PlainButtonStyle())
+                .contextMenu {
+                    Button(action: {
+                        print("funciona")
+                        TestPersistence.deleteTest(test: self.tests[1]) { (deleted, err) in
+                            if !deleted {
+                                print("Error deleting")
+                            }
+                        }
+                    }) {
+                        Text("Delete test")
+                    }
+                }
                 
             } else {
                 NavigationLink(destination: TestDetail(model: tests[0], isUpdatable: tests[0].isUpdatable, isAudio: tests[0].isAudio)){
                     TestRun(test: tests[0])
                 }
                 .buttonStyle(PlainButtonStyle())
+                .contextMenu {
+                    Button(action: {
+                        print("funciona")
+                        TestPersistence.deleteTest(test: self.tests[0]) { (deleted, err) in
+                            if !deleted {
+                                print("Error deleting")
+                            }
+                        }
+                    }) {
+                        Text("Delete test")
+                    }
+                }
                 
                 Button(action: {
                     self.createTestModal.toggle()

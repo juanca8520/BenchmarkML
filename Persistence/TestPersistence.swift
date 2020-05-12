@@ -39,13 +39,12 @@ class TestPersistence {
         for label in test.labels {
             labels.append(label.toAnyObject())
         }
-        
-        self.ref.child(test.id).setValue(["accuracy": test.accuracy, "classifyTime": test.classifyTime,
-                                          "description": test.description, "elementsForAccuracy": test.elementsForAccuracy,
-                                          "elementsPerLabel":test.elementsPerLabel, "id": test.id,
-                                          "isUpdatable": test.isUpdatable, "model": test.model,
-                                          "modelSize":test.modelSize, "name": test.name,
-                                          "numberElements": test.numberElements, "trainedModel":test.trainedModel,
-                                          "trainingTime": test.trainingTime, "isAudio": test.isAudio, "labels": labels])
+        self.ref.child(test.id).setValue(test.toAnyObject())
+    }
+    
+    static func deleteTest(test: Test, completion: @escaping (Bool, Error?) -> Void) {
+        let testRef = Database.database().reference(withPath: "0/tests/" + test.id)
+        testRef.removeValue()
+        completion(true, nil)
     }
 }
