@@ -12,6 +12,7 @@ import Vision
 import ImageIO
 
 struct TestDetail: View {
+    @State var camera: Bool
     @State var isShowingImagePicker = false
     @State var showingSheet = false
     @State var results = ""
@@ -53,17 +54,19 @@ struct TestDetail: View {
                             }.actionSheet(isPresented: self.$showingSheet) {
                                 ActionSheet(title: Text("Select an option"), message: Text("Select how to add an image to classify"), buttons:
                                     [.default(Text("Select from gallery"), action: {
+                                        self.camera = false
                                         self.isShowingImagePicker.toggle()
                                     }),
                                      .default(Text("Use camera"), action: {
-                                        print("no lo tengo aun")
+                                        self.camera = true
+                                        self.isShowingImagePicker.toggle()
                                      }),
                                      .cancel()
                                     ]
                                 )
                             }
                             .sheet(isPresented: $isShowingImagePicker, content: {
-                                ImagePickerView(isPresented: self.$isShowingImagePicker, image: self.$selectedImage.value)
+                                ImagePickerView(isPresented: self.$isShowingImagePicker, image: self.$selectedImage.value, camera: self.camera)
                             }).padding(.horizontal)
                         } else {
                             
@@ -270,7 +273,7 @@ struct TestDetail: View {
 
 struct TestDetail_Previews: PreviewProvider {
     static var previews: some View {
-        TestDetail(model: landmarkData[0], isUpdatable: true, isAudio: false)
+        TestDetail(camera: false, model: landmarkData[0], isUpdatable: true, isAudio: false)
     }
 }
 
@@ -278,10 +281,14 @@ struct ImagePickerView: UIViewControllerRepresentable {
     
     @Binding var isPresented: Bool
     @Binding var image: UIImage
+    var camera: Bool
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePickerView>) -> UIImagePickerController {
         let controller = UIImagePickerController()
         controller.delegate = context.coordinator
+        if camera {
+            controller.sourceType = .camera
+        }
         return controller
     }
     

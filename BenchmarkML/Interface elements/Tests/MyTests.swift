@@ -54,7 +54,6 @@ struct MyTests: View {
         }
         .onAppear(perform: {
             TestPersistence.getTests { (list, err) in
-                //                self.tests = Array(Set(list).subtracting(self.tests))
                 self.tests = list
                 self.chunckedTests = list.chunked(into: 2)
             }

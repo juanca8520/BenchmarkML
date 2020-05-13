@@ -16,12 +16,24 @@ struct TestGroup: View {
     var body: some View {
         HStack{
             if tests.count == 2 {
-                NavigationLink(destination: TestDetail(model: tests[0], isUpdatable: tests[0].isUpdatable, isAudio: tests[0].isAudio)){
+                NavigationLink(destination: TestDetail(camera: false, model: tests[0], isUpdatable: tests[0].isUpdatable, isAudio: tests[0].isAudio)){
                     TestRun(test: tests[0])
                 }
                 .buttonStyle(PlainButtonStyle())
+                .contextMenu {
+                    Button(action: {
+                        print("funciona")
+                        TestPersistence.deleteTest(test: self.tests[1]) { (deleted, err) in
+                            if !deleted {
+                                print("Error deleting")
+                            }
+                        }
+                    }) {
+                        Text("Delete test")
+                    }
+                }
                 
-                NavigationLink(destination: TestDetail(model: tests[1], isUpdatable: tests[1].isUpdatable, isAudio: tests[1].isAudio)){
+                NavigationLink(destination: TestDetail(camera: false, model: tests[1], isUpdatable: tests[1].isUpdatable, isAudio: tests[1].isAudio)){
                     TestRun(test: tests[1])
                 }
                 .buttonStyle(PlainButtonStyle())
@@ -39,7 +51,7 @@ struct TestGroup: View {
                 }
                 
             } else {
-                NavigationLink(destination: TestDetail(model: tests[0], isUpdatable: tests[0].isUpdatable, isAudio: tests[0].isAudio)){
+                NavigationLink(destination: TestDetail(camera: false, model: tests[0], isUpdatable: tests[0].isUpdatable, isAudio: tests[0].isAudio)){
                     TestRun(test: tests[0])
                 }
                 .buttonStyle(PlainButtonStyle())
