@@ -20,6 +20,8 @@ struct TestDetail: View {
     @State var trainSetCount = 0
     @State var modelFileSize: Int?
     @State var time = 0.0
+    @State var selectedModel: ModelImplementationProtocol!
+    @State private var showingLabelAlert = false
     
     @State var modelLabel = "Select a label"
     
@@ -104,12 +106,18 @@ struct TestDetail: View {
                         
                         if isUpdatable {
                             Button(action: {
-                                self.imageLabelDictionary[self.selectedImage.value] = self.modelLabel
-                                self.trainSetCount += 1
+                                if self.modelLabel == "Select a label" {
+                                    self.showingLabelAlert.toggle()
+                                } else {
+                                    self.imageLabelDictionary[self.selectedImage.value] = self.modelLabel
+                                    self.trainSetCount += 1
+                                }
                             }) {
                                 Text("Add image to train set")
                             }.disabled(selectedImage.value == UIImage())
-                            
+                                .alert(isPresented: $showingLabelAlert) {
+                                    Alert(title: Text("Important message"), message: Text("Select a label for the image selected"), dismissButton: .default(Text("Okay")))
+                            }
                         }
                     }
                     Spacer()
@@ -149,19 +157,19 @@ struct TestDetail: View {
                         
                         if isUpdatable {
                             Button(action: {
-                                
                                 switch self.model.model {
                                     
                                 case "UpdatableKerasCarClassifier":
-                                    KerasUpdatableCarClassifier(obtainedResults: self.$results, trainSetCount: self.$trainSetCount, test: self.$model).startTraining(imageLabelDictionary:  self.imageLabelDictionary)
+//                                    KerasUpdatableCarClassifier(obtainedResults: self.$results, trainSetCount: self.$trainSetCount, test: self.$model).startTraining(imageLabelDictionary:  self.imageLabelDictionary)
+                                    self.selectedModel.startTraining(imageLabelDictionary:  self.imageLabelDictionary)
                                     
                                 case "UpdatableKerasPokedexClassifier":
-                                    KerasUpdatablePokedex(obtainedResults: self.$results, trainSetCount: self.$trainSetCount, test: self.$model).startTraining(imageLabelDictionary: self.imageLabelDictionary)
+//                                    KerasUpdatablePokedex(obtainedResults: self.$results, trainSetCount: self.$trainSetCount, test: self.$model).startTraining(imageLabelDictionary: self.imageLabelDictionary)
+                                    self.selectedModel.startTraining(imageLabelDictionary:  self.imageLabelDictionary)
                                     
                                 default:
                                     print(self.model.model)
                                 }
-                                
                                 self.imageLabelDictionary = [UIImage:String]()
                                 self.selectedImage.value = UIImage()
                                 
@@ -180,6 +188,7 @@ struct TestDetail: View {
                     
                     Button(action: {
                         print("Reset model")
+                        self.selectedModel.resetModel()
                     }) {
                         Text("Reset model")
                             .frame(alignment: .center)
@@ -196,6 +205,7 @@ struct TestDetail: View {
                     ForEach(0 ..< model.labels.count, id: \.self) { label in
                         Button(action: {
                             self.modelLabel = self.model.labels[label].name
+//                            self.modelLabel = "Alfa-Romeo"
                         }) {
                             Text("\(self.model.labels[label].name)")
                             .frame(alignment: .center)
@@ -268,6 +278,18 @@ struct TestDetail: View {
             }
         }
         .navigationBarTitle(model.name)
+        .onAppear(perform: {
+            if self.isUpdatable {
+                switch self.model.model {
+                case "UpdatableKerasCarClassifier":
+                    self.selectedModel = KerasUpdatableCarClassifier(obtainedResults: self.$results, trainSetCount: self.$trainSetCount, test: self.$model)
+                case "UpdatableKerasPokedexClassifier":
+                    self.selectedModel = KerasUpdatablePokedex(obtainedResults: self.$results, trainSetCount: self.$trainSetCount, test: self.$model)
+                default:
+                    print("algo fallo creando los updatable")
+                }
+            }
+        })
     }
 }
 

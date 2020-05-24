@@ -10,7 +10,7 @@ import SwiftUI
 import Vision
 import CoreML
 
-class KerasUpdatablePokedex {
+class KerasUpdatablePokedex: ModelImplementationProtocol {
     
     @Binding var obtainedResults: String
     @Binding var trainSetCount: Int
@@ -24,7 +24,7 @@ class KerasUpdatablePokedex {
         self._trainSetCount = trainSetCount
         self._test = test
         
-        resetModel()
+//        resetModel()
         
         let fileManager = FileManager.default
         do {
@@ -56,6 +56,7 @@ class KerasUpdatablePokedex {
     }
     
     func resetModel() {
+        print("Borré el modelo anterior del pokedex")
         let fileManager = FileManager.default
         
         do {

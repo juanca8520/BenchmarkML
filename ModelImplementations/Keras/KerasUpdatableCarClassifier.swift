@@ -10,7 +10,7 @@ import SwiftUI
 import Vision
 import CoreML
 
-class KerasUpdatableCarClassifier {
+class KerasUpdatableCarClassifier: ModelImplementationProtocol {
     @Binding var obtainedResults: String
     @Binding var trainSetCount: Int
     @Binding var test: Test
@@ -23,7 +23,7 @@ class KerasUpdatableCarClassifier {
         self._trainSetCount = trainSetCount
         self._test = test
         
-        resetModel()
+//        resetModel()
         
         let fileManager = FileManager.default
         do {
@@ -55,6 +55,7 @@ class KerasUpdatableCarClassifier {
     }
     
     func resetModel() {
+        print("Borré el modelo anterior de car classifier")
         let fileManager = FileManager.default
         
         do {
